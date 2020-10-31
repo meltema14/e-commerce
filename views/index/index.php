@@ -206,7 +206,7 @@
 					    
 					});
 				   </script>
-				   <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+				   <script type="text/javascript" src="<?php  echo URL; ?>/views/design/js/jquery.flexisel.js"></script>
 				   </div>
 				   </div>
 		<!-- content-section-ends-here -->
