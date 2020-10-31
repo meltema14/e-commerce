@@ -20,8 +20,8 @@ class Controller{
     public function Modelyukle($name) {
 
         // yüklenecek yol
-        // name yerine p yazarken projeyi yükleyecek, ü yazarsak üyeyi yğkleyecek gibi
-        $yol='model/'.$name.'_model.php';
+        // name yerine p yazarken projeyi yükleyecek, ü yazarsak üyeyi yükleyecek gibi
+        $yol = 'model/' .$name. '_model.php';
 
         // $yol değişkeninde dosya varsa yükleyecek
         if (file_exists($yol)) :

@@ -22,11 +22,11 @@ class boots{
 
         */
 
-        //kontrolcü parametresi boşsa
+        // eğer kontrolcü yazılmazsa magaza kontrolcüsünü çalıştır
         if(empty($url[0])):
 
-            require 'controllers/ana.php';  
-            $controller = new ana;
+            require 'controllers/magaza.php';  
+            $controller = new magaza;
 
         else:
 
