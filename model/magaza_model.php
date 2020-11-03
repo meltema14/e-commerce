@@ -20,6 +20,12 @@ class magaza_model extends Model {
 
     }
 
+    function anasayfaUrunler($tabload, $kosul) {
+
+        return $this->db->listele($tabload, $kosul);
+        
+    }
+
 
 }
 

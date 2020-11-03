@@ -11,14 +11,14 @@ class magaza extends Controller {
         // modeli yükledik
         $this-> Modelyukle('magaza');
 
-        $data1 = 5;
         
         // tasarım dosyalarını gösterebilmek için kullanıyoruz
         $this-> view -> goster("sayfalar/index", 
         array(
                     // sorgu sonunda gelen sonucu header olarak taşır
         "header" => $this->model->ayarlar("ayarlar"),
-        "data1" => $data1
+                    // modele bağlan ürünlerden en son eklenenleri getir
+        "data1" => $this->model->anasayfaUrunler("urunler", "where durum=0 order by id desc")
         ));
 
 
