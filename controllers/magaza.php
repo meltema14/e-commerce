@@ -17,8 +17,10 @@ class magaza extends Controller {
         array(
                     // sorgu sonunda gelen sonucu header olarak taşır
         "header" => $this->model->ayarlar("ayarlar"),
-                    // modele bağlan ürünlerden en son eklenenleri getir
-        "data1" => $this->model->anasayfaUrunler("urunler", "where durum=0 order by id desc")
+                    // modele bağlanarak ürünlerden durum=0 olan ve en son eklenenleri getirir
+        "data1" => $this->model->anasayfaUrunler("urunler", "where durum=0 order by id desc"),
+                    // durumu 1 olanları getirir
+        "data2" => $this->model->anasayfaUrunler("urunler", "where durum=1 order by id desc"),
         ));
 
 

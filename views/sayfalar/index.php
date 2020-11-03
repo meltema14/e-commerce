@@ -70,7 +70,7 @@
 
 				<?php
 
-					// ürünler vt den geliyor
+					// durumu 0 olan ürünler vt den geliyor
 					foreach ($veri["data1"] as   $key => $value) :
 				?>
 
@@ -100,36 +100,29 @@
 		<div class="container">
 			<h3 class="like text-center">EN ÇOK SATANLAR</h3>        			
 				     <ul id="flexiselDemo3">
-						<li><a href="single.html"><img src="<?php  echo URL; ?>/views/design/images/l1.jpg" class="img-responsive" alt="" /></a>
-							<div class="product liked-product simpleCart_shelfItem">
-							<a class="like_name" href="single.html">perfectly simple</a>
-							<p><a class="item_add" href="#"><i></i> <span class=" item_price">$759</span></a></p>
-							</div>
+
+
+					 <?php
+
+						// durumu 1 olan ürünler vt den geliyor
+						foreach ($veri["data2"] as   $key => $value2) :
+						?>
+							
+								<li><a href="urundetay/<?php echo $value2["id"]; ?>">
+								<img src="<?php  echo URL; ?>/views/design/images/<?php echo $value2["res2"]; ?>" class="img-responsive" alt="<?php echo $value2["urunad"]; ?>" /></a>
+								<div class="product liked-product simpleCart_shelfItem">
+								<a class="like_name" href="urundetay/<?php echo $value2["id"]; ?>"><?php echo $value2["urunad"]; ?></a>
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price"><?php echo $value2["fiyat"]; ?></span></a></p>
+							
 						</li>
-						<li><a href="single.html"><img src="<?php  echo URL; ?>/views/design/images/l2.jpg" class="img-responsive" alt="" /></a>						
-							<div class="product liked-product simpleCart_shelfItem">
-							<a class="like_name" href="single.html">praising pain</a>
-							<p><a class="item_add" href="#"><i></i> <span class=" item_price">$699</span></a></p>
-							</div>
-						</li>
-						<li><a href="single.html"><img src="<?php  echo URL; ?>/views/design/images/l3.jpg" class="img-responsive" alt="" /></a>
-							<div class="product liked-product simpleCart_shelfItem">
-							<a class="like_name" href="single.html">Neque porro</a>
-							<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-							</div>
-						</li>
-						<li><a href="single.html"><img src="<?php  echo URL; ?>/views/design/images/l4.jpg" class="img-responsive" alt="" /></a>
-							<div class="product liked-product simpleCart_shelfItem">
-							<a class="like_name" href="single.html">equal blame</a>
-							<p><a class="item_add" href="#"><i></i> <span class=" item_price">$499</span></a></p>
-							</div>
-						</li>
-						<li><a href="single.html"><img src="<?php  echo URL; ?>/views/design/images/l5.jpg" class="img-responsive" alt="" /></a>
-							<div class="product liked-product simpleCart_shelfItem">
-							<a class="like_name" href="single.html">perfectly simple</a>
-							<p><a class="item_add" href="#"><i></i> <span class=" item_price">$649</span></a></p>
-							</div>
-						</li>
+
+						<?php
+
+						endforeach;
+
+						?>
+					
+
 				     </ul>
 				    <script type="text/javascript">
 					 $(window).load(function() {
