@@ -52,7 +52,7 @@ class Database extends PDO {
         endif;
     }
 
-                            // kosul olmadığında hata vermesin diye false
+                    // kosul olmadığında hata vermesin diye false
     function listele($tabloisim, $kosul = false) {
 
         // sorgumuzu oluşturduk

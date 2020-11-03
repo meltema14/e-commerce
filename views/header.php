@@ -7,7 +7,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title> MVC E-TİCARET UYGULAMASI </title>
 <link href="<?php  echo URL; ?>/views/design/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<?php  echo URL; ?>/views/design/js/jquery.min.js"></script>
@@ -16,7 +15,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="bizim keywords" />
+
+<title><?php echo $veri["header"][0]["title"]; ?></title>
+
+<meta name="description" content="<?php echo $veri["header"][0]["sayfaAciklama"]; ?>" />
+<meta name="keywords" content="<?php echo $veri["header"][0]["anahtarKelime"]; ?>" />
+
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfont-->
 <!-- for bootstrap working -->
@@ -34,7 +39,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="container">
 				<div class="header-top-left">
 					<ul>
-						<li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Giriş </a></li>
+						<li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Giriş <?php 
+						
+							
+
+						/*
+						// header verisini değerlerine ayırdık
+						foreach ($veri["header"] as $value) :
+
+							foreach ($value as $key => $value2) :
+
+								echo $key. "=" . $value2 . "<br>";
+
+							endforeach;
+
+						endforeach;
+						 */
+						
+						?></a></li>
 						<li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Hesap Oluştur</a></li>			
 					</ul>
 				</div>
