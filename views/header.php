@@ -39,25 +39,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="container">
 				<div class="header-top-left">
 					<ul>
-						<li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Giriş <?php 
-						
-							
+						<?php
+							// giriş yapıldıysa "çıkış yap" gözükecek
+							if(Session::get("kulad")==true): ?>
 
-						/*
-						// header verisini değerlerine ayırdık
-						foreach ($veri["header"] as $value) :
+								<a href="<?php echo URL;?>/uye/cikis">ÇIKIŞ YAP</a>
 
-							foreach ($value as $key => $value2) :
+							<?php else: ?>
 
-								echo $key. "=" . $value2 . "<br>";
+								<li><a href="<?php echo URL;?>/uye/giris"><span class="glyphicon glyphicon-user"> </span>Giriş</a></li>
+								<li><a href="<?php echo URL;?>/uye/hesapOlustur"><span class="glyphicon glyphicon-lock"> </span>Hesap Oluştur</a></li>	
 
-							endforeach;
+							<?php
+							endif;
 
-						endforeach;
-						 */
-						
-						?></a></li>
-						<li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Hesap Oluştur</a></li>			
+						?>
+
 					</ul>
 				</div>
 				<div class="header-right">
@@ -85,7 +82,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		        <span class="icon-bar"></span>
 	        </button>
 				<div class="logo">
-					<h1><a href="index.html"><span>E</span> -Ticaret</a></h1>
+					<h1><a href="<?php echo URL;?>"><span>E</span> -Ticaret</a></h1>
 				</div>
 	    </div>
 	    <!--/.navbar-header-->

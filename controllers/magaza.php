@@ -1,5 +1,6 @@
 <?php
 
+// üst slogan, yeni ürünler, en çok satanlar kısmının ayarları bu kontrollerden yapılır
 // veritabanı işlemleri yapabilmemiz için model yükleyecek
 class magaza extends Controller {
 
