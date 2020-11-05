@@ -12,14 +12,7 @@ class magaza_model extends Model {
 
     }
 
-    // db den sorgu atıp cevabını alıyoruz
-
-    function ayarlar ($tabload) {
-
-        return $this->db->listele($tabload);
-
-    }
-
+    
     function anasayfaUrunler($tabload, $kosul) {
 
         return $this->db->listele($tabload, $kosul);

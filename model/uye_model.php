@@ -12,6 +12,17 @@ class uye_model extends Model {
     }
 
 
+    function GirisKontrol($tabloisim, $kosul) {
+
+        // db ye sorgu atıcaz, yani db den veri çekicez
+
+        return $this->db->giriskontrol($tabloisim, $kosul);
+
+
+    }
+
+
+
 }
 
 ?>

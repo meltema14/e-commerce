@@ -10,23 +10,24 @@ class Form extends Bilgi {
     public $error=array(); // hatalardan dolayı dolacak kontorlorü sağlaycak array
 
 
-    // keyi post çeker gibi çekip süzgeçten geçirerek this->veri olarak değişkene değer atayacak
+    // keyi post çeker gibi çekip süzgeçten geçirerek devam eder
     function get ($key){  // $key = form elemanının name i
 
         $this -> deger = $key; // hangi inputun boş olduğunu yakalamak için
 
         $this -> veri = htmlspecialchars(strip_tags($_POST[$key]));
         
-        return $this; // diyerek alttaki fonksiyona devam edebiliriz
+        return $this; // diyerek alttaki fonksiyona devam ediyoruz
 
     }
 
-    // yukarıdaki get işleminden gelen sonucuna göre burası çalışacak
+    // yukarıdaki get işleminden gelen sonucuna göre burası çalıştırıyor
     function bosmu() {
 
     // gelen değer boşsa
     if (empty($this -> veri)) :
 
+        // error arrayine boş olan verileri(mesela adı boş geldi bu array tutar bunu) atıyoruz
         $this->error[]=$this -> deger . " boş olamaz";
 
         // bilgi dosyası etkileşimi

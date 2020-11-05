@@ -143,15 +143,15 @@ class Database extends PDO {
         $son = $this -> prepare($sorgum);
         $son -> execute();
         
-        // satır sayısı 0 dan büyükse eşleşen bir kayıt var 
+        // satır sayısı 0 dan büyükse yani eşleşen bir kayıt varsa 
         if ($son -> rowCount() > 0) :
 
-            session::init();    // sessionu başlattık  
-            session::set("kulad", true);    // 
+            session::init();    // oturum dosyasından classı başlat 
+            session::set("kulad", true);    // kulad isimle sessionu başlat
 
         endif;
 
-
+        // satır sayısını geri döndür
         return $son -> rowCount();
 
     }

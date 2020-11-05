@@ -17,7 +17,7 @@ class magaza extends Controller {
         $this-> view -> goster("sayfalar/index", 
         array(
                     // sorgu sonunda gelen sonucu header olarak taşır
-        "header" => $this->model->ayarlar("ayarlar"),
+        "header" => $this->model->ayar(),
                     // modele bağlanarak ürünlerden durum=0 olan ve en son eklenenleri getirir
         "data1" => $this->model->anasayfaUrunler("urunler", "where durum=0 order by id desc"),
                     // durumu 1 olanları getirir
