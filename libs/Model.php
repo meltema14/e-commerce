@@ -12,13 +12,6 @@ class Model {
 
     }
 
-    // db den sorgu atıp cevabını alıyoruz
-    // her modelde yazmamak için burdan çağırıcaz
-    function ayar () {
-
-        return $this->db->listele("ayarlar");
-
-    }
 
 
 }

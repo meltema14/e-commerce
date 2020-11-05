@@ -11,20 +11,20 @@
 					<ul class="rslides" id="slider4">
 					<li>
 								<div class="banner-info">
-									<h3><?php echo $veri["header"][0]["sloganUst1"]; ?></h3>
-									<p><?php echo $veri["header"][0]["sloganAlt1"]; ?></p>
+									<h3><?php echo $ayarlar->sloganUst1; ?></h3>
+									<p><?php echo $ayarlar->sloganAlt1; ?></p>
 								</div>
 							</li>
 							<li>
 								<div class="banner-info">
-								   <h3><?php echo $veri["header"][0]["sloganUst2"]; ?></h3>
-									<p><?php echo $veri["header"][0]["sloganAlt2"]; ?></p>
+								   <h3><?php echo $ayarlar->sloganUst2; ?></h3>
+									<p><?php echo $ayarlar->sloganAlt2; ?></p>
 								</div>
 							</li>
 							<li>
 								<div class="banner-info">
-								  <h3><?php echo $veri["header"][0]["sloganUst3"]; ?></h3>
-									<p><?php echo $veri["header"][0]["sloganAlt3"]; ?></p>
+								  <h3><?php echo $ayarlar->sloganUst3; ?></h3>
+									<p><?php $ayarlar->sloganAlt3; ?></p>
 								</div>								
 							</li>
 						</ul>

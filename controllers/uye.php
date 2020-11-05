@@ -16,9 +16,7 @@ class uye extends Controller {
     function giris() {
 
         // girişe basıldığında giriş sayfası açılacak
-        $this->view->goster("sayfalar/giris",array(
-        //  title vb ayarların erişilebilmesi için her seferinde headeri yüklememiz gerekiyor   
-        "header" =>$this->model->ayar()));
+        $this->view->goster("sayfalar/giris");
 
     }
 

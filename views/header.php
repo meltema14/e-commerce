@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php $ayarlar = new Ayarlar();  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +17,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title><?php echo $veri["header"][0]["title"]; ?></title>
+<title><?php echo $ayarlar->title; ?></title>
 
-<meta name="description" content="<?php echo $veri["header"][0]["sayfaAciklama"]; ?>" />
-<meta name="keywords" content="<?php echo $veri["header"][0]["anahtarKelime"]; ?>" />
+<meta name="description" content="<?php echo $ayarlar->sayfaAciklama; ?>" />
+<meta name="keywords" content="<?php echo $ayarlar->anahtarKelime; ?>" />
 
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -80,7 +81,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
-	        </button>
+			</button>
+
 				<div class="logo">
 					<h1><a href="<?php echo URL;?>"><span>E</span> -Ticaret</a></h1>
 				</div>
