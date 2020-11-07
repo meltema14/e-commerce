@@ -146,7 +146,7 @@ class Database extends PDO {
         // satır sayısı 0 dan büyükse yani eşleşen bir kayıt varsa 
         if ($son -> rowCount() > 0) :
 
-            session::init();    // oturum dosyasından classı başlat 
+            
             session::set("kulad", true);    // kulad isimle sessionu başlat
 
         endif;

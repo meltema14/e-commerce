@@ -10,6 +10,7 @@ class uye extends Controller {
 
         // uye_model ile bağlantısını sağladık
         $this->Modelyukle('uye');
+        Session::init();
 
     }
 
@@ -27,6 +28,15 @@ class uye extends Controller {
 
     }
 
+    function cikis() {
+
+        
+        // oturumu kapatma
+        Session::destroy();
+        $this->bilgi->direktYonlen("/magaza");
+
+    }
+
     /*
     üye girişi yapıldığında kullanıcı adı ve şifre boş mu diye kontrol edecek
     Gelen veride bir sorun yoksa giriş verirlerinin eşleşip eşleşmediğini kontrol edicez
@@ -40,11 +50,10 @@ class uye extends Controller {
         // bir hata var demek
         if(!empty($this->form->error)):
 
-            // boşluk varsa error arrayinde nerede olduğunu göstericek
+            // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
             $this->view->goster("sayfalar/giris",array(
-            "header" =>$this->model->ayar(),
-            "bilgi" => $this->form->error));
-
+            "bilgi" => 
+            $this->bilgi->uyari("warning", " Kullanıcı adı ve şifre boş olamaz!")));
 
         // gelen veride sorun yoksa
         else:
@@ -58,15 +67,15 @@ class uye extends Controller {
 
                 // kullanıcı paneline girecek, oturum başlayacak
                 // olması gereken bu $this->bilgi->basarili("Giriş Başarılı","/uye/Form");
-                $this->bilgi->basarili("Giriş Başarılı","/magaza");
+                $this->bilgi->direktYonlen("/magaza");
 
             else:
 
                 // eşleşme yok yani üye yok
                 $this->view->goster("sayfalar/giris",
                 array(
-                "bilgi" => "Kullanıcı Adı veya Şifresi Hatalıdır")
-                );
+                "bilgi" => 
+                $this->bilgi->uyari("danger"," Kullanıcı adı veya şifre hatalı")));
             
 
             endif;

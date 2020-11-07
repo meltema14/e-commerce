@@ -77,22 +77,13 @@
 					  //  bilgi tanımlıysa 
 					  if(isset($veri["bilgi"])):
 
-						foreach($veri["bilgi"] as $value):
-
-							echo $value. "<br>";
-							
-						endforeach;
-
+						echo $veri["bilgi"]. "<br>";
 
 					  endif;
-
-						
 
 					?>
 				  
 				  </div>
-
-
 
 				  <a class="forgot" href="#">Şifremi Unuttum</a>
 
