@@ -21,6 +21,14 @@ class uye_model extends Model {
 
     }
 
+    function UyeKayit($tabloisim, $sutunadlari, $veriler) {
+
+        // db ye sorgu atıcaz, yani db den veri çekicez
+
+        return $this->db->Ekle($tabloisim, $sutunadlari, $veriler);
+
+
+    }
 
 
 }

@@ -19,15 +19,16 @@ class Database extends PDO {
 
     }
 
-    function ekle($tabloisim, $sutunadlari, $veriler) { // ekleme
+    function Ekle($tabloisim, $sutunadlari, $veriler) { // ekleme
 
-        //genel bi sorgu yapısı oluşturuyoruz
+        // genel bi sorgu yapısı oluşturuyoruz
         // en değişkenler belirleniyo(tablo adı, sütun adı, sütun adlarına karşılık gelen value değerleri)
 
 
         // arrayin içerisindeki eleman sayısını buluyoruz
         $sutunsayi = count($sutunadlari);
 
+        // kaç tane veri olduğunu belirleme
         for($i = 0; $i<$sutunsayi; $i++):
 
             // dizi her döndüğünde dizi değişkenine ? ekleyecek
@@ -35,20 +36,23 @@ class Database extends PDO {
 
         endfor;
 
-         // ?, daki sondaki virgül hataya sebebiyer vereceği için siliyoruz
-        $sonVal = join(",", $this -> dizi);
+         
+        $sonVal = join(",", $this -> dizi); // yukarıdaki gelen verilerin arasına ,(virgül) koyduk (join = include)
 
-        $sonhal = join(",", $sutunadlari);
-
+        $sonhal = join(",", $sutunadlari); // sutunadlarının arasına da ,(virgül) koyduk(ad,soyad,mail vb)
+ 
 
         // miras aldığımız Modelimize dahil edilen db ye eriştik 
         $sorgu = $this -> prepare('insert into '.$tabloisim.' ('.$sonhal.') VALUES ('.$sonVal.')'); 
 
         // formdan gelen verileri arraye veriyoruz
         if ($sorgu -> execute($veriler)) :
-            return $this-> bilgi -> basarili("Ekleme başarılı", "/kayit/kayitekle");
+            // return $this-> bilgi -> basarili("Ekleme başarılı", "/uye/kayitekle");
+            // eklendiyse
+            return 1;
         else:
-            return $this-> bilgi -> hata("Veri tabanı hatası", "/kayit/kayitekle");
+            //eklenmediyse
+            return 0;
         endif;
     }
 

@@ -9,7 +9,7 @@ class View {
     public function goster($dosyaad, array $veri = NULL) { 
         
         // require yani bir dosya dahil eder
-        require 'views/'. $dosyaad . '.php'; 
+        require 'views/'. $dosyaad .'.php'; 
 
 
     }
