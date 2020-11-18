@@ -64,7 +64,7 @@ class Form extends Bilgi {
 
     }
 
-    function sifrele($veri) {
+    function sifrele($veri) { // veri şifreleme
 
         /* şifreleme yöntemleri: md5, sha1, base64(encode-decode)
          gzdeflate: veri sıkışrtırma yöntemi 
@@ -75,16 +75,14 @@ class Form extends Bilgi {
 
     }
 
-    // şifreyi çözme
-    function coz($veri) {
+    
+    function coz($veri) { // veri çözme
 
         return unserialize(gzuncompress(gzinflate(base64_decode($veri))));
 
     }
 
-
-
-    function sifreKarsilastir($deger, $deger2) {
+    function sifreKarsilastir($deger, $deger2) { // şifreler uyuşuyor mu
 
         // değerler birbirine eşit değilse
         if($deger != $deger2) :
@@ -99,6 +97,52 @@ class Form extends Bilgi {
         endif;
 
     }
+
+    public static function Olustur($kriter, array $veri) { // dinamik form oluşturma
+
+        /*
+        $kriter: oluşacak olan form elemanının başlangıç etkiketini belirler
+        1 ise form
+        2 ise input
+        3 ise textarea
+        */
+
+        switch ($kriter):
+
+            case "1": echo '<form '; break;
+            case "2": echo '<input '; break;
+            case "3": echo '<textarea '; break;
+
+        endswitch;
+        
+
+        foreach($veri as $anahtar => $deger):
+
+            // method="POST" : method=anahtar, POST=değer
+            echo $anahtar."-'".$deger."' ";
+
+        endforeach;
+
+        // ternay sorgu
+        echo ($kriter == 3) ? '></textarea>' : '>';
+
+        /*
+        if($kriter == 3):
+            
+            echo '></textarea>';
+
+        else:
+
+            echo '>';
+
+        endif;
+
+        echo '>';
+        */
+
+    }
+
+
 
 }
 

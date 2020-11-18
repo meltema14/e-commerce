@@ -56,13 +56,14 @@
 		?>
 
 		<h2>ÜYE KAYIT FORMU</h2>
-
+	<div class="registration-grids">
+	
 		<?php 
 
 			//  hata geldiyse
 			if(isset($veri["hata"])):
 
-				echo '<div class="alert alert-danger mt-5"> ';
+				echo '<div class="alert alert-danger mt-5">';
 
 				// gelen hatayı değerlerine göre ayırıyoruz
 				foreach (($veri["hata"]) as $value):
@@ -71,47 +72,132 @@
 
 				endforeach;
 
-				echo '</div';
+					echo '</div';
 
 			endif;
 
 		?>
 		
-		<div class="registration-grids">
-	
 			<div class="reg-form">
 				<div class="reg">
 					 <p>Welcome, please enter the following details to continue.</p>
 
-					 <form action="<?php echo URL."/uye/kayitkontrol" ?>" method="POST">
+					 <?php  
+						// formu dinamik hale getirme
+						// bazı formlar daha fazla özellik alabileceği için(action, method vb) bu şekilde alt alta ekliyoruz
+						Form::Olustur("1", array(
+						"action" => URL."/uye/kayitkontrol",
+						"method" => "POST"
+						));  
+						 
+					 ?>
+
+					
 						 <ul>
 							 <li class="text-info"><span class="text-danger">*</span> Adınız: </li>
-							 <li><input type="text" name="ad" ></li>
+							 <li>
+							
+							 <?php 
+							 
+							 // form elemanlarını oluşturma
+							 Form::Olustur("2",array(
+								"type" =>"text",
+								"name" => "ad",
+								"required" => "required"
+							 ));
+
+							 ?>
+							 </li>
 						 </ul>
 						 <ul>
 							 <li class="text-info"><span class="text-danger">*</span> Soyadınız: </li>
-							 <li><input type="text" name="soyad" ></li>
+							 <li>
+								<?php 
+								
+								// form elemanlarını oluşturma
+								Form::Olustur("2",array(
+									"type" =>"text",
+									"name" => "soyad",
+									"required" => "required"
+								));
+
+								?>
+							 </li>
 						 </ul>				 
 						<ul>
 							 <li class="text-info"><span class="text-danger">*</span> Mail Adresi: </li>
-							 <li><input type="text" name="mail" required="required"></li>
+							 <li>
+								<?php 
+								
+								// form elemanlarını oluşturma
+								Form::Olustur("2",array(
+									"type" =>"text",
+									"name" => "mail",
+									"required" => "required"
+								));
+
+								?>
+							 </li>
 						 </ul>
 						 <ul>
 							 <li class="text-info"><span class="text-danger">*</span> Sifre:</li>
-							 <li><input type="password" name="sifre" required="required"></li>
+							 <li>
+								<?php 
+									
+									// form elemanlarını oluşturma
+									Form::Olustur("2",array(
+										"type" =>"password",
+										"name" => "sifre",
+										"required" => "required"
+									));
+
+								?>
+							 </li>
 						 </ul>
 						 <ul>
 							 <li class="text-info"><span class="text-danger">*</span> Sifre Tekrar:</li>
-							 <li><input type="password" name="sifretekrar" required="required"></li>
+							 <li>
+							 	<?php 
+									
+									// form elemanlarını oluşturma
+									Form::Olustur("2",array(
+										"type" =>"password",
+										"name" => "sifretekrar",
+										"required" => "required"
+									));
+
+								?>
+							 
+							 </li>
 						 </ul>
 						 <ul>
 							 <li class="text-info"> Telefon:</li>
-							 <li><input type="text" name="telefon" required="required"></li>
+							 <li>
+							 	<?php 
+								
+									// form elemanlarını oluşturma
+									Form::Olustur("2",array(
+										"type" =>"text",
+										"name" => "telefon",
+										"required" => "required"
+									));
+
+								?>
+							 </li>
 						 </ul>	
 						 <ul>
 						 	<li class="text-success"><span class="text-danger">*İşaretler zorunlu alandır.</span> </li>
-						 </ul>					
-						 <input type="submit" name="TAMAMLA">
+						 </ul>	
+						 <ul>
+						 	<?php 
+								
+								// form elemanlarını oluşturma
+								Form::Olustur("2",array(
+									"type" =>"submit",
+									"value" => "TAMAMLA"
+								));
+
+							?>
 						 <p class="click">Üye olarak politikaları kabul etmiş olursunuz.  <a href="#">Gizlilik politikası</a></p> 
 					 </form>
 
