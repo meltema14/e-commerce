@@ -15,7 +15,4 @@ require 'config/database.php';
 $boots = new boots; // boots sınıfı dahil ettik
 
 
-
-
-
 ?>

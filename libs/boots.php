@@ -22,7 +22,16 @@ class boots{
 
         */
 
-        // eğer kontrolcü yazılmazsa magaza kontrolcüsünü çalıştır
+        /*
+        Route::run(url):
+        tarayıcıdan uyeler diye talep geldiğinde giris meyhoduna yönlendirir
+        Route::run(uyeler, uyeler@giris):
+        
+        
+
+        */
+
+        // eğer kontrolcü yazılmazsa varsayılan olarak magaza kontrolcüsü çalışır
         if(empty($url[0])):
 
             require 'controllers/magaza.php';  
@@ -53,24 +62,37 @@ class boots{
                 //controllers/ana.php
         */
 
-        //2.url doluysa
-        if (isset($url[2])):
 
-            $controller -> {$url[1]}($url[2]);
+
+        // 3.url doluysa
+        if (isset($url[3])):
+
+            $controller->{$url[1]}($url[2], $url[3]);
             //$controller -> ileri(10)
 
         else:
-                //1.url doluysa
-            if (isset($url[1])):
 
-                $controller -> {$url[1]}();
-                //$controller -> ileri()
+            // 2.url doluysa
+            if (isset($url[2])):
 
+                $controller->{$url[1]}($url[2]);
+                //$controller -> ileri(10)
+
+            else:
+                    // 1.url doluysa
+                if (isset($url[1])):
+
+                    $controller->{$url[1]}();
+                    // $controller -> ileri()
+
+
+                endif;
 
             endif;
-
+            
         endif;
-            }
+        
+    }
 
 
 

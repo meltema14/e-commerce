@@ -1,5 +1,27 @@
 <?php require 'views/header.php'; // İlk önce headerı dahil ettik ?> 
 
+<?php  
+   
+   /* if (is_array($data)) :
+	
+	echo '<div class="alert alert-danger mt-5">';
+	
+				foreach ($data as $value) :
+				
+				echo $value."<br>";
+				
+				
+				endforeach;
+	echo '</div>';
+	
+	else:
+	
+	echo $data;
+	
+	endif;*/
+	?>
+
+
 <div class="banner">
 		<div class="container">
 <div class="banner-bottom">
@@ -71,17 +93,25 @@
 				<?php
 
 					// durumu 0 olan ürünler vt den geliyor
-					foreach ($veri["data1"] as   $key => $value) :
+					foreach ($veri["data1"] as  $value) :
 				?>
 
 					<div class="col-md-4 product simpleCart_shelfItem text-center">
-						<a href="urundetay/<?php echo $value["id"]; ?>">
+
+						<a href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]);  ?>">
+
 						<img src="<?php  echo URL; ?>/views/design/images/<?php echo $value["res1"]; ?>" alt="<?php echo $value["urunad"]; ?>" /></a>
-						<div class="mask">
-							<a href="urundetay/<?php echo $value["id"]; ?>">İNCELE</a>
-						</div>
-						<a class="product_name" href="urundetay/<?php echo $value["id"]; ?>"><?php echo $value["urunad"]; ?></a>
+
+							<div class="mask">
+
+								<a href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]); ?>">İNCELE</a>
+
+							</div>
+
+						<a class="product_name" href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]);  ?>"><?php echo $value["urunad"]; ?></a>
+
 						<p><a class="item_add" href="#"><i></i> <span class="item_price">/<?php echo $value["fiyat"]; ?></span></a></p>
+
 					</div>
 
 				<?php
@@ -105,15 +135,21 @@
 					 <?php
 
 						// durumu 1 olan ürünler vt den geliyor
-						foreach ($veri["data2"] as   $key => $value2) :
-						?>
+						foreach ($veri["data2"] as $value2) :
+					 ?>
 							
-								<li><a href="urundetay/<?php echo $value2["id"]; ?>">
-								<img src="<?php  echo URL; ?>/views/design/images/<?php echo $value2["res2"]; ?>" class="img-responsive" alt="<?php echo $value2["urunad"]; ?>" /></a>
-								<div class="product liked-product simpleCart_shelfItem">
-								<a class="like_name" href="urundetay/<?php echo $value2["id"]; ?>"><?php echo $value2["urunad"]; ?></a>
-								<p><a class="item_add" href="#"><i></i> <span class=" item_price"><?php echo $value2["fiyat"]; ?></span></a></p>
 							
+							<li><a href="<?php echo URL; ?>/urunler/detay/<?php  echo $value2["id"]; ?>/<?php  echo $ayarlar->seo($value2["urunad"]); ?>">
+
+							<img src="<?php echo URL; ?>/views/design/images/<?php  echo $value2["res2"]; ?>" class="img-responsive" alt="<?php  echo $value2["urunad"]; ?>" /></a>
+
+							<div class="product liked-product simpleCart_shelfItem">
+
+								<a class="like_name" href="<?php echo URL; ?>/urunler/detay/<?php  echo $value2["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]); ?>"><?php  echo $value2["urunad"]; ?></a>
+
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price"><?php  echo  number_format($value2["fiyat"],2,'.',','); ?></span></a></p>
+
+							</div>
 						</li>
 
 						<?php

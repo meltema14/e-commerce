@@ -52,9 +52,8 @@ class uye extends Controller {
         if(!empty($this->form->error)):
 
             // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
-            $this->view->goster("sayfalar/giris",array(
-            "bilgi" => 
-            $this->bilgi->uyari("warning", " Kullanıcı adı ve şifre boş olamaz!")));
+            $this->view->goster("sayfalar/giris",
+            array("bilgi" => $this->bilgi->uyari("warning", " Kullanıcı adı ve şifre boş olamaz!")));
 
         // gelen veride sorun yoksa
         else:
@@ -74,11 +73,8 @@ class uye extends Controller {
 
                 // eşleşme yok yani üye yok
                 $this->view->goster("sayfalar/giris",
-                array(
-                "bilgi" => 
-                $this->bilgi->uyari("danger"," Kullanıcı adı veya şifre hatalı")));
+                array("bilgi" => $this->bilgi->uyari("danger"," Kullanıcı adı veya şifre hatalı")));
             
-
             endif;
 
 

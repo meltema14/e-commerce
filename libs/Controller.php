@@ -4,7 +4,7 @@
 
 class Controller{
 
-    //fonksiyon çalışır çalışmaz koşulsuz şartsız ilk hareketi
+    // fonksiyon çalışır çalışmaz koşulsuz şartsız ilk hareketi
     function __construct()
     {
         // diğer kontrolcülerin erişmesi için gerekli sınıfları dahil ediyoruz
@@ -20,7 +20,7 @@ class Controller{
     public function Modelyukle($name) {
 
         // yüklenecek yol
-        // name yerine p yazarken projeyi yükleyecek, ü yazarsak üyeyi yükleyecek gibi
+        // name yerine p yazarsak projeyi yükleyecek, ü yazarsak üyeyi yükleyecek 
         $yol = 'model/' .$name. '_model.php';
 
         // $yol değişkeninde dosya varsa yükleyecek

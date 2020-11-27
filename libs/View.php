@@ -8,7 +8,7 @@ class View {
     // null olanlar verilirse çalışacak verilmezse hata vermeyecek
     public function goster($dosyaad, array $veri = NULL) { 
         
-        // require yani bir dosya dahil eder
+        // require, yani bir dosya dahil eder
         require 'views/'. $dosyaad .'.php'; 
 
 
