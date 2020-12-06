@@ -17,7 +17,6 @@
 							echo ' <li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'.$ayarlar->seo($value["urunad"]).'"> '
 							.$value["urunad"]. '</a></li>';
 
-
 						endforeach;
 
 
@@ -113,116 +112,79 @@
 				</div>
 				<div class="clearfix"></div>
 					<div class="reviews-tabs">
-      <!-- Main component for a primary marketing message or call to action -->
-      <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="myTab">
-        <li class="test-class active"><a class="deco-none misc-class" href="#how-to"> Daha Fazla Bilgi</a></li>
-        <li class="test-class"><a href="#features">Özellikler</a></li>
-        <li class="test-class"><a class="deco-none" href="#source">Yorumlar (7)</a></li>
-      </ul>
 
-      <div class="tab-content responsive hidden-xs hidden-sm">
-        <div class="tab-pane active" id="how-to">
-		 <p class="tab-text"><?php /* vt deki uretimYeri çekiyoruz */ echo $veri["data1"][0]["ekstraBilgi"];?></p>    
-        </div>
-        <div class="tab-pane" id="features">
-          <p class="tab-text"><?php /* vt deki ozellikleri çekiyoruz */ echo $veri["data1"][0]["ozellik"];?></p>
-	
-		</div>
-        <div class="tab-pane" id="source">
-		  <div class="response">
-          
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Yorum Ad</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>Nisan 21, 2019</li>
-									
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
+
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+			<ul id="myTab" class="nav nav-tabs" role="tablist">
+			  <li role="presentation" class="active"><a href="#bilgi" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Daha fazla bilgi</a></li>
+			  <li role="presentation" class=""><a href="#ozellik" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Özellikler</a></li>
+			  
+              
+    			<li role="presentation" class=""><a href="#yorum" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Yorumlar (
+				  <?php echo count($veri["data4"]) ?> )</a></li>
+              
+              
+			</ul>
+			<div id="myTabContent" class="tab-content">
+			  <div role="tabpanel" class="tab-pane fade active in" id="bilgi" aria-labelledby="home-tab">
+				<p><?php echo $veri["data1"][0]["ekstraBilgi"]; ?></p>
+			  </div>
+			  <div role="tabpanel" class="tab-pane fade " id="ozellik" aria-labelledby="profile-tab">
+				<p><?php echo $veri["data1"][0]["ozellik"]; ?></p>
+			  </div>
+			  <div role="tabpanel" class="tab-pane fade" id="yorum" aria-labelledby="dropdown1-tab">
+
+
+				 <!-- Yorum başla -->
+				 
+				 <?php
+
+ 					// durum 0 ise yani onaylanmış yorum yok ise	
+					if (count($veri["data4"])==0):
+
+						echo "<h4>Bu ürüne ait yorum bulunmamaktadır.</h4>" ;
+
+					// tüm yorumları göster
+					else:
+
+						// ürünün adı ile id sini alıyoruz
+						foreach($veri["data4"] as $value) :
+
+					
+						echo '<div class="media response-info">
+						<div class="media-left response-text-left">								
+							<h5>'.$value["ad"].'</h5>
 						</div>
+						
+						
+						<div class="media-body response-text-right">
+							<p>'.$value["icerik"].'</p>
+							<ul>
+								<li>'.$value["tarih"].'</li>
+								
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+						</div>';
+						
+
+						endforeach;
+
+					endif;
+
+
+					
+
+
+				 ?>
                         
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Yorum Ad</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>Nisan 21, 2019</li>
-									
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-                        
-                        <div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Yorum Ad</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>Nisan 21, 2019</li>
-									
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-                        
-                        <div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Yorum Ad</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>Nisan 21, 2019</li>
-									
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-                        
-                        <div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Yorum Ad</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>Nisan 21, 2019</li>
-									
-								</ul>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-        </div>
-      </div>		
+                
+			  </div>
+			  
+			</div>
+		   </div>
+		   
+		
 	</div>
 
 			</div>
@@ -233,31 +195,33 @@
 		<div class="container">
 			<header>
 				<h3 class="like text-center">BENZER ÜRÜNLER</h3>   
-			</header>			
-					<div class="col-md-4 product simpleCart_shelfItem text-center">
-						<a href="single.html"><img src="images/p1.jpg" alt="" /></a>
-						<div class="mask">
-							<a href="single.html">İNCELE</a>
-						</div>
-						<a class="product_name" href="single.html">Beyaz bluzzz</a>
-						<p><a class="item_add" href="#"><i></i> <span class="item_price">$329</span></a></p>
+			</header>		
+
+			<?php
+				
+				// kategoriye ait -benzer ürünleri- gönderiyoruz
+				foreach($veri["data3"] as $value) :
+
+
+					// stoğu azalanlardaki ürünlere link veriyoruz
+					echo '<div class="col-md-4 product simpleCart_shelfItem text-center">
+					<a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
+
+					<img src="'.URL.'/views/design/images/'.$value["res1"].'" alt="'.$value["urunad"].'" /></a>
+
+					<div class="mask">
+						<a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">İNCELE</a>
 					</div>
-					<div class="col-md-4 product simpleCart_shelfItem text-center">
-						<a href="single.html"><img src="images/p2.jpg" alt="" /></a>
-						<div class="mask">
-							<a href="single.html">İNCELE</a>
-						</div>
-						<a class="product_name" href="single.html">Sarı Tişört</a>
-						<p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
-					</div>
-					<div class="col-md-4 product simpleCart_shelfItem text-center">
-						<a href="single.html"><img src="images/p3.jpg" alt="" /></a>
-						<div class="mask">
-							<a href="single.html">İNCELE</a>
-						</div>
-						<a class="product_name" href="single.html">Pembe</a>
-						<p><a class="item_add" href="#"><i></i> <span class="item_price">$359.6</span></a></p>
-					</div>
+
+					<a class="product_name" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">'.$value["urunad"].'</a>
+					<p><a class="item_add" href="#"><i></i> <span class="item_price">'
+					. number_format($value["fiyat"],2,".",",").'</span></a></p>
+				</div>';
+
+				endforeach;
+			?>
+
+
 					<div class="clearfix"></div>
 				   </div>
 				   </div>
