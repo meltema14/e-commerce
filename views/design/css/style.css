@@ -3055,3 +3055,54 @@ p.right {
 		font-size: 13px;
 	}
 }
+	.arkaplan {
+		background-color:#e1e0e0;
+		border:#D3D3D3 1px solid;
+		border-radius:5px;
+		margin-top:10px;	
+	}
+	
+	.hizala_1 {
+		margin:5px 0px 5px 0px;
+		color:#55065a!important;
+		
+	}
+	
+	.hizala_2 {
+		margin:5px 0px 5px 0px;
+		background-color:#55065a!important;
+		color:#FCFCFC;
+	
+		
+	}
+	.hizala_2:hover {
+	
+		color:#FFF;
+	
+		
+	}
+	.y:link, .y:visited {
+		background-color:#636363;
+		padding:10px;
+	
+		
+	}
+	
+	.y:hover {
+		text-decoration:none;
+		cursor:pointer;
+		
+	}
+	.yorumlar {
+		background-color:#e1e0e0;
+		padding:10px;
+		border-radius:10px;
+			border:#D3D3D3 1px solid;
+	}
+	#yorumEkle:active{
+		border-style: none;
+	}
+	#yorumad {
+	
+		color:#55065a;
+	}

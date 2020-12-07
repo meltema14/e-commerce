@@ -22,6 +22,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <title><?php echo $ayarlar->title; ?></title>
 
+<script>
+	$(document).ready(function(e) {
+
+		// formun başta görünmez olması için
+		$("#Formanasi").hide();
+
+		$("#yorumEkle").click(function(e){
+
+			$("#Formanasi").slideToggle();
+
+		});
+	});
+
+</script>
+
 <meta name="description" content="<?php echo $ayarlar->sayfaAciklama; ?>" />
 <meta name="keywords" content="<?php echo $ayarlar->anahtarKelime; ?>" />
 
@@ -210,17 +225,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
         </div>
         
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Mvc Örnek Uygulamamız</title>
-
-<link rel="stylesheet" href="<?php echo URL; ?>/design/bootstrap.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</head>
-
-<body>
 
    

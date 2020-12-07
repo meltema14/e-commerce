@@ -134,6 +134,50 @@
 			  </div>
 			  <div role="tabpanel" class="tab-pane fade" id="yorum" aria-labelledby="dropdown1-tab">
 
+				  
+			<input type="button" id="yorumEkle" value="YORUM EKLE" class="btn btn-sm-
+				btn-info" />
+
+			  
+
+			<div class="row arkaplan" id="Formanasi">
+
+				<div class="col-lg-12">
+				
+					<form id="yorumForm">
+
+						<label class="hizala_1">Adınız </label>
+
+				</div>
+
+				<div class="col-lg-12">
+
+					<input type="text" name="ad" class="form-control" maxlength="30"/>
+
+				</div>
+
+
+				<div class="col-lg-12">
+			
+					<label class="hizala_1">Yorumunuz </label>
+
+				</div>
+
+				<div class="col-lg-12">
+
+					<textarea name="yorum" class="form-control"/></textarea>
+
+				</div>
+
+				<div class="col-lg-12 text-center">
+
+					<input type="button" id="yorumGonder" value="GÖNDER" class="btn hizala_2">
+
+				</div>
+
+			  </form>
+			</div>
+			  
 
 				 <!-- Yorum başla -->
 				 
@@ -151,8 +195,8 @@
 						foreach($veri["data4"] as $value) :
 
 					
-						echo '<div class="media response-info">
-						<div class="media-left response-text-left">								
+						echo '<div class="media response-info yorumlar">
+						<div class="media-left response-text-left" id="yorumad">								
 							<h5>'.$value["ad"].'</h5>
 						</div>
 						
@@ -172,12 +216,8 @@
 
 					endif;
 
-
-					
-
-
 				 ?>
-                        
+                 <!-- Yorum bitir -->
                 
 			  </div>
 			  
