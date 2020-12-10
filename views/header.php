@@ -23,9 +23,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title><?php echo $ayarlar->title; ?></title>
 
 <script>
+
 	$(document).ready(function(e) {
 
-		// formun başta görünmez olması için
+		// yorum formunun başta görünmez olması için
 		$("#Formanasi").hide();
 
 		$("#yorumEkle").click(function(e){
@@ -33,6 +34,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#Formanasi").slideToggle();
 
 		});
+
+		// yorumu post etme
+		$("#yorumGonder").click(function(e) {
+
+			/* 
+			   url: nereye gönderileceği
+			   serialize: formun içinde port edilen tüm verileri yakalar
+			   success: urlden dönen cevap başarılıysa
+			*/
+			$.ajax({
+
+				type:"POST",
+
+				url:'<?php echo URL; ?>/GenelGorev/YorumFormKontrol',
+
+				data:$('#yorumForm').serialize(),
+
+				success: function(donen_veri) {
+
+					// formun içini temizler
+					$('#yorumForm').trigger("reset");
+
+					$('#FormSonuc').html(donen_veri);
+
+					// idsi ok olan form elemanını yani html değerini(KAYIT BAŞARILI) yakalıyoruz
+					if ($('#ok').html() == "KAYIT BAŞARILI") {
+
+						// yorum ekleme işlemi başarılı olduktan sonra yorum formunu gizleme
+						$("#Formanasi").fadeOut();
+
+					}
+
+				},
+
+			});
+			
+		})
+
+
 	});
 
 </script>

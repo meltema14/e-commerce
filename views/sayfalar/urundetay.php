@@ -1,4 +1,5 @@
-<?php require 'views/header.php'; // İlk önce headerı dahil ettik ?> 
+<?php require 'views/header.php'; // İlk önce headerı dahil ettik ?>
+
 
 <!-- content-section-starts -->
 <div class="container">
@@ -134,6 +135,9 @@
 			  </div>
 			  <div role="tabpanel" class="tab-pane fade" id="yorum" aria-labelledby="dropdown1-tab">
 
+
+			<div class="row" id="FormSonuc"></div>
+			
 				  
 			<input type="button" id="yorumEkle" value="YORUM EKLE" class="btn btn-sm-
 				btn-info" />
@@ -152,7 +156,7 @@
 
 				<div class="col-lg-12">
 
-					<input type="text" name="ad" class="form-control" maxlength="30"/>
+					<input type="text" name="ad" class="form-control" maxlength="30" required="required"/>
 
 				</div>
 
@@ -165,17 +169,22 @@
 
 				<div class="col-lg-12">
 
-					<textarea name="yorum" class="form-control"/></textarea>
+					<textarea name="yorum" class="form-control" required="required"/></textarea>
 
 				</div>
 
 				<div class="col-lg-12 text-center">
 
+					<input type="hidden" name="urunid" 
+					value="<?php /* vt deki urunun idsini çekiyoruz */ echo $veri["data1"][0]["id"];?>"/>
+					
+
 					<input type="button" id="yorumGonder" value="GÖNDER" class="btn hizala_2">
+					</form>
 
 				</div>
 
-			  </form>
+			 
 			</div>
 			  
 
@@ -186,7 +195,7 @@
  					// durum 0 ise yani onaylanmış yorum yok ise	
 					if (count($veri["data4"])==0):
 
-						echo "<h4>Bu ürüne ait yorum bulunmamaktadır.</h4>" ;
+						echo '<div class="alert alert-danger text-center">Bu ürüne ait yorum bulunmamaktadır.</div>' ;
 
 					// tüm yorumları göster
 					else:
