@@ -46,7 +46,59 @@ class Ayarlar extends Model{
         $s = str_replace('.', '', $s);
         $s = trim($s, '-');
         return $s;
-       }
+    }
+
+    // kategorileri db den çekiyoruz
+    function LinkleriGetir(){
+
+        $son = $this -> db -> prepare("select * from ana_kategori");
+        $son -> execute();
+
+        // dönen veriyi dizi olarak aldık $aktar değişkenine atadık
+        while($aktar = $son -> fetch(PDO::FETCH_ASSOC)):
+
+            echo '<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$aktar["ad"].' <b class="caret"></b></a>
+            <ul class="dropdown-menu multi-column columns-3">
+            <div class="row">';
+
+    
+            // çocuk kategoriye bağlan, ana kategorisi eşleşenleri çek
+            $son2 = $this -> db ->prepare("select * from cocuk_kategori where ana_kat_id=".$aktar["id"]);
+            $son2 -> execute();
+
+            // dönen veriyi dizi olarak aldık $aktar2 değişkenine atadık
+            while($aktar2 = $son2 -> fetch(PDO::FETCH_ASSOC)):
+
+                    
+                echo '<div class="col-sm-4">
+
+                    <ul class="multi-column-dropdown">
+
+                        <h6>'.$aktar2["ad"].'</h6>';
+
+                         // alt_kategori bağlan, çocuk kategorisi eşleşenleri çektik
+                        $son3 = $this -> db ->prepare("select * from alt_kategori where cocuk_kat_id=".$aktar2["id"]);
+                        $son3 -> execute();
+
+                            // dönen veriyi dizi olarak aldık $aktar3 değişkenine atadık
+                            while($aktar3 = $son3 -> fetch(PDO::FETCH_ASSOC)):
+
+                                echo'<li><a href="products.html">'.$aktar3["ad"].'</a></li>';
+
+                            endwhile;
+
+                echo'</ul> </div>';
+
+            endwhile;
+
+            echo '<div class="clearfix"></div>
+                </div>
+                </ul>
+                </li>';
+
+        endwhile;
+    }
 
   
 

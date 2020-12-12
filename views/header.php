@@ -65,11 +65,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						$("#Formanasi").fadeOut();
 
 					}
-
 				},
-
-			});
-			
+			});	
 		})
 
 
@@ -111,21 +108,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				// idsi ok olan form elemanını yani html değerini yakalıyoruz
 				if ($('#bultenok').html() == "Bültene başarılı bir şekilde kayıt oldunuz. Teşekkür ederiz.") {
 
-					
 				}
-
 			},
-
 		});
-
-})
-
-
-
-
-
-
-	});
+	})
+});
 
 </script>
 
@@ -196,118 +183,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="logo">
 					<h1><a href="<?php echo URL;?>"><span>E</span> -Ticaret</a></h1>
 				</div>
-	    </div>
+		</div>
+		
 	    <!--/.navbar-header-->
 	
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	        <ul class="nav navbar-nav">
 			<li><a href="index.html">Anasayfa</a></li>
-		        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Erkek <b class="caret"></b></a>
-		            <ul class="dropdown-menu multi-column columns-3">
-			            <div class="row">
-				            <div class="col-sm-4">
-					            <ul class="multi-column-dropdown">
-									<h6>Dış Giyim</h6>
-						            <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-				            <div class="col-sm-4">
-					            <ul class="multi-column-dropdown">
-									<h6>İç Giyim</h6>
-						           <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-				            <div class="col-sm-4">
-					            <ul class="multi-column-dropdown">
-									<h6>Ayakkabı</h6>
-						    <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-							<div class="clearfix"></div>
-			            </div>
-		            </ul>
-		        </li>
-		        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kadın <b class="caret"></b></a>
-		            <ul class="dropdown-menu multi-column columns-3">
-			            <div class="row">
-				            <div class="col-sm-4">
-					            <ul class="multi-column-dropdown">
-									<h6>İç Giyim</h6>
-						         <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-				            <div class="col-sm-4">
-					            <ul class="multi-column-dropdown">
-									<h6>Çanta</h6>
-						          <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-				            <div class="col-sm-4">
-					            <ul class="multi-column-dropdown">
-									<h6>Saat</h6>
-						        <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-							<div class="clearfix"></div>
-			            </div>
-		            </ul>
-		        </li>
-		        <li class="dropdown">
-		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Çocuk <b class="caret"></b></a>
-		            <ul class="dropdown-menu multi-column columns-2">
-			            <div class="row">
-				            <div class="col-sm-6">
-					            <ul class="multi-column-dropdown">
-									<h6>Ayakkabı</h6>
-						         <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-				            <div class="col-sm-6">
-					             <ul class="multi-column-dropdown">
-									<h6>Oyuncak</h6>
-						           <li><a href="products.html">Menü 1</a></li>
-						            <li><a href="products.html">Menü 2</a></li>
-						            <li><a href="products.html">Menü 3</a></li>
-						            <li><a href="products.html">Menü 4</a></li>
-						            <li><a href="products.html">Menü 5</a></li>
-					            </ul>
-				            </div>
-							<div class="clearfix"></div>
-			            </div>
-		            </ul>
-		        </li>
+
+				<?php 
+
+					// menüler
+					$ayarlar->LinkleriGetir();
+
+
+				?>
+			
 				
-					<li><a href="contact.html">İletişim</a></li>
+				
+				<li><a href="contact.html">İletişim</a></li>
 	        </ul>
 	    </div>
 	    <!--/.navbar-collapse-->

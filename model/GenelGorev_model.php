@@ -25,6 +25,7 @@ class GenelGorev_model extends Model {
 
 
 
+    
 }
 
 ?>
