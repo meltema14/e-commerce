@@ -697,7 +697,7 @@ a.like_name {
 }
 .join input[type="text"] {
 	width: 48%;
-    color: #C3C3C3;
+    color: #636262;
     letter-spacing: 1px;
     font-weight: 300;
     font-size: 15px;
@@ -707,7 +707,7 @@ a.like_name {
     font-family: 'Lato-Regular';
     text-align: left;
 }
-.join input[type="submit"]{
+.join input[type="button"]{
     outline: none;
     cursor: pointer;
     width: 22%;
@@ -720,7 +720,7 @@ a.like_name {
     border: none;
     -webkit-apperance: none;
 }
-.join input[type="submit"]:hover {
+.join input[type="button"]:hover {
 	background-color:#000;
 }
 /*-- news-letter-ends-here --*/

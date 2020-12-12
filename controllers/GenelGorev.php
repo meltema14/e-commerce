@@ -67,6 +67,50 @@ class GenelGorev extends Controller {
 
     }
 
+    function BultenKayit()  { // BÜLTENE KAYIT KONTROL
+
+        // --------- MAİL GEÇERLİ Mİ DİYE KONTROL EDİYORUZ ---------
+
+        $mailadres = $this->form->get("mailadres")->bosmu();
+
+        // girilen mail adresini fonksiyona verdik
+        $this->form->GercektenMailmi($mailadres);
+        $tarih = date("d-m-Y");
+
+
+        // mail boşsa
+        // bir hata var demek
+        if(!empty($this->form->error)):
+
+            echo $this->bilgi->uyari("danger"," GİRİLEN MAİL ADRESİ GEÇERSİZ. ");
+            
+        // mailde bir sorun yoksa
+        else:
+
+            // gelen verilerden eşleşen var mı diye db ye soruyoruz
+            // 0 ya da 1 olarak geri döndürecek
+            $sonuc=$this->model->BultenEkleme("bulten", 
+            // sütunlar
+            array("mailadres","tarih"),
+            // değerler
+            array($mailadres, $tarih)
+            );
+
+            // KAYIT EDİLDİYSE
+            if($sonuc==1):
+                
+                echo $this->bilgi->uyari("success","Bültene başarılı bir şekilde kayıt oldunuz. Teşekkür ederiz.", 'id="bultenok"');
+
+            else:
+
+                echo $this->bilgi->uyari("success"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
+            
+            endif;
+
+        endif;
+
+    }
+
 }
 
 ?>

@@ -94,8 +94,31 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="purchase">
-						<input type="submit" class="btn btn-success" value="Sepete Ekle">
+
+					<!-- ADET -->
+						<div class="row">
 						
+							<div class="col-md-6">
+							
+							
+							</div>
+
+							<div class="col-md-3 text-right">
+							
+								<input type="number" min="1" max="10" value="1" class="form-control">
+							
+							</div>
+
+							<div class="col-md-3">
+							
+								<input type="submit" class="btn hizala_2" value="Sepete Ekle">
+							
+							</div>		
+						
+						</div>
+						
+					<!-- ADET -->
+				
 						<div class="clearfix"></div>
 					</div>
 				<script src="<?php  echo URL; ?>/views/design/js/imagezoom.js"></script>
@@ -277,16 +300,39 @@
    <!-- content-section-ends -->
 		<div class="news-letter">
 			<div class="container">
-				<div class="join">
-					<h6>BÜLTENE KAYIT</h6>
-					<div class="sub-left-right">
-						<form>
-							<input type="text" value="Mail Adresinizi Yazınız" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email Here';}" />
-							<input type="submit" value="KAYIT OL" />
-						</form>
+
+				<div class="row">
+
+					<div class="col-md-12" id="Bulten">
+
+						<div class="join">
+
+						<h6>BÜLTENE KAYIT</h6>
+
+						<div class="sub-left-right">
+
+							<form id="bultenForm">
+
+								<input type="text" value="Mail Adresinizi Yazınız" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mail Adresinizi Yazınız';}" 
+								name="mailadres" />
+
+								<input type="button" value="KAYIT OL" id="bultenBtn" />
+
+							</form>
+							
+						</div>
+
+						<div class="clearfix"> </div>
+
+						</div>
+
 					</div>
-					<div class="clearfix"> </div>
+
 				</div>
+
+				
+
+
 			</div>
 		</div>
 

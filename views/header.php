@@ -73,6 +73,58 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		})
 
 
+		// adet kısmında, number inputunun tüm klavye hareketlerinin de-active edilmesi
+		// evt: event
+		// keypress: klavye hareketlerini yakalar
+		$("[type='number']").keypress(function (evt){
+
+			// preventDefault: seçilmiş elemanın tüm özelliklerini pasif hale getirir
+			evt.preventDefault();
+
+		});
+
+		// bülten butonuna tıklandığında
+		$("#bultenBtn").click(function(e) {
+
+		
+		/* 
+		url: nereye gönderileceği
+		serialize: formun içinde port edilen tüm verileri yakalar
+		success: urlden dönen cevap başarılıysa
+		*/
+		$.ajax({
+
+			type:"POST",
+
+			url:'<?php echo URL; ?>/GenelGorev/BultenKayit',
+
+			data:$('#bultenForm').serialize(),
+
+			success: function(donen_veri) {
+
+				// formun içini temizler
+				$('#bultenForm').trigger("reset");
+
+				// Bulten idsinin içini formdan gelen sonuçla doldurduk
+				$('#Bulten').html(donen_veri);
+
+				// idsi ok olan form elemanını yani html değerini yakalıyoruz
+				if ($('#bultenok').html() == "Bültene başarılı bir şekilde kayıt oldunuz. Teşekkür ederiz.") {
+
+					
+				}
+
+			},
+
+		});
+
+})
+
+
+
+
+
+
 	});
 
 </script>
