@@ -70,7 +70,7 @@
 					// kaç tane ürün varsa kategorilerde gösterilir
 					echo '
 					<li>
-						"<a class="cbp-vm-image" href="single.html">
+						"<a class="cbp-vm-image" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
 							<div class="simpleCart_shelfItem">
 								<div class="view view-first">
 									<div class="inner_content clearfix">
@@ -120,36 +120,26 @@
 	<div class="container">
 		<h3 class="like text-center">ÖNE ÇIKAN ÜRÜNLER</h3>        			
 		<ul id="flexiselDemo3">
-			<li><a href="single.html"><img src="images/l1.jpg" class="img-responsive"/></a>
+
+
+		<?php
+				
+			// kategoriye ait -öne çıkan ürünleri- gönderiyoruz
+			foreach($veri["data3"] as $value) :
+
+				echo '<li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
+				<img src="'.URL.'/views/design/images/'.$value["res1"].'" alt="'.$value["urunad"].'" class="img-responsive"/></a>
 				<div class="product liked-product simpleCart_shelfItem">
-				<a class="like_name" href="single.html">Perfectly simple</a>
-				<p><a class="item_add" href="#"><i></i> <span class=" item_price">$759</span></a></p>
+				<a class="like_name" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">'.$value["urunad"].'</a>
+				<p><a class="item_add" href="#"><i></i> <span class=" item_price">'.number_format($value["fiyat"],2,".",",").'</span></a></p>
 				</div>
-			</li>
-			<li><a href="single.html"><img src="images/l2.jpg" class="img-responsive"/></a>						
-				<div class="product liked-product simpleCart_shelfItem">
-				<a class="like_name" href="single.html">Praising pain</a>
-				<p><a class="item_add" href="#"><i></i> <span class=" item_price">$699</span></a></p>
-				</div>
-			</li>
-			<li><a href="single.html"><img src="images/l3.jpg" class="img-responsive"/></a>
-				<div class="product liked-product simpleCart_shelfItem">
-				<a class="like_name" href="single.html">Neque porro</a>
-				<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-				</div>
-			</li>
-			<li><a href="single.html"><img src="images/l4.jpg" class="img-responsive"/></a>
-				<div class="product liked-product simpleCart_shelfItem">
-				<a class="like_name" href="single.html">Equal blame</a>
-				<p><a class="item_add" href="#"><i></i> <span class=" item_price">$499</span></a></p>
-				</div>
-			</li>
-			<li><a href="single.html"><img src="images/l5.jpg" class="img-responsive"/></a>
-				<div class="product liked-product simpleCart_shelfItem">
-				<a class="like_name" href="single.html">Perfectly simple</a>
-				<p><a class="item_add" href="#"><i></i> <span class=" item_price">$649</span></a></p>
-				</div>
-			</li>
+				</li>';
+
+			endforeach;
+		?>
+
+
+
 		</ul>
 		<script type="text/javascript">
 			$(window).load(function() {

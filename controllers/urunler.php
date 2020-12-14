@@ -78,13 +78,12 @@ class urunler extends Controller {
         // alt_kategoriye bağlandık. çocuk kat idsi ilgili kategorinin idsi hangisiyse onunla eşleşen tüm kayıtları bulma
         "data1" => $sonuc,
         "data2" => $this->model->uruncek("alt_kategori",
-        "where cocuk_kat_id=".$CocukKatBul[0]["cocuk_kat_id"]." and id!=$id")
+        "where cocuk_kat_id=".$CocukKatBul[0]["cocuk_kat_id"]." and id!=$id"),
+        "data3" => $this->model->uruncek("urunler", "where katid=".$id." and durum=1  LIMIT 5")
+
         ));
 
         /*
-        
-        // -stoğu azalanlar- kısmında o an ekranda olan ürünün id sini muaf tutarak(göstermeyerek) kategori id si aynı olanları  gösterir
-        "data2" => $this->model->uruncek("urunler", "where katid=".$sonuc[0]["katid"]." and id!= ".$id." and stok < 200 order by stok asc LIMIT 10"),
 
         // -benzer ürünler- (kategori idsi aynı olanları bu kısımda göstericek)
         // id!= .$id. = o an ekranda gösterilen ürünün benzer ürünlerde çıkmaması için
