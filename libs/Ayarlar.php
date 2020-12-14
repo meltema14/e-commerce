@@ -48,13 +48,13 @@ class Ayarlar extends Model{
         return $s;
     }
 
-    // kategorileri db den çekiyoruz
+    // kategorileri db den çekiyoruz. İLERİDE DAHA KULLANILABİLİR ŞEKİLDE GÜNCELLENECEK (BURADA YAPTIĞIM ESKİ USUL)
     function LinkleriGetir(){
 
         $son = $this -> db -> prepare("select * from ana_kategori");
         $son -> execute();
 
-        // dönen veriyi dizi olarak aldık $aktar değişkenine atadık
+        // ana_kategoriden dönen veriyi dizi olarak aldık $aktar değişkenine atadık
         while($aktar = $son -> fetch(PDO::FETCH_ASSOC)):
 
             echo '<li class="dropdown">
@@ -67,30 +67,31 @@ class Ayarlar extends Model{
             $son2 = $this -> db ->prepare("select * from cocuk_kategori where ana_kat_id=".$aktar["id"]);
             $son2 -> execute();
 
-            // dönen veriyi dizi olarak aldık $aktar2 değişkenine atadık
-            while($aktar2 = $son2 -> fetch(PDO::FETCH_ASSOC)):
+                // cocuk_kategoriden dönen veriyi dizi olarak aldık $aktar2 değişkenine atadık
+                while($aktar2 = $son2 -> fetch(PDO::FETCH_ASSOC)):
+                        
+                    echo '<div class="col-sm-4">
 
-                    
-                echo '<div class="col-sm-4">
+                        <ul class="multi-column-dropdown">
 
-                    <ul class="multi-column-dropdown">
+                            <h6>'.$aktar2["ad"].'</h6>';
 
-                        <h6>'.$aktar2["ad"].'</h6>';
+                            // alt_kategori bağlan, çocuk kategorisi eşleşenleri çektik
+                            $son3 = $this -> db ->prepare("select * from alt_kategori where cocuk_kat_id=".$aktar2["id"]);
+                            $son3 -> execute();
 
-                         // alt_kategori bağlan, çocuk kategorisi eşleşenleri çektik
-                        $son3 = $this -> db ->prepare("select * from alt_kategori where cocuk_kat_id=".$aktar2["id"]);
-                        $son3 -> execute();
+                                // alt_kategoriden dönen veriyi dizi olarak aldık $aktar3 değişkenine atadık
+                                while($aktar3 = $son3 -> fetch(PDO::FETCH_ASSOC)):
 
-                            // dönen veriyi dizi olarak aldık $aktar3 değişkenine atadık
-                            while($aktar3 = $son3 -> fetch(PDO::FETCH_ASSOC)):
+                                    // sol alt köşede localhost/mvcproje/urunler/kategori/1/tisort şeklinde id ve adı gösteriyoruz
+                                    echo'<li><a href="'.URL.'/urunler/kategori/'.$aktar3["id"].'/'.$this->seo($aktar3["ad"])
+                                    .'">'.$aktar3["ad"].'</a></li>';
 
-                                echo'<li><a href="products.html">'.$aktar3["ad"].'</a></li>';
+                                endwhile;
 
-                            endwhile;
+                    echo'</ul> </div>';
 
-                echo'</ul> </div>';
-
-            endwhile;
+                endwhile;
 
             echo '<div class="clearfix"></div>
                 </div>
@@ -98,6 +99,19 @@ class Ayarlar extends Model{
                 </li>';
 
         endwhile;
+
+        /*
+
+        JOİN İŞLEMİ GÜNCELLEMELER İLE EKLENECEK
+        yukarıdaki gibi her döngüde tabloları ayrı ayrı değerlendirmektense 
+        -left join, right join MYSQL-
+
+        asdasd asdasdas anakategori JOİN altkategori ON anakategori.id=altkategori.id
+
+        yaparak tek sorgu ile iki tabloyu birleştirilebilir.
+        */
+
+
     }
 
   

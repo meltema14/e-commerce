@@ -6,7 +6,9 @@
 	   <div class="products-page">
 			<div class="products">
 				<div class="product-listy">
+
 					<h2>Stoğu Azalanlar</h2>
+					
 					<ul class="product-list">
 
 						<?php

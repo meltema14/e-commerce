@@ -16,9 +16,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="<?php  echo URL; ?>/views/design/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <link href="<?php  echo URL; ?>/views/design/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<link href="<?php  echo URL; ?>/views/design/css/component.css" rel='stylesheet' type='text/css' />
+
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
 
 <title><?php echo $ayarlar->title; ?></title>
 
@@ -198,8 +203,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
 				?>
-			
-				
 				
 				<li><a href="contact.html">İletişim</a></li>
 	        </ul>
