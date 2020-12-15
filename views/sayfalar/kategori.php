@@ -20,45 +20,52 @@
 
 					endforeach;
 
-
 				?>
 					
 				</ul>
 			</div>
 		</div>
 		<div class="new-product">
-			<div class="new-product-top">
-				<ul class="product-top-list">
-					<li><a href="index.html">Anasayfa</a>&nbsp;<span>&gt;</span></li>
-					<li><span class="act">Kategori</span>&nbsp;</li>
-				</ul>
-				<p class="back">  
-					<select class="form-control">
+
+			<div class="container">
+
+				<div class="row">
+				
+					<div class="col-md-6"><label>Kaç adet gösterilsin</label>
+
+						<select >
+
+							<option value="" selected="selected">9</option>
+
+							<option value="">15</option>
+
+							<option value="">30</option>
+
+						</select>
+						
+					</div>
+				
+				
+					<div class="col-md-6"> <label>Sıralama </label>
+
+						<select >
 						
 							<option value="">İndirim Oranı</option>
+
 							<option value="">Fiyat Artan</option>
+							
 							<option value="">Fiyat Azalan</option>
 
-					</select>
-				</p>
-				<div class="clearfix"></div>
+						</select>
+
+					</div>
+				
+				</div>
+				
 			</div>
 			
-			<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
-				<div class="cbp-vm-options">
-					<a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid" title="grid">Izgara</a>
-					<a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list" title="list">Listeli</a>
-				</div>
-				<div class="pages">   
-				<div class="limiter visible-desktop">
-				<label>Gösterilecek Adet</label>
-					<select >
-						<option value="" selected="selected">9</option>
-						<option value="">15</option>
-						<option value="">30</option>
-					</select>         
-			</div>
-		</div>
+		<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+			
 		<div class="clearfix"></div>
 			<ul>
 
@@ -70,7 +77,7 @@
 					// kaç tane ürün varsa kategorilerde gösterilir
 					echo '
 					<li>
-						"<a class="cbp-vm-image" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
+						<a class="cbp-vm-image" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
 							<div class="simpleCart_shelfItem">
 								<div class="view view-first">
 									<div class="inner_content clearfix">
@@ -83,28 +90,20 @@
 												<div class="cart-left">
 													<p class="title">'.$value["urunad"].'</p>
 												</div>
-												<div class="pricey"><span class="item_price">'.number_format($value["fiyat"],2,".",",").'</span></div>
+												<div class="pricey"><span class="item_price">'.number_format($value["fiyat"],2,'.',',').'</span></div>
 												<div class="clearfix"></div>
 											</div>		
 										</div>
 									</div>
 								</div>
-						</a>"
-								<a class="cbp-vm-icon cbp-vm-add item_add" href="#">Ekle</a>
+						</a>
+							<a class="cbp-vm-icon cbp-vm-add item_add" href="#">Ekle</a>
 							</div>
 					</li>';
 
-					
-
-						// stoğu azalanlardaki ürünlere link veriyoruz
-						echo ' <li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'.$ayarlar->seo($value["urunad"]).'"> '
-						.$value["urunad"]. '</a></li>';
 
 					endforeach;
 				?>
-
-
-				
 
 			</ul>
 		</div>
