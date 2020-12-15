@@ -92,6 +92,7 @@
 
 				<?php
 
+					// ANASAYFADAKİ ÜRÜNLER
 					// durumu 0 olan ürünler vt den geliyor
 					foreach ($veri["data1"] as  $value) :
 				?>
@@ -127,16 +128,15 @@
 
 		</div>
 		<div class="other-products">
-		<div class="container">
-			<h3 class="like text-center">EN ÇOK SATANLAR</h3>        			
-				     <ul id="flexiselDemo3">
+			<div class="container">
+				<h3 class="like text-center">EN ÇOK SATANLAR</h3>        			
+					<ul id="flexiselDemo3">
 
+						<?php
 
-					 <?php
-
-						// durumu 1 olan ürünler vt den geliyor
-						foreach ($veri["data2"] as $value2) :
-					 ?>
+							// durumu 1 olan ürünler vt den geliyor
+							foreach ($veri["data2"] as $value2) :
+						?>
 							
 							
 							<li><a href="<?php echo URL; ?>/urunler/detay/<?php  echo $value2["id"]; ?>/<?php  echo $ayarlar->seo($value2["urunad"]); ?>">
@@ -159,52 +159,55 @@
 						?>
 					
 
-				     </ul>
-				    <script type="text/javascript">
-					 $(window).load(function() {
-						$("#flexiselDemo3").flexisel({
-							visibleItems: 4,
-							animationSpeed: 1000,
-							autoPlay: true,
-							autoPlaySpeed: 3000,    		
-							pauseOnHover: true,
-							enableResponsiveBreakpoints: true,
-					    	responsiveBreakpoints: { 
-					    		portrait: { 
-					    			changePoint:480,
-					    			visibleItems: 1
-					    		}, 
-					    		landscape: { 
-					    			changePoint:640,
-					    			visibleItems: 2
-					    		},
-					    		tablet: { 
-					    			changePoint:768,
-					    			visibleItems: 3
-					    		}
-					    	}
-					    });
-					    
-					});
-				   </script>
-				   <script type="text/javascript" src="<?php  echo URL; ?>/views/design/js/jquery.flexisel.js"></script>
-				   </div>
-				   </div>
-		<!-- content-section-ends-here -->
-			<div class="news-letter">
-			<div class="container">
-				<div class="join">
-					<h6>BÜLTENE KAYIT</h6>
-					<div class="sub-left-right">
-						<form>
-							<input type="text" value="Mail Adresinizi Yazınız" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email Here';}" />
-							<input type="submit" value="KAYIT OL" />
-						</form>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
+					</ul>
+					<script type="text/javascript">
+						$(window).load(function() {
+							$("#flexiselDemo3").flexisel({
+								visibleItems: 4,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems: 2
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems: 3
+									}
+								}
+							});
+							
+						});
+					</script>
+				<script type="text/javascript" src="<?php  echo URL; ?>/views/design/js/jquery.flexisel.js"></script>
 			</div>
 		</div>
+		<!-- content-section-ends-here -->
+			<div class="news-letter">
+
+				<div class="container">
+
+					<!-- BÜLTENE KAYIT -->
+
+					<?php 
+
+					$ayarlar->bulten();
+
+					?>
+					
+					<!-- BÜLTENE KAYIT -->
+					
+				</div>
+
+			</div>
 
 <?php require 'views/footer.php';   ?> 
         

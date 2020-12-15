@@ -8,7 +8,7 @@
 				<div class="product-listy">
 
 					<h2>Stoğu Azalanlar</h2>
-					
+
 					<ul class="product-list">
 
 						<?php
@@ -304,36 +304,14 @@
 			<div class="container">
 
 				<div class="row">
-
-					<div class="col-md-12" id="Bulten">
-
-						<div class="join">
-
-						<h6>BÜLTENE KAYIT</h6>
-
-						<div class="sub-left-right">
-
-							<form id="bultenForm">
-
-								<input type="text" value="Mail Adresinizi Yazınız" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mail Adresinizi Yazınız';}" 
-								name="mailadres" />
-
-								<input type="button" value="KAYIT OL" id="bultenBtn" />
-
-							</form>
-							
-						</div>
-
-						<div class="clearfix"> </div>
-
-						</div>
-
-					</div>
-
-				</div>
-
+					
+					<?php 
+						// bültene kayıt
+						$ayarlar->bulten();
+			
+					?>
 				
-
+				</div>
 
 			</div>
 		</div>
