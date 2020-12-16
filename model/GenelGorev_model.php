@@ -23,6 +23,11 @@ class GenelGorev_model extends Model {
         return $this->db->Ekle($tabloisim, $sutunadlari, $veriler);
     }
 
+    function iletisimForm($tabloisim, $sutunadlari, $veriler) {
+
+        // db ye sorgu atıcaz, yani db den veri çekicez
+        return $this->db->Ekle($tabloisim, $sutunadlari, $veriler);
+    }
 
 
     

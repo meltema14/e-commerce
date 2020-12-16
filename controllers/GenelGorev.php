@@ -1,6 +1,6 @@
 <?php
 
-// giriş yapma kontrolcusu
+
 class GenelGorev extends Controller {
 
     //fonksiyon çalışır çalışmaz koşulsuz şartsız ilk buranın içi çalışır
@@ -8,9 +8,8 @@ class GenelGorev extends Controller {
     {
         parent::__construct();
 
-        // uye_model ile bağlantısını sağladık
+        // GenelGorev model dosyasını ekleme
         $this->Modelyukle('GenelGorev');
-        Session::init();
 
     }
 
@@ -58,7 +57,7 @@ class GenelGorev extends Controller {
                 "bilgi" => 
                 $this->bilgi->uyari("danger"," Kayıt esnasında hata oluştu"))); */
 
-                echo $this->bilgi->uyari("success"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
+                echo $this->bilgi->uyari("danger"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
             
 
             endif;
@@ -89,7 +88,7 @@ class GenelGorev extends Controller {
 
             // gelen verilerden eşleşen var mı diye db ye soruyoruz
             // 0 ya da 1 olarak geri döndürecek
-            $sonuc=$this->model->BultenEkleme("bulten", 
+            $sonuc=$this->model->iletisimForm("bulten", 
             // sütunlar
             array("mailadres","tarih"),
             // değerler
@@ -103,7 +102,52 @@ class GenelGorev extends Controller {
 
             else:
 
-                echo $this->bilgi->uyari("success"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
+                echo $this->bilgi->uyari("danger"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
+            
+            endif;
+
+        endif;
+
+    }
+
+    function iletisim() { // iletişim sayfası formu gönderme
+
+        // textler boş mu dolu mu diye kontrol eder
+        $ad = $this->form->get("ad")->bosmu();
+        $mail = $this->form->get("mail")->bosmu();
+        $konu = $this->form->get("konu")->bosmu();
+        $mesaj = $this->form->get("mesaj")->bosmu();
+
+        // girilen mail adresinin gerçek mail adresi olup olmadığını ilgili fonksiyon kontrol eder
+        @$this->form->GercektenMailmi($mail);
+        $tarih = date("d-m-Y");
+
+
+        // mail boşsa
+        // bir hata var demek
+        if(!empty($this->form->error)):
+
+            echo $this->bilgi->uyari("danger"," LÜTFEN TÜM BİLGİLERİ UYGUN GİRİNİZ ");
+            
+        // mailde bir sorun yoksa
+        else:
+
+            // gelen verilerden eşleşen var mı diye db ye soruyoruz
+            // 0 ya da 1 olarak geri döndürecek
+            $sonuc=$this->model->iletisimForm("iletisim", 
+            // sütunlar
+            array("ad", "mail", "konu", "mesaj","tarih"),
+            // değerler
+            array($ad, $mail, $konu, $mesaj, $tarih));
+
+            // KAYIT EDİLDİYSE
+            if($sonuc==1):
+                
+                echo $this->bilgi->uyari("success","Mesajınız alındı. En kısa sürede dönüş yapılacaktır. Teşekkür ederiz.", 'id="formok"');
+
+            else:
+
+                echo $this->bilgi->uyari("danger"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
             
             endif;
 

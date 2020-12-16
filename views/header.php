@@ -41,7 +41,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
 
 		// yorumu post etme
-		$("#yorumGonder").click(function(e) {
+		$("#yorumGonder").click(function() {
 
 			/* 
 			   url: nereye gönderileceği
@@ -64,7 +64,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$('#FormSonuc').html(donen_veri);
 
 					// idsi ok olan form elemanını yani html değerini(KAYIT BAŞARILI) yakalıyoruz
-					if ($('#ok').html() == "KAYIT BAŞARILI") {
+					if ($('#ok').html() == "Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.") {
 
 						// yorum ekleme işlemi başarılı olduktan sonra yorum formunu gizleme
 						$("#Formanasi").fadeOut();
@@ -72,7 +72,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					}
 				},
 			});	
-		})
+		});
 
 
 		// adet kısmında, number inputunun tüm klavye hareketlerinin de-active edilmesi
@@ -85,8 +85,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		});
 
-		// bülten butonuna tıklandığında
-		$("#bultenBtn").click(function(e) {
+	// bülten butonuna tıklandığında
+	$("#bultenBtn").click(function() {
 
 		
 		/* 
@@ -114,9 +114,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				if ($('#bultenok').html() == "Bültene başarılı bir şekilde kayıt oldunuz. Teşekkür ederiz.") {
 
 				}
+				
 			},
 		});
-	})
+	});
+
+
+	// iletişim butonuna basıldığında
+	$("#İletisimbtn").click(function() {
+
+		// $('#iletisimForm').fadeOut();
+		
+		// $('#FormSonuc').html("merhaba");
+
+		
+		$.ajax({
+
+			type:"POST",
+
+			url:'<?php echo URL; ?>/GenelGorev/iletisim',
+
+			data:$('#iletisimForm').serialize(),
+
+			success: function(donen_veri) {
+
+				// formun içini temizler
+				$('#iletisimForm').trigger("reset");
+
+				$('#iletisimForm').fadeOut(1000);
+
+				$('#FormSonuc').html(donen_veri);
+
+				
+
+			},
+		});
+	});
+
+
+
+
+
+
+
 });
 
 </script>
@@ -194,7 +234,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	        <ul class="nav navbar-nav">
-			<li><a href="index.html">Anasayfa</a></li>
+			<li><a href="<?php echo URL; ?>">Anasayfa</a></li>
 
 				<?php 
 
@@ -204,7 +244,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 				?>
 				
-				<li><a href="contact.html">İletişim</a></li>
+				<li><a href="<?php echo URL; ?>/sayfalar/iletisim">İletişim</a></li>
 	        </ul>
 	    </div>
 	    <!--/.navbar-collapse-->

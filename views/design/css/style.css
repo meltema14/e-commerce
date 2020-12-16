@@ -1766,7 +1766,7 @@ p.click a:hover{
 	outline: none;
 	border: 1px solid #e8e8e8;
 }
-.contact-form input[type=submit] {
+.contact-form input[type=button] {
 	border:none;
 	color: #ffffff;
 	padding: 13px 43px;
@@ -1775,7 +1775,7 @@ p.click a:hover{
 	font-weight: 500;
 	background:#55065a;
 }
-.contact-form input[type=submit]:hover {
+.contact-form input[type=button]:hover {
 	background:#000;
 	transition: .5s all;
 	-webkit-transition: .5s all;

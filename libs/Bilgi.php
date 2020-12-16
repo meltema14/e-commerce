@@ -27,7 +27,7 @@ class Bilgi {
         // mt: margin-top
         // $id: varsa eklenicek
 
-        return '<div class="alert alert-'.$tur.' mt-2 p-3" '. $id.'>'.$metin.'</div>';
+        return '<div class="alert alert-'.$tur.' mt-2 p-3 text-center" '. $id.'>'.$metin.'</div>';
     }
 
     function direktYonlen($yol) {
