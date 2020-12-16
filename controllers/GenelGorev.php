@@ -155,6 +155,35 @@ class GenelGorev extends Controller {
 
     }
 
+    function SepeteEkle() {
+
+        // form buraya gelecek burdan id ve adet eklenecek
+
+        Cookie::SepeteEkle(17,8);
+
+    }
+
+    function UrunSil() { // ürünleri tek tek siler
+
+        // form buraya gelecek burdan id ve adet eklenecek
+
+        Cookie::UrunUcur(17);
+
+    }
+
+    function UrunGuncelle() {
+
+        Cookie::Guncelle(4, 7);
+
+    }
+    
+    function SepetiBosalt() { // bütün ürünleri siler
+
+        Cookie::SepetiBosalt(4, 7);
+
+    }
+
+
 }
 
 ?>

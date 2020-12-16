@@ -5,23 +5,17 @@
 <!-- checkout -->
 <div class="cart-items">
 	<div class="container">
-	<div class="dreamcrub">
-			   	 <ul class="breadcrumbs">
-                    <li class="home">
-                       <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
-                       <span>&gt;</span>
-                    </li>
-                    <li class="women">
-                       Cart
-                    </li>
-                </ul>
-                <ul class="previous">
-                	<li><a href="index.html">Back to Previous Page</a></li>
-                </ul>
-                <div class="clearfix"></div>
-			   </div>
-			 <h2>MY SHOPPING BAG (3)</h2>
+
+			 <h2>SEPETİNİZDEKİ ÜRÜN (3)</h2>
 		<div class="cart-gd">
+
+			<?php   
+			
+				Cookie::SepeteBak();
+
+			?>
+
+
 				<script>$(document).ready(function(c) {
 					$('.close1').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
@@ -34,7 +28,7 @@
 				 <div class="close1"> </div>
 				 <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
-							 <img src="images/l1.jpg" class="img-responsive" alt="">
+							 <img src="<?php  echo URL; ?>/views/design/images/l1.jpg" class="img-responsive" alt="">
 						</div>
 					   <div class="cart-item-info">
 						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
@@ -64,7 +58,7 @@
 				 <div class="close2"> </div>
 				  <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
-							 <img src="images/l2.jpg" class="img-responsive" alt="">
+							 <img src="<?php  echo URL; ?>/views/design/images/l2.jpg" class="img-responsive" alt="">
 						</div>
 					   <div class="cart-item-info">
 						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
@@ -94,7 +88,7 @@
 				 <div class="close3"> </div>
 				  <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
-							 <img src="images/l3.jpg" class="img-responsive" alt="">
+							 <img src="<?php  echo URL; ?>/views/design/images/l3.jpg" class="img-responsive" alt="">
 						</div>
 					   <div class="cart-item-info">
 						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>

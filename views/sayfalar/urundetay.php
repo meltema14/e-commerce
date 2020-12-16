@@ -84,17 +84,8 @@
 						<p class="right"><?php /* vt deki renkleri çekiyoruz */ echo $veri["data1"][0]["renk"];?></p>
 						<div class="clearfix"></div>
 					</div>
-					<div class="span span4">
-						<p class="left">BEDEN</p>
-						<p class="right"><span class="selection-box "><select class="form-control" name="domains">
-										   <option>M</option>
-										   <option>L</option>
-										   <option>XL</option>
-										   <option>FS</option>
-										   <option>S</option>
-									   </select></span></p>
-						<div class="clearfix"></div>
-					</div>
+					
+					
 					<div class="purchase">
 
 					<!-- ADET -->

@@ -203,7 +203,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="header-right">
 						<div class="cart box_1">
 							<a href="<?php echo URL; ?>/sayfalar/sepet">
-								<h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)<img src="images/bag.png" alt=""></h3>
+								<h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)
+								<img src="<?php  echo URL; ?>/views/design/images/bag.png" alt=""></h3>
 							</a>	
 							<p><a href="javascript:;" class="simpleCart_empty">Sepet Boş</a></p>
 							<div class="clearfix"> </div>
