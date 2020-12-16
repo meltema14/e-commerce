@@ -1,6 +1,6 @@
 <?php
 
-// giriş yapma kontrolcusu
+
 class sayfalar extends Controller {
 
     //fonksiyon çalışır çalışmaz koşulsuz şartsız ilk buranın içi çalışır
@@ -10,9 +10,17 @@ class sayfalar extends Controller {
 
     }
 
+    // iletişim sayfasını dahil etme
     function iletisim() {
 
         $this-> view -> goster("sayfalar/iletisim");
+
+    }
+
+    // sepet sayfasını dahil etme
+    function sepet() {
+
+        $this-> view -> goster("sayfalar/sepet");
 
     }
 
