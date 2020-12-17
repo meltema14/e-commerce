@@ -6,7 +6,7 @@
 <div class="cart-items">
 	<div class="container">
 
-			 <h2>SEPETİNİZDEKİ ÜRÜN (3)</h2>
+		<h2>SEPETİNİZDEKİ ÜRÜN (3)</h2>
 		<div class="cart-gd">
 
 			<?php   

@@ -152,6 +152,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	});
 
 
+	// sepete ekle butonuna basıldığında
+	$("#SepetBtn").click(function() {
+
+		$.ajax({
+
+			type:"POST",
+
+			url:'<?php echo URL; ?>/GenelGorev/SepeteEkle',
+
+			data:$('#SepeteForm').serialize(),
+
+			success: function(donen_veri) {
+
+				// formun içini temizler
+				$('#SepeteForm').trigger("reset");
+				
+				$('#Mevcut').html('<div class="alert alert-success text-center">SEPETE EKLENDİ</div>');
+				
+
+				
+
+			},
+		});
+	});
+
+
 
 
 

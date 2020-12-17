@@ -85,29 +85,38 @@
 						<div class="clearfix"></div>
 					</div>
 					
-					
+
 					<div class="purchase">
 
 					<!-- ADET -->
-						<div class="row">
+						<div class="row" id="Mevcut">
 						
-							<div class="col-md-6">
+							<div class="col-md-6 " id="sonuc">
 							
 							
 							</div>
 
 							<div class="col-md-3 text-right">
+
+								<form id="SepeteForm">
 							
-								<input type="number" min="1" max="10" value="1" class="form-control">
-							
+								<input type="number" min="1" max="10" value="1" name="adet" class="form-control">
+								
 							</div>
 
 							<div class="col-md-3">
 							
-								<input type="submit" class="btn hizala_2" value="Sepete Ekle">
+								<input type="hidden"  name="id" value="<?php /* vt deki idyi çekiyoruz */ echo $veri["data1"][0]["id"];?>" >
+								<input type="button" class="btn hizala_2" value="Sepete Ekle" id="SepetBtn">
 							
-							</div>		
-						
+							</div>
+									
+							</form>
+
+
+
+
+
 						</div>
 						
 					<!-- ADET -->

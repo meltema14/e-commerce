@@ -155,18 +155,20 @@ class GenelGorev extends Controller {
 
     }
 
+    // form buraya gelecek burdan id ve adet eklenecek
     function SepeteEkle() {
 
-        // form buraya gelecek burdan id ve adet eklenecek
-
-        Cookie::SepeteEkle(17,8);
+        /*echo $id = $this->form->get("id")->bosmu()."<br>";
+        echo $adet = $this->form->get("adet")->bosmu();*/
+        
+        Cookie::SepeteEkle($this->form->get("id")->bosmu(),
+        $this->form->get("adet")->bosmu());
 
     }
 
     function UrunSil() { // ürünleri tek tek siler
 
-        // form buraya gelecek burdan id ve adet eklenecek
-
+       
         Cookie::UrunUcur(17);
 
     }
