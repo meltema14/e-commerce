@@ -1898,7 +1898,7 @@ div#myTabContent {
 	width: 100%;
 }
 .close1, .close2,.close3 {
-	background: url('../images/close_1.png') no-repeat 0px 0px;
+
 	cursor: pointer;
 	width: 28px;
 	height: 28px;
@@ -3055,54 +3055,123 @@ p.right {
 		font-size: 13px;
 	}
 }
-	.arkaplan {
-		background-color:#e1e0e0;
+
+/* KODLARIMIZ */ 
+.arkaplan {
+	background-color:#e1e0e0;
+	border:#D3D3D3 1px solid;
+	border-radius:5px;
+	margin-top:10px;	
+}
+
+.hizala_1 {
+	margin:5px 0px 5px 0px;
+	color:#55065a!important;
+	
+}
+
+.hizala_2 {
+	margin:5px 0px 5px 0px;
+	background-color:#55065a!important;
+	color:#FCFCFC;
+
+	
+}
+.hizala_2:hover {
+
+	color:#FFF;
+
+	
+}
+.y:link, .y:visited {
+	background-color:#636363;
+	padding:10px;
+
+	
+}
+
+.y:hover {
+	text-decoration:none;
+	cursor:pointer;
+	
+}
+.yorumlar {
+	background-color:#e1e0e0;
+	padding:10px;
+	border-radius:10px;
 		border:#D3D3D3 1px solid;
-		border-radius:5px;
-		margin-top:10px;	
-	}
+}
+
+#yorumad {
+
+	color:#55065a;
+}
+
+.qty li {
+	text-align:center;	
 	
-	.hizala_1 {
-		margin:5px 0px 5px 0px;
-		color:#55065a!important;
-		
-	}
+}
+
+.qty li h3 {
+	color:#F03!important;
+	font-size:18px;	
 	
-	.hizala_2 {
-		margin:5px 0px 5px 0px;
-		background-color:#55065a!important;
-		color:#FCFCFC;
+}
+
+.qty li span {
+	color:#727272;
 	
-		
-	}
-	.hizala_2:hover {
+	font-size:24px;	
 	
-		color:#FFF;
+}
+
+.delivery span {
+
+color:#F00503;
+font-size:18px;
+background-color:#D5D5D5;
+padding:10px;
+border-radius:10px;
+
+}
+
+.toplamAlan {
+	text-align:right;
+	padding:10px 0px 10px 0px;		
+}
+
+.toplamAlan .btn_1 {
 	
-		
-	}
-	.y:link, .y:visited {
-		background-color:#636363;
-		padding:10px;
+	background-color:#55065a;
+	color:#FCFCFC;	
 	
-		
-	}
+}
+.toplamAlan .btn_1:hover {
+	background-color:#906;
+
+	color:#FFF;
+}
+
+.toplamAlan .btn_2 {
 	
-	.y:hover {
-		text-decoration:none;
-		cursor:pointer;
-		
-	}
-	.yorumlar {
-		background-color:#e1e0e0;
-		padding:10px;
-		border-radius:10px;
-			border:#D3D3D3 1px solid;
-	}
-	#yorumEkle:active{
-		border-style: none;
-	}
-	#yorumad {
+	background-color:#55065a;
+	color:#FCFCFC;
+
 	
-		color:#55065a;
-	}
+}
+.toplamAlan .btn_2:hover {
+	background-color:#906;
+
+	color:#FFF;
+}
+
+
+.toplamAlan_2 {
+	background-color:#DADADA;
+	font-size:24px;
+	color:#693;
+
+	text-align:right;
+	padding:10px 0px 10px 0px;		
+	
+}

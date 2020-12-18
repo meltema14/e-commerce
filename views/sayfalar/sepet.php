@@ -2,115 +2,106 @@
 
 
 
-<!-- checkout -->
-<div class="cart-items">
+
+		<!-- checkout -->
+		<div class="cart-items">
 	<div class="container">
-
-		<h2>SEPETİNİZDEKİ ÜRÜN (3)</h2>
+	
+			 <h2>SEPETİNİZDEKİ ÜRÜN - <?php echo count($_COOKIE["urun"]); ?></h2>
 		<div class="cart-gd">
-
-			<?php   
-			
-				Cookie::SepeteBak();
-
-			?>
-
-
-				<script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
-						$('.cart-header').fadeOut('slow', function(c){
-							$('.cart-header').remove();
-						});
-						});	  
-					});
-			   </script>
-			 <div class="cart-header">
-				 <div class="close1"> </div>
+        
+        <?php
+		
+		
+			if (isset($_COOKIE["urun"])) :
+		
+		
+				foreach ($_COOKIE["urun"] as $id => $adet) :
+				
+				
+				$GelenUrun=$ayarlar->UrunCek($id);
+				
+				 //	$id db ye ilgili ürünü çekicem ve listelicem
+				
+				echo' <div class="cart-header">
+				 <div class="close1">
+				 
+				
+				 
+				  <input type="button" class="btn btn-sm btn-success" value="GÜNCELLE">
+				   <a href="#" class="btn btn-sm btn-danger">SİL</a> 
+				  </div>
+				  
 				 <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
-							 <img src="<?php  echo URL; ?>/views/design/images/l1.jpg" class="img-responsive" alt="">
+							 <img src="'.URL.'/views/design/images/'.$GelenUrun[0]["res1"].'" class="img-responsive" alt="'.$GelenUrun[0]["urunad"].'">
 						</div>
 					   <div class="cart-item-info">
-						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
+						<h3><a href="#"> '.$GelenUrun[0]["urunad"].' </a></h3>
+						
 						<ul class="qty">
-							<li><p>Min. order value:</p></li>
-							<li><p>FREE delivery</p></li>
+							<li><h3>Ürün Fiyat</h3>
+							<span>'.number_format($GelenUrun[0]["fiyat"],2,'.',',').'</span></li>
+							<li><h3>Ürün Adet</h3>
+							
+		  <input type="number" min="1" max="10" value="'.$adet.'" name="adet" class="form-control" /> 
+	
+		  
+							</li>
 						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : $10.00</p>
-							 <span>Delivered in 1-1:30 hours</span>
+							 <div class="delivery" >
+							
+							 <span>Toplam Fiyat : '.number_format($GelenUrun[0]["fiyat"]*$adet,2,',','.').'</span>
 							 <div class="clearfix"></div>
 				        </div>	
 					   </div>
 					   <div class="clearfix"></div>
 											
 				  </div>
-			 </div>
-			 <script>$(document).ready(function(c) {
-					$('.close2').on('click', function(c){
-							$('.cart-header2').fadeOut('slow', function(c){
-						$('.cart-header2').remove();
-					});
-					});	  
-					});
-			 </script>
-			 <div class="cart-header2">
-				 <div class="close2"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="<?php  echo URL; ?>/views/design/images/l2.jpg" class="img-responsive" alt="">
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
-						<ul class="qty">
-							<li><p>Min. order value:</p></li>
-							<li><p>FREE delivery</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : $10.00</p>
-							 <span>Delivered in 3-3:30 hours</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div>
-			  <script>$(document).ready(function(c) {
-					$('.close3').on('click', function(c){
-							$('.cart-header3').fadeOut('slow', function(c){
-						$('.cart-header3').remove();
-					});
-					});	  
-					});
-			 </script>
-			  <div class="cart-header3">
-				 <div class="close3"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="<?php  echo URL; ?>/views/design/images/l3.jpg" class="img-responsive" alt="">
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
-						<ul class="qty">
-							<li><p>Min. order value:</p></li>
-							<li><p>FREE delivery</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : $10.00</p>
-							 <span>Delivered On Tomorrow</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div>
+			 </div>';
+				
+				endforeach;
+				
+				echo '
+				
+				<div class="row toplamAlan_2">
+				<div class="col-md-12">	TOPLAM : 0.000,0</div>
+				
+				</div>
+				
+				
+				
+				<div class="row toplamAlan">
+				<div class="col-md-12">
+				
+				<a href="#" class="btn btn_1">ALIŞVERİŞE DEVAM ET</a>
+				<a href="#" class="btn btn_1">SİPARİŞİ TAMAMLA</a>
+				
+				
+				
+				</div>
+				
+				</div>';
+		
+		
+	
+		
+		endif;
+	
+		
+		?>
+        
+            
+				
+              
+              
+              
 		</div>
 	</div>
 </div>
 
 <!-- //checkout -->	
+
 
 
 
