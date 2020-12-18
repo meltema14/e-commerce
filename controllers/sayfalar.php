@@ -1,6 +1,6 @@
 <?php
 
-
+// sayfaları dahil eder
 class sayfalar extends Controller {
 
     //fonksiyon çalışır çalışmaz koşulsuz şartsız ilk buranın içi çalışır

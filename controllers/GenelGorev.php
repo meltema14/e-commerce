@@ -169,7 +169,7 @@ class GenelGorev extends Controller {
     function UrunSil() { // ürünleri tek tek siler
 
        
-        Cookie::UrunUcur(17);
+        Cookie::UrunUcur(4);
 
     }
 

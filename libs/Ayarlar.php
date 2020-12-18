@@ -146,6 +146,12 @@ class Ayarlar extends Model{
 
     }
 
+    // gelen $id hangi ürüne aitse onları döndürür
+    function UrunCek($id) {
+
+        return $this->db->listele("urunler", "where id=".$id);
+
+    }
 
   
 
