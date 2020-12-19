@@ -168,8 +168,14 @@ class GenelGorev extends Controller {
 
     function UrunSil() { // ürünleri tek tek siler
 
+        // deger olarak gelen urunid yi siliyoruz
+        if ($_POST) :
+
+            Cookie::UrunUcur($_POST["urunid"]);
+
+        endif;
        
-        Cookie::UrunUcur(4);
+        
 
     }
 

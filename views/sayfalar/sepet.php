@@ -28,8 +28,8 @@
 
 						<div class="close1"> 
 
-							<input type="button" class="btn btn-sm btn-success" value="GÜNCELLE">
-							<a href="#" class="btn btn-sm btn-danger">SİL</a> 
+						<input type="button" class="btn btn-sm btn-success" value="GÜNCELLE">
+				   		<a onclick="UrunSil('.$GelenUrun[0]["id"].')" class="btn btn-sm btn-danger">SİL</a> 
 						
 						</div>
 

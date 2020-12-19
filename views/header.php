@@ -185,6 +185,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 });
 
+// linkten gelen degeri urunid olarak karşılıyoruz
+function UrunSil(deger) {
+
+// post edildiğinde UrunSil fonk. gider
+$.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
+
+	window.location.reload();
+
+});
+
+}
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <meta name="description" content="<?php echo $ayarlar->sayfaAciklama; ?>" />
