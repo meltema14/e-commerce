@@ -6,10 +6,21 @@ class Cookie {
    // sepete ekleme 
     public static function SepeteEkle($id, $adet) {
 
-        // sepete eklenen ürünün adet ve idsi
-        // "/": bunu koyduğumuzda sistemimizin her yerinde buna müdahele edebiliriz
-        // urun[5] dizisi oluşturarak cookiedeki ürünlere erişicez
-        setcookie('urun['.$id.']', $adet, time()+ 60*60*24,"/");
+        // array_key_exists: elemanın dizi içerisinde var olup olmamasına bakar
+        // ürün daha önce sepette varsa mevcut adedin üzerine ekleme yapılacak
+        if (array_key_exists($id, $_COOKIE["urun"])) : 
+
+            $adeetal = $_COOKIE["urun"]["$id"];
+            $sonadet = $adeetal + $adet;
+            // cookienin yeni değerini sonadet olarak değiştir
+            setcookie('urun['.$id.']', $sonadet, time()+ 60*60*24,"/");
+
+        else:
+
+            // sepete eklenen ürünün adet ve idsi
+            setcookie('urun['.$id.']', $adet, time()+ 60*60*24,"/");
+
+        endif;
         
 
     }
