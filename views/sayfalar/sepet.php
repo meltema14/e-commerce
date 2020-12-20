@@ -6,7 +6,9 @@
 <div class="cart-items">
 	<div class="container">
 
-		<h2>SEPETİNİZDEKİ ÜRÜN (<?php echo count($_COOKIE["urun"]);  ?>)</h2>
+		<h2>
+			<a a href="<?php echo URL; ?>/GenelGorev/SepetiBosalt" class="btn btn-sm btn-info">Sepeti Boşalt</a> SEPETİNİZDEKİ ÜRÜN (<?php echo count($_COOKIE["urun"]);  ?>)
+		</h2>
 		<div class="cart-gd">
 
 			<?php   

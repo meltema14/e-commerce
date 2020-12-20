@@ -191,7 +191,9 @@ class GenelGorev extends Controller {
     
     function SepetiBosalt() { // bütün ürünleri siler
 
-        Cookie::SepetiBosalt(4, 7);
+        // sepet boşaltıldıktan sonra yönlendirme yapıcak
+        $this->bilgi->direktYonlen("/sayfalar/sepet");
+        Cookie::SepetiBosalt();
 
     }
 
