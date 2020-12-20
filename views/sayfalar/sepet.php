@@ -11,11 +11,15 @@
 
 			<?php   
 
-				$toplamAdet = 0;
-				$toplamFiyat = 0;
 
 				// ne kadar ürün varsa dizide tutar ihtiyacımız olduğunda çağırabiliriz
 				if (isset($_COOKIE["urun"])) :
+
+					$toplamAdet = 0;
+					$toplamFiyat = 0;
+	
+					echo "<form id='GuncelForm'>";
+
 
 
 					// ürünler dizisini id ve adet olarak parçalanmış şekilde vericek
@@ -28,7 +32,7 @@
 
 						<div class="close1"> 
 
-						<input type="button" class="btn btn-sm btn-success" value="GÜNCELLE">
+						<input type="button" class="btn btn-sm btn-success" data-value="'.$GelenUrun[0]["id"].'" value="GÜNCELLE">
 				   		<a onclick="UrunSil('.$GelenUrun[0]["id"].')" class="btn btn-sm btn-danger">SİL</a> 
 						
 						</div>
@@ -45,7 +49,7 @@
 									<span>'.number_format($GelenUrun[0]["fiyat"],2,'.',',').'</span> </li>
 
 									<li><h3>Ürün Adet</h3> 
-									<input type="number" min="1" max="10" value="'.$adet.'" name="adet" class="form-control" />
+									<input type="number" min="1" max="10" value="'.$adet.'" name="adet'.$GelenUrun[0]["id"].'" class="form-control" />
 									</li>
 
 								</ul>
@@ -70,6 +74,7 @@
 
 					endforeach;
 
+					echo "</form>";
 
 					echo '
 					

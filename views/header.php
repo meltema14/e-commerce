@@ -177,7 +177,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
 	});
 
+	// GuncelForm içerisindeki güncelle butonu
+	$('#GuncelForm input[type="button"]').click(function(){
 
+		/* tıklanan butonun data-value özelliğini(yani urunid) yakaladık
+		alert($(this).attr('data-value'));
+		*/
+		var id = $(this).attr('data-value');
+
+		// GuncelForm içerisinde inputtaki adeti aldık 
+		var adet = $('#GuncelForm input[name="adet'+id+'"]').val();
+
+		// UrunGuncelle methoduna id ve adeti gönderdik
+		$.post("<?php echo URL; ?>/GenelGorev/UrunGuncelle",{"urunid":id, "adet":adet}, function() {
+
+		window.location.reload();
+
+		});
+
+
+	});
 
 
 

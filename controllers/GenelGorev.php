@@ -168,7 +168,7 @@ class GenelGorev extends Controller {
 
     function UrunSil() { // ürünleri tek tek siler
 
-        // deger olarak gelen urunid yi siliyoruz
+        // posttan deger olarak gelen urunid yi siliyoruz
         if ($_POST) :
 
             Cookie::UrunUcur($_POST["urunid"]);
@@ -181,8 +181,12 @@ class GenelGorev extends Controller {
 
     function UrunGuncelle() {
 
-        Cookie::Guncelle(4, 7);
+        // postla gelen id ve adet
+        if ($_POST) :
 
+            Cookie::Guncelle($_POST["urunid"], $_POST["adet"]);
+
+        endif;
     }
     
     function SepetiBosalt() { // bütün ürünleri siler
