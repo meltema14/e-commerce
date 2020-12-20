@@ -173,6 +173,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				// formun içini temizler
 				$('#SepeteForm').trigger("reset");
 
+				// ürün sepete eklendiğinde yukarı doğru animasyonla kaydırma
+				$("html,body").animate({scrollTop : 0}, "slow");
+
 				// sepete eklediğinde load yapıp güncel değeri sepet ikonunda gösterir 
 				$("#SepetDurum").load("<?php echo URL; ?>/GenelGorev/SepetKontrol");
 
@@ -216,12 +219,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 // linkten gelen degeri urunid olarak karşılıyoruz
 function UrunSil(deger) {
 
-// post edildiğinde UrunSil fonk. gider
-$.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
+	// post edildiğinde UrunSil fonk. gider
+	$.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
 
-	window.location.reload();
+		window.location.reload();
 
-});
+	});
 
 }
 
