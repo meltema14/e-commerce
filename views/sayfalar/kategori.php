@@ -97,7 +97,7 @@
 									</div>
 								</div>
 						</a>
-							<a class="cbp-vm-icon cbp-vm-add item_add" href="#">Ekle</a>
+							
 							</div>
 					</li>';
 

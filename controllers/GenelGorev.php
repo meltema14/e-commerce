@@ -197,6 +197,29 @@ class GenelGorev extends Controller {
 
     }
 
+    function SepetKontrol() {
+
+        echo '
+        <a href="'.URL.'/sayfalar/sepet">
+        <h3><img src="'.URL.'/views/design/images/bag.png" alt=""></h3>
+        <p>';
+
+        // ürün varsa kaç tane olduğunu gösterir
+        if (isset($_COOKIE["urun"])) : 
+
+            // ürünün satır sayısını yaz
+            echo count($_COOKIE["urun"]);
+
+        else:
+
+            echo "Sepetiniz Boş";
+
+        endif;
+
+        echo '</p></a>';
+        
+    }
+
 
 }
 

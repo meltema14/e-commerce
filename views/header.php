@@ -31,6 +31,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	$(document).ready(function(e) {
 
+		// header sepet ikonu
+		$("#SepetDurum").load("<?php echo URL; ?>/GenelGorev/SepetKontrol");
+
+
+
 		// yorum formunun başta görünmez olması için
 		$("#Formanasi").hide();
 
@@ -167,7 +172,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 				// formun içini temizler
 				$('#SepeteForm').trigger("reset");
-				
+
+				// sepete eklediğinde load yapıp güncel değeri sepet ikonunda gösterir 
+				$("#SepetDurum").load("<?php echo URL; ?>/GenelGorev/SepetKontrol");
+
 				$('#Mevcut').html('<div class="alert alert-success text-center">SEPETE EKLENDİ</div>');
 				
 
@@ -191,6 +199,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		// UrunGuncelle methoduna id ve adeti gönderdik
 		$.post("<?php echo URL; ?>/GenelGorev/UrunGuncelle",{"urunid":id, "adet":adet}, function() {
 
+		
 		window.location.reload();
 
 		});
@@ -267,12 +276,11 @@ $.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
 					</ul>
 				</div>
 				<div class="header-right">
-						<div class="cart box_1">
-							<a href="<?php echo URL; ?>/sayfalar/sepet">
-								<h3> <span class="simpleCart_total"> $0.00 </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)
-								<img src="<?php  echo URL; ?>/views/design/images/bag.png" alt=""></h3>
-							</a>	
-							<p><a href="javascript:;" class="simpleCart_empty">Sepet Boş</a></p>
+						<div class="cart box_1" id="SepetDurum">
+
+
+							
+
 							<div class="clearfix"> </div>
 						</div>
 				</div>
