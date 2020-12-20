@@ -146,6 +146,12 @@ class uye extends Controller {
 
     }
 
+    function Panel() {
+
+        $this->view->goster("sayfalar/panel");
+
+    }
+
 }
 
 

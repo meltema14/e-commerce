@@ -89,8 +89,12 @@ a.simpleCart_empty {
   color: #FFC6CF;
 }
 .box_1 p {
+	
   margin-left: 8px;
   float: left;
+}
+.box_1 a{
+	color:#FFC6CF;
 }
 .banner {
 	background:url("../images/banner_img.jpg") no-repeat 0px 0px;
@@ -3173,5 +3177,43 @@ border-radius:10px;
 
 	text-align:right;
 	padding:10px 0px 10px 0px;		
+	
+}
+
+/*  ÜYENİN PANELİ*/
+
+#UyeCont {
+	background-color:#E8E8E8;
+	min-height:400px;
+	margin-top:10px;
+}
+
+#menu {
+	border-right:1px  #D5D5D5 solid;
+}
+
+
+#uyepanel li {
+	list-style:none;
+	background-color:#E8E8E8;
+	
+	font-size:16px;
+	padding:10px;
+	border-bottom:1px  #D5D5D5 solid;
+	
+}
+#uyepanel #baslik {
+	background-color:#55065a;	
+	color:#FAFAFA;
+	padding:10px;
+	margin-bottom:10px;
+	
+}
+
+#uyepanel li:hover {
+	background-color:#55065a;
+	background-color:#DDD;
+	cursor:pointer;
+	
 	
 }
