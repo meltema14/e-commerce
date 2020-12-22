@@ -159,7 +159,7 @@
 			  
 				<?php
 
-				// KULLANICI OTURUM AÇTIYSA YORUM KISMINI GÖSTER
+				// KULLANICI OTURUM AÇTIĞINDA YORUM YAPMA
 
 				if (Session::get("kulad")) :
 				
@@ -221,7 +221,15 @@
 
 						<!-- Yorum başla -->
 						
-						<?php
+					<?php
+
+				// oturum açılmadıysa sadece yorumları gösterme
+				else:
+
+					echo '<div class="alert alert-danger text-center">Yorum yapabilmek için giriş yapmanız gerekmektedir.</div>' ;
+
+				endif;
+
 
 							// durum 0 ise yani onaylanmış yorum yok ise	
 							if (count($veri["data4"])==0):
@@ -255,13 +263,6 @@
 								endforeach;
 
 							endif;
-
-				// oturum açılmadıysa
-				else:
-
-					echo '<div class="alert alert-danger text-center">Yorum yapabilmek için giriş yapmanız gerekmektedir.</div>' ;
-
-				endif;
 
 				 ?>
                  <!-- Yorum bitir -->
