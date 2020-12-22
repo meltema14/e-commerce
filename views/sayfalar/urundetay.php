@@ -156,95 +156,112 @@
 			  </div>
 			  <div role="tabpanel" class="tab-pane fade" id="yorum" aria-labelledby="dropdown1-tab">
 
-
-			<div class="row" id="FormSonuc"></div>
-			
-				  
-			<input type="button" id="yorumEkle" value="YORUM EKLE" class="btn btn-sm-
-				btn-info" />
-
 			  
+				<?php
 
-			<div class="row arkaplan" id="Formanasi">
+				// KULLANICI OTURUM AÇTIYSA YORUM KISMINI GÖSTER
 
-				<div class="col-lg-12">
+				if (Session::get("kulad")) :
 				
-					<form id="yorumForm">
 
-						<label class="hizala_1">Adınız </label>
-
-				</div>
-
-				<div class="col-lg-12">
-
-					<input type="text" name="ad" class="form-control" maxlength="30" required="required"/>
-
-				</div>
-
-
-				<div class="col-lg-12">
-			
-					<label class="hizala_1">Yorumunuz </label>
-
-				</div>
-
-				<div class="col-lg-12">
-
-					<textarea name="yorum" class="form-control" required="required"/></textarea>
-
-				</div>
-
-				<div class="col-lg-12 text-center">
-
-					<input type="hidden" name="urunid" 
-					value="<?php /* vt deki urunun idsini çekiyoruz */ echo $veri["data1"][0]["id"];?>"/>
-					
-
-					<input type="button" id="yorumGonder" value="GÖNDER" class="btn hizala_2">
-					</form>
-
-				</div>
-
-			 
-			</div>
-			  
-
-				 <!-- Yorum başla -->
-				 
-				 <?php
-
- 					// durum 0 ise yani onaylanmış yorum yok ise	
-					if (count($veri["data4"])==0):
-
-						echo '<div class="alert alert-danger text-center">Bu ürüne ait yorum bulunmamaktadır.</div>' ;
-
-					// tüm yorumları göster
-					else:
-
-						// ürünün adı ile id sini alıyoruz
-						foreach($veri["data4"] as $value) :
+					?>
 
 					
-						echo '<div class="media response-info yorumlar">
-						<div class="media-left response-text-left" id="yorumad">								
-							<h5>'.$value["ad"].'</h5>
+					<div class="row" id="FormSonuc"></div>
+					
+						
+					<input type="button" id="yorumEkle" value="YORUM EKLE" class="btn btn-sm-
+						btn-info" />
+
+					
+
+					<div class="row arkaplan" id="Formanasi">
+
+						<div class="col-lg-12">
+						
+							<form id="yorumForm">
+
+								<label class="hizala_1">Adınız </label>
+
 						</div>
+
+						<div class="col-lg-12">
+
+							<input type="text" name="ad" class="form-control" maxlength="30" required="required"/>
+
+						</div>
+
+
+						<div class="col-lg-12">
+					
+							<label class="hizala_1">Yorumunuz </label>
+
+						</div>
+
+						<div class="col-lg-12">
+
+							<textarea name="yorum" class="form-control" required="required"/></textarea>
+
+						</div>
+
+						<div class="col-lg-12 text-center">
+
+							<input type="hidden" name="urunid" 
+							value="<?php /* vt deki urunun idsini çekiyoruz */ echo $veri["data1"][0]["id"];?>"/>
+							
+
+							<input type="button" id="yorumGonder" value="GÖNDER" class="btn hizala_2">
+							</form>
+
+						</div>
+
+					
+					</div>
+					
+
+						<!-- Yorum başla -->
 						
-						
-						<div class="media-body response-text-right">
-							<p>'.$value["icerik"].'</p>
-							<ul>
-								<li>'.$value["tarih"].'</li>
+						<?php
+
+							// durum 0 ise yani onaylanmış yorum yok ise	
+							if (count($veri["data4"])==0):
+
+								echo '<div class="alert alert-danger text-center">Bu ürüne ait yorum bulunmamaktadır.</div>' ;
+
+							// tüm yorumları göster
+							else:
+
+								// ürünün adı ile id sini alıyoruz
+								foreach($veri["data4"] as $value) :
+
+							
+								echo '<div class="media response-info yorumlar">
+								<div class="media-left response-text-left" id="yorumad">								
+									<h5>'.$value["ad"].'</h5>
+								</div>
 								
-							</ul>
-						</div>
-						<div class="clearfix"> </div>
-						</div>';
-						
+								
+								<div class="media-body response-text-right">
+									<p>'.$value["icerik"].'</p>
+									<ul>
+										<li>'.$value["tarih"].'</li>
+										
+									</ul>
+								</div>
+								<div class="clearfix"> </div>
+								</div>';
+								
 
-						endforeach;
+								endforeach;
 
-					endif;
+							endif;
+
+				// oturum açılmadıysa
+				else:
+
+					echo '<div class="alert alert-danger text-center">Yorum yapabilmek için giriş yapmanız gerekmektedir.</div>' ;
+
+				endif;
 
 				 ?>
                  <!-- Yorum bitir -->
