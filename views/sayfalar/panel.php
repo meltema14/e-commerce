@@ -15,7 +15,7 @@
                     <li>Siparislerim</li>
                     <li>Hesap Ayarları</li>
                     <li>Adreslerim</li>
-                    <li>Ürün Yorumlarım</li>
+                    <li><a href="<?php echo URL;?>/uye/yorumlarim">Ürün Yorumlarım</li>
                     <li><a href="<?php echo URL;?>/uye/cikis">Oturumu Kapat</a></li>
                     
                 </ul>              
