@@ -28,7 +28,7 @@ class uye extends Controller {
 
     }
 
-    function cikis() { // ÇIKIŞ
+    function cikis() { // oturumu kapatma
 
         
         // oturumu kapatma
@@ -43,7 +43,7 @@ class uye extends Controller {
     */
     function girisKontrol()  { // GİRİŞ KONTROL
 
-
+        // form classına gidip ad ve şifre boş mu değil mi diye bakar
         $ad = $this->form->get("ad")->bosmu();
         $sifre = $this->form->get("sifre")->bosmu();
 
@@ -58,6 +58,9 @@ class uye extends Controller {
         // gelen veride sorun yoksa
         else:
 
+            // buraya gelen şifreyi şifrele fonk. çağırarak şifreleyeceğiz
+            $sifre = $this->form->sifrele($sifre);
+
             // gelen verilerden eşleşen var mı diye db ye soruyoruz
             // 0 ya da 1 olarak geri döndürecek
             $sonuc=$this->model->GirisKontrol("uye_panel", "ad='$ad' and sifre='$sifre'");
@@ -65,9 +68,8 @@ class uye extends Controller {
             // giriş yapıldıysa
             if($sonuc==1):
 
-                // kullanıcı paneline girecek, oturum başlayacak
-                // olması gereken bu $this->bilgi->basarili("Giriş Başarılı","/uye/Form");
-                $this->bilgi->direktYonlen("/magaza");
+                // kullanıcı paneline girecek
+                $this->bilgi->direktYonlen("/uye/panel");
 
             else:
 
@@ -147,8 +149,19 @@ class uye extends Controller {
     }
 
     function Panel() {
-
+        
+    // üye girişi yapıldıysa
+    if (Session::get("kulad")) :
+        // üye paneli açılır
         $this->view->goster("sayfalar/panel");
+        
+    else:
+        // anasayfaya yönlendirir
+        $this->bilgi->direktYonlen("/");
+
+    endif;
+    
+    
 
     }
 

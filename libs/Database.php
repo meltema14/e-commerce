@@ -139,7 +139,7 @@ class Database extends PDO {
 
     }
 
-    function giriskontrol($tabloisim, $kosul) {
+    function giriskontrol($tabloisim, $kosul) { //giriş kontrol
 
         // burada ciddi işler var
 

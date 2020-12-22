@@ -261,10 +261,10 @@ function UrunSil(deger) {
 				<div class="header-top-left">
 					<ul>
 						<?php
-							// giriş yapıldıysa "çıkış yap" gözükecek
-							if(Session::get("kulad")==true): ?>
+							// giriş yapıldıysa "hesabım" gözükecek
+							if(Session::get("kulad")): ?>
 
-								<a href="<?php echo URL;?>/uye/cikis">ÇIKIŞ YAP</a>
+								<li><a href="<?php echo URL;?>/uye/panel">Hesabım</a></li>
 
 							<?php else: ?>
 

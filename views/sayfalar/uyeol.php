@@ -49,7 +49,7 @@
 
 			echo $veri["bilgi"];
 
-		endif;
+		else:
 
 
 
@@ -66,13 +66,13 @@
 				echo '<div class="alert alert-danger mt-5">';
 
 				// gelen hatayı değerlerine göre ayırıyoruz
-				foreach (($veri["hata"]) as $value):
+				foreach ($veri["hata"] as $value):
 
 					echo ucfirst($value)."<br>";
 
 				endforeach;
 
-					echo '</div';
+					echo '</div>';
 
 			endif;
 
@@ -171,7 +171,7 @@
 							 </li>
 						 </ul>
 						 <ul>
-							 <li class="text-info"> Telefon:</li>
+							 <li class="text-info"><span class="text-danger">*</span> Telefon:</li>
 							 <li>
 							 	<?php 
 								
@@ -188,7 +188,7 @@
 						 <ul>
 						 	<li class="text-success"><span class="text-danger">*İşaretler zorunlu alandır.</span> </li>
 						 </ul>	
-						 <ul>
+						
 						 	<?php 
 								
 								// form elemanlarını oluşturma
@@ -199,7 +199,7 @@
 
 							?>
 						 <p class="click">Üye olarak politikaları kabul etmiş olursunuz.  <a href="#">Gizlilik politikası</a></p> 
-					 </form>
+				<?php Form::Olustur("kapat"); ?> 
 
 				 </div>
 			</div>
@@ -220,7 +220,7 @@
 
 
 <?php 
-
+endif;
 
 require 'views/footer.php';   
 ?> 

@@ -16,7 +16,7 @@
                     <li>Hesap Ayarları</li>
                     <li>Adreslerim</li>
                     <li>Ürün Yorumlarım</li>
-                    <li>Oturumu Kapat</li>
+                    <li><a href="<?php echo URL;?>/uye/cikis">Oturumu Kapat</a></li>
                     
                 </ul>              
                 
@@ -29,7 +29,6 @@
     </div>        
 	
 </div>
-
 
 
 <?php require 'views/footer.php'; ?> 		
