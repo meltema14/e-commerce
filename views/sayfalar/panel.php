@@ -16,7 +16,7 @@
                     <li>Hesap Ayarları</li>
                     <li>Adreslerim</li>
                     <li>Ürün Yorumlarım</li>
-                    <li><a href="<?php echo URL;?>/uye/cikis">Oturumu Kapat</a></li>
+                    <li></li>
                     
                 </ul>              
                 

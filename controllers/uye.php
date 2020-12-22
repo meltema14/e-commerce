@@ -58,11 +58,11 @@ class uye extends Controller {
         // gelen veride sorun yoksa
         else:
 
-            // buraya gelen şifreyi şifrele fonk. çağırarak şifreleyeceğiz
+            // buraya gelen şifreyi şifrele fonk. çağırarak şifreleme
             $sifre = $this->form->sifrele($sifre);
 
-            // gelen verilerden eşleşen var mı diye db ye soruyoruz
-            // 0 ya da 1 olarak geri döndürecek
+            // gelen verilerden eşleşen var mı diye db ye sorgu atma
+            // 0 ya da 1 olarak geri döndürür
             $sonuc=$this->model->GirisKontrol("uye_panel", "ad='$ad' and sifre='$sifre'");
 
             // giriş yapıldıysa
@@ -150,18 +150,16 @@ class uye extends Controller {
 
     function Panel() {
         
-    // üye girişi yapıldıysa
+    // üye girişi yapıldıysa(oturum açıldıysa)
     if (Session::get("kulad")) :
         // üye paneli açılır
         $this->view->goster("sayfalar/panel");
         
     else:
-        // anasayfaya yönlendirir
+        // "/": anasayfaya yönlendirir
         $this->bilgi->direktYonlen("/");
 
-    endif;
-    
-    
+    endif;    
 
     }
 
