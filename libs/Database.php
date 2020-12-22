@@ -147,16 +147,18 @@ class Database extends PDO {
         $son = $this -> prepare($sorgum);
         $son -> execute();
         
-        // satır sayısı 0 dan büyükse yani eşleşen bir kayıt varsa 
+       
+        // başarılı bi giriş var mı(0,1)
         if ($son -> rowCount() > 0) :
 
-            
-            session::set("kulad", true);    // kulad isimle sessionu başlat
+            // giriş yapan kullanıcı verisini döndürür
+            return $son->fetchAll();
+
+        else:
+
+            return false;
 
         endif;
-
-        // satır sayısını geri döndür
-        return $son -> rowCount();
 
     }
 

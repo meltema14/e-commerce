@@ -20,6 +20,7 @@ class GenelGorev extends Controller {
         $ad = $this->form->get("ad")->bosmu();
         $yorum = $this->form->get("yorum")->bosmu();
         $urunid = $this->form->get("urunid")->bosmu();
+        $uyeid = $this->form->get("uyeid")->bosmu();
         $tarih = date("d-m-Y");
 
         // ad ya da yorum boşsa
@@ -35,9 +36,9 @@ class GenelGorev extends Controller {
             // 0 ya da 1 olarak geri döndürecek
             $sonuc=$this->model->YorumEkleme("yorumlar", 
             // sütunlar
-            array("urunid", "ad", "icerik","tarih"),
+            array("uyeid","urunid", "ad", "icerik","tarih"),
             // değerler
-            array($urunid, $ad, $yorum, $tarih)
+            array($uyeid ,$urunid, $ad, $yorum, $tarih)
             );
 
             // giriş yapıldıysa
@@ -45,9 +46,9 @@ class GenelGorev extends Controller {
 
                 // üye olma işlemi tamamlandıysa
                 /*$this->view->goster("sayfalar/uyeol",
-                array("bilgi" => $this->bilgi->uyari("success"," KAYIT BAŞARILI ")));*/
+                array("bilgi" => $this->bilgi->uyari("success"," Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.")));*/
                 
-                echo $this->bilgi->uyari("success","KAYIT BAŞARILI", 'id="ok"');
+                echo $this->bilgi->uyari("success","Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.", 'id="ok"');
 
             else:
 

@@ -37,11 +37,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
 		// yorum formunun başta görünmez olması için
-		$("#Formanasi").hide();
+		$("#FormAnasi").hide();
 
 		$("#yorumEkle").click(function(e){
 
-			$("#Formanasi").slideToggle();
+			$("#FormAnasi").slideToggle();
 
 		});
 
@@ -68,11 +68,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 					$('#FormSonuc').html(donen_veri);
 
-					// idsi ok olan form elemanını yani html değerini(KAYIT BAŞARILI) yakalıyoruz
+					// idsi ok olan form elemanını yani html değerini(Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.) yakalıyoruz
 					if ($('#ok').html() == "Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.") {
 
 						// yorum ekleme işlemi başarılı olduktan sonra yorum formunu gizleme
-						$("#Formanasi").fadeOut();
+						$("#FormAnasi").fadeOut();
 
 					}
 				},

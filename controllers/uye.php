@@ -66,10 +66,17 @@ class uye extends Controller {
             $sonuc=$this->model->GirisKontrol("uye_panel", "ad='$ad' and sifre='$sifre'");
 
             // giriş yapıldıysa
-            if($sonuc==1):
+            if(count($sonuc)>0):
 
                 // kullanıcı paneline girecek
                 $this->bilgi->direktYonlen("/uye/panel");
+
+                // kulad isimli sessionu başlatma
+                Session::init();
+                session::set("kulad", true);   
+                 
+                // üyenin idsi taşınacak  
+                session::set("uye", $sonuc[0]["id"]);  
 
             else:
 
