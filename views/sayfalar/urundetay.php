@@ -161,7 +161,8 @@
 
 				// KULLANICI OTURUM AÇTIĞINDA YORUM YAPMA
 
-				if (Session::get("kulad")) :
+				if (Session::get("kulad") && Session::get("uye")) :
+
 				
 
 					?>
@@ -175,7 +176,7 @@
 
 					
 
-					<div class="row arkaplan" id="Formanasi">
+					<div class="row arkaplan" id="FormAnasi">
 
 						<div class="col-lg-12">
 						
@@ -208,9 +209,12 @@
 
 							<input type="hidden" name="urunid" 
 							value="<?php /* vt deki urunun idsini çekiyoruz */ echo $veri["data1"][0]["id"];?>"/>
+
+							<!-- yorum yazılan yere uye id yi çekme -->
+							<input type="hidden" name="uyeid" value="<?php  echo Session::get("uye"); ?>"/>
 							
 
-							<input type="button" id="yorumGonder" value="GÖNDER" class="btn hizala_2">
+							<input type="button" id="yorumGonder" value="GÖNDER" class="btn hizala_2"/>
 							</form>
 
 						</div>
