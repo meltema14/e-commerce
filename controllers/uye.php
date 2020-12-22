@@ -73,8 +73,8 @@ class uye extends Controller {
 
                 // kulad isimli sessionu başlatma
                 Session::init();
-                session::set("kulad", true);   
-                 
+                session::set("kulad", $sonuc[0]["ad"]);   
+
                 // üyenin idsi taşınacak  
                 session::set("uye", $sonuc[0]["id"]);  
 

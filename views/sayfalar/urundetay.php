@@ -188,7 +188,7 @@
 
 						<div class="col-lg-12">
 
-							<input type="text" name="ad" class="form-control" maxlength="30" required="required"/>
+							<input type="text" name="ad" class="form-control"<input type="hidden" name="uyeid" value="<?php  echo Session::get("kulad"); ?>" readonly="readonly"/>
 
 						</div>
 
