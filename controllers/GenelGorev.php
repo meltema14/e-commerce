@@ -167,7 +167,7 @@ class GenelGorev extends Controller {
 
     }
 
-    function UrunSil() { // ürünleri tek tek siler
+    function UrunSil() { // ürünleri sepetten(tek tek) siler
 
         // posttan deger olarak gelen urunid yi siliyoruz
         if ($_POST) :

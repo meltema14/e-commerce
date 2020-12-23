@@ -36,9 +36,11 @@
 
 					<div class="close1"> 
 
-					<input type="button" class="btn btn-sm btn-success" data-value="'.$GelenUrun[0]["id"].'" value="GÜNCELLE">
-					<a onclick="UrunSil('.$GelenUrun[0]["id"].')" class="btn btn-sm btn-danger">SİL</a> 
+					<input type="button" class="btn btn-sm btn-success" data-value="'.$GelenUrun[0]["id"].'" value="GÜNCELLE">'; ?>
+
+					<a onclick='UrunSil("<?php echo $GelenUrun[0]["id"] ?>", "sepetsil")' class="btn btn-sm btn-danger">SİL</a> 
 					
+					<?php echo '
 					</div>
 
 					<div class="cart-sec simpleCart_shelfItem">

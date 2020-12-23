@@ -178,6 +178,18 @@ class uye extends Controller {
         ));       
     }
 
+    function Yorumsil (){
+
+        // posttan geldiyse veri
+        if ($_POST) :
+
+            // posttan gelen idyi db ye sorgu atarak yorumu silme
+            echo $this->model->yorumSil("yorumlar", " id=".$_POST["yorumid"]);
+
+        endif;
+
+    }
+
     
 
 }

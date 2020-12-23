@@ -35,7 +35,8 @@ ob_start();
 		// header sepet ikonu
 		$("#SepetDurum").load("<?php echo URL; ?>/GenelGorev/SepetKontrol");
 
-
+		// üye panelinde silindiğinde gözükecek divi varsayılan olarak hide yaptık
+		$("#Sonuc").hide();
 
 		// yorum formunun başta görünmez olması için
 		$("#FormAnasi").hide();
@@ -218,14 +219,70 @@ ob_start();
 });
 
 // linkten gelen degeri urunid olarak karşılıyoruz
-function UrunSil(deger) {
+function UrunSil(deger, kriter) {
 
-	// post edildiğinde UrunSil fonk. gider
-	$.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
+	switch (kriter) {
 
-		window.location.reload();
+		case "sepetsil":
 
-	});
+			// post edildiğinde UrunSil fonk. gider
+			$.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
+
+			window.location.reload();
+
+			});
+
+		break;
+
+		case "yorumsil":
+
+			// post edildiğinde UrunSil fonk. gider
+			$.post("<?php echo URL; ?>/uye/Yorumsil",{"yorumid":deger}, function(donen) {
+
+			if (donen) {
+
+				$("#Sonuc").html("Yorum başarıyla silindi.");
+
+			}
+			else{
+
+				$("#Sonuc").html("Silme işleminde hata oluştu.");
+
+			}
+			// yorum silindi yavaş bi şekilde gözükecek
+			$("#Sonuc").fadeIn(1000,function(){
+
+				// efekt tamamlandığında gizle
+				$("#Sonuc").fadeOut(1000,function(){
+					// sonucun içerisini temizleme
+					$("#Sonuc").html("");
+					// en son işlem bittiğinde sayfayı yenile
+					window.location.reload();
+
+				});
+
+			});
+
+		});
+
+		break;
+
+		case "adresSil":
+
+			// post edildiğinde UrunSil fonk. gider
+			$.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
+
+			window.location.reload();
+
+			});
+
+		break;
+
+
+	}
+
+
+	
 
 }
 

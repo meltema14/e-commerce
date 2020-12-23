@@ -51,13 +51,15 @@ if (Session::get("kulad") && Session::get("uye")) :
 
                 	<div class="col-md-12 text-center">
 
+                    <div class="alert alert-success" id="Sonuc"></div>
+
                        <?php 
                        // kaç adet yorum geliyosa onu gösterir, yorum yoksa belirtir
                        echo count($veri["yorumlar"])>0 ? 
                        '<div class="alert alert-info">'.count($veri["yorumlar"]). 
                        " adet yorumunuz var" : '<div class="alert alert-info">Henüz hiçbir ürüne yorum yazmamışsınız.</div>';  ?> 
                     
-
+                    </div>
                         <?php
                             // yorum yoksa tablo gözükmez
                             if (count($veri["yorumlar"])!=0) :
@@ -92,9 +94,11 @@ if (Session::get("kulad") && Session::get("uye")) :
                                 <td>'.$deger["tarih"].'</td>
                                 <td>'; echo ($deger["durum"]==0) ? "Onaysız" : "Onaylı"; echo'</td>
                                 <td><a class="btn btn-sm btn-success" href="#">Güncelle</a></td>
-                                <td><a class="btn btn-sm btn-danger" href="#">Sil</a></td>
+                                <td>'; ?>
+
+                                <a onclick='UrunSil("<?php echo $deger["id"] ?>", "yorumsil")' class="btn btn-sm btn-danger">SİL</a> 
                             
-                                </tr>';
+                                <?php echo '</td></tr>';
                                                                                                             
                                 endforeach;
                                                     

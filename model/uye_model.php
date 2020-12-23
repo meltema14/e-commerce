@@ -35,6 +35,13 @@ class uye_model extends Model {
 
     }
 
+    function yorumSil($tabloisim, $kosul) {
+
+        // db den yorumları çekme
+        return $this->db->sil($tabloisim, $kosul);
+
+    }
+
 
 
 }
