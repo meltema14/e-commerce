@@ -7,7 +7,6 @@
 // oturum açılmadıysa İŞLEMLER kısmı gözükmeyecek
 if (Session::get("kulad") && Session::get("uye")) :
 
-
 ?>
 
 <div class="container" id="UyeCont">
@@ -33,9 +32,8 @@ if (Session::get("kulad") && Session::get("uye")) :
             
         </div>   
 
-        <!-- İŞLEM BÖLÜMÜ(yorumlar, adres) -->
-        <div class="col-md-10">
-        
+        <!-- İŞLEM BÖLÜMÜ(sipariş, hesap ayar, adres, yorumlar) -->
+        <div class="col-md-10">       
 
         <?php 
 
@@ -47,25 +45,111 @@ if (Session::get("kulad") && Session::get("uye")) :
                 switch ($key) :
 
                 case "yorumlar":
-                    // yorumları deger olarak parcala
-                    foreach ($veri["yorumlar"] as $deger):
+                    ?>
+                
+                <div class="row">
 
-                        echo $deger["ad"]."<br>";
+                	<div class="col-md-12 text-center">
 
-                    endforeach;
+                       <?php 
+                       // kaç adet yorum geliyosa onu gösterir, yorum yoksa belirtir
+                       echo count($veri["yorumlar"])>0 ? 
+                       '<div class="alert alert-info">'.count($veri["yorumlar"]). 
+                       " adet yorumunuz var" : '<div class="alert alert-info">Henüz hiçbir ürüne yorum yazmamışsınız.</div>';  ?> 
+                    
 
-                break;
-
-                case "adres":
-                    // adresleri deger olarak parcala
-                    foreach ($veri["adres"] as $deger):
-
-                        echo $deger["adres"]."<br>";
-
-                    endforeach;
+                        <?php
+                            // yorum yoksa tablo gözükmez
+                            if (count($veri["yorumlar"])!=0) :
+                            
+                        ?>
 
 
-                break;
+                        <table class="table">
+
+                            <tbody>                       
+                        
+                                <tr id="baslik">
+
+                                    <td>YORUMUNUZ</td>
+                                    <td>ÜRÜN</td>
+                                    <td>TARİH</td>
+                                    <td>DURUM</td>
+                                    <td>GÜNCELLE</td>
+                                    <td>SİL</td>
+                            
+                                </tr>
+                            
+                                <?php
+                                
+                                foreach ($veri["yorumlar"] as $deger) :	
+                                // ürünün adını çekebilmek için
+                                $GelenUrun=$ayarlar->UrunCek($deger["urunid"]);
+
+                                echo '<tr>
+                                <td>'.$deger["icerik"].'</td>
+                                <td>'.$GelenUrun[0]["urunad"].'</td>
+                                <td>'.$deger["tarih"].'</td>
+                                <td>'; echo ($deger["durum"]==0) ? "Onaysız" : "Onaylı"; echo'</td>
+                                <td><a class="btn btn-sm btn-success" href="#">Güncelle</a></td>
+                                <td><a class="btn btn-sm btn-danger" href="#">Sil</a></td>
+                            
+                                </tr>';
+                                                                                                            
+                                endforeach;
+                                                    
+                                ?>
+                                                                      
+                            </tbody>
+                                        
+                        </table>
+                    
+                        <?php endif;  ?>
+
+                    </div>
+                           
+                </div>                                                                           
+                
+                <?php
+														
+				break;
+								
+				case "adres":
+								
+				?>
+                
+                <div class="row">
+
+                  	<div class="col-md-12 text-center">
+
+                        <?php echo count($veri["adres"])>0 ? '<div class="alert alert-info">'.count($veri["adres"]).
+                        " adet adresiniz kayıtlıdır</div>" :
+                        '<div class="alert alert-info">Kayıtlı adresiniz bulunmamaktadır.</div>' ?>
+                            
+                    </div> 
+                               
+                    <?php
+					
+					foreach ($veri["adres"] as $deger) :	
+										
+					    echo'<div class="col-md-2 text-center" id="adresiskelet">
+                    
+                    	<div class="row">
+                        	<div class="col-md-12" id="adresİd">'.$deger["adres"].'</div>
+                            <div class="col-md-6"><a class="btn btn-sm btn-success" id="AdresGuncelBtn" href="#">Güncelle</a></div>
+                            <div class="col-md-6"><a class="btn btn-sm btn-danger" href="#" id="AdresSilBtn">Sil</a></div>
+                        
+                        </div></div>';
+																																			
+					endforeach;
+										
+					?>               	
+                               
+                </div>                            
+                
+                <?php								
+				
+				break;
 
                 case "ayarlar":
 
@@ -79,19 +163,14 @@ if (Session::get("kulad") && Session::get("uye")) :
                 
             endforeach;
         ?>
-
-
-
-
         </div>
+    </div>
         
     </div>        
 	
 </div>
 
-
 <?php
-
 
 else:
     // anasayfaya yönlendirir
@@ -101,9 +180,8 @@ endif;
 
 ?>
 
+<?php require 'views/footer.php'; ?> 	
 
-
-<?php require 'views/footer.php'; ?> 		
         
         
         

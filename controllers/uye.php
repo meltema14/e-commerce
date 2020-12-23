@@ -167,8 +167,7 @@ class uye extends Controller {
         // Session::get("uye") : Giriş yapmış üyenin idsini taşır       
         $this->view->goster("sayfalar/panel", array(
             "yorumlar" => $this->model->yorumlarial("yorumlar", "where uyeid=".Session::get("uye"))
-        ));
-              
+        ));              
     }
 
     function adreslerim() { // giriş yapan üyenin db den adreslerini çekme
@@ -176,8 +175,7 @@ class uye extends Controller {
         // Session::get("uye") : Giriş yapmış üyenin idsini taşır       
         $this->view->goster("sayfalar/panel", array(
             "adres" => $this->model->yorumlarial("adresler", "where uyeid=".Session::get("uye"))
-        ));
-              
+        ));       
     }
 
     
