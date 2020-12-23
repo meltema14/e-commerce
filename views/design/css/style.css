@@ -3212,8 +3212,19 @@ border-radius:10px;
 
 #uyepanel li:hover {
 	background-color:#55065a;
-	background-color:#DDD;
+	background-color:rgb(175, 174, 174);
 	cursor:pointer;
 	
+	
+}
+
+#uyepanel li a:link, #uyepanel li a:visited{
+	text-decoration: none;
+	color: #353535;
+	
+}
+#uyepanel li a:hover{
+	text-decoration: none;
+	color: #55065a;
 	
 }

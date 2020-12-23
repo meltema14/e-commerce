@@ -18,7 +18,6 @@ class uye_model extends Model {
 
         return $this->db->giriskontrol($tabloisim, $kosul);
 
-
     }
 
     function UyeKayit($tabloisim, $sutunadlari, $veriler) {
@@ -27,8 +26,15 @@ class uye_model extends Model {
 
         return $this->db->Ekle($tabloisim, $sutunadlari, $veriler);
 
+    }
+
+    function yorumlarial($tabloisim, $kosul) {
+
+        // db den yorumları çekme
+        return $this->db->listele($tabloisim, $kosul);
 
     }
+
 
 
 }

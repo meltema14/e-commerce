@@ -155,20 +155,32 @@ class uye extends Controller {
 
     }
 
-    function Panel() {
+   
+    function Panel() {// üye bilgileri
         
-    // üye girişi yapıldıysa(oturum açıldıysa)
-    if (Session::get("kulad")) :
-        // üye paneli açılır
         $this->view->goster("sayfalar/panel");
-        
-    else:
-        // "/": anasayfaya yönlendirir
-        $this->bilgi->direktYonlen("/");
-
-    endif;    
-
+          
     }
+
+    function yorumlarim() { // giriş yapan üyenin db den yorumlarını çekme
+        
+        // Session::get("uye") : Giriş yapmış üyenin idsini taşır       
+        $this->view->goster("sayfalar/panel", array(
+            "yorumlar" => $this->model->yorumlarial("yorumlar", "where uyeid=".Session::get("uye"))
+        ));
+              
+    }
+
+    function adreslerim() { // giriş yapan üyenin db den adreslerini çekme
+        
+        // Session::get("uye") : Giriş yapmış üyenin idsini taşır       
+        $this->view->goster("sayfalar/panel", array(
+            "adres" => $this->model->yorumlarial("adresler", "where uyeid=".Session::get("uye"))
+        ));
+              
+    }
+
+    
 
 }
 
