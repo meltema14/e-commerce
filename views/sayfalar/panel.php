@@ -146,13 +146,22 @@ if (Session::get("kulad") && Session::get("uye")) :
 										
 					    echo'<div class="col-md-2 text-center" id="adresiskelet">
                     
-                    	<div class="row">
-                        	<div class="col-md-12" id="adresİd">'.$deger["adres"].'</div>
-                            <div class="col-md-6"><a class="btn btn-sm btn-success" id="AdresGuncelBtn" href="#">Güncelle</a></div>
-                            <div class="col-md-6">' ?>
+                        <div class="row">
+                        
+                            <div class="col-md-12" id="adresİd">
+
+                            <span class="adresSp'.$deger["id"].'">'.$deger["adres"].'</span></div>
+                            
+                            <div class="col-md-6" id="AdresGuncelButonlarinanasi">
+
+                            <input type="button" class="btn btn-sm btn-success" data-value="'.$deger["id"].'" id="AdresGuncelBtn" value="Güncelle">
+
+                            </div>
+
+                            <div class="col-md-6">'; ?>
                             
                             
-                            <a onclick='UrunSil("<?php echo $deger["id"] ?>", "adresSil")' class="btn btn-sm btn-danger" id="AdresGuncelBtn">SİL</a>
+                            <a onclick='UrunSil("<?php echo $deger["id"] ?>", "adresSil")' class="btn btn-sm btn-danger" id="AdresSilBtn">SİL</a>
 
 
                         <?php echo '

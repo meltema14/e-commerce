@@ -220,8 +220,25 @@ class uye extends Controller {
 
     }
 
-    
+    function AdresGuncelle () {
 
+        if($_POST) :
+            /*
+            $_POST["yorum"];
+            $_POST["yorumid"]; */
+
+            echo $this->model->yorumGuncelle("adresler",
+            // sütunlar
+            array("adres"),
+            // sütunlara karşılık gelen değerler
+            array($_POST["adres"]),"id=".$_POST["adresid"]);
+
+        endif;
+
+    }
+
+    
+    
 }
 
 

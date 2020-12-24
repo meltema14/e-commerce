@@ -181,6 +181,7 @@ $('#GuncelForm input[type="button"]').click(function(){
 
 });
 
+// -----------------------------------------------------------------
 
 // üye-panel yorumlar- guncelle butonu
 $('#GuncelButonlarinanasi input[type="button"]').click(function(){
@@ -220,12 +221,50 @@ $(document).on('blur', 'textarea[name=yorum]', function() {
 
   });
 
-  
-  // gelen veriyi posta aktar
 
 });
 
+// ------------------------------------------------------------------
+// üye-panel adresler- guncelle butonu
+$('#AdresGuncelButonlarinanasi input[type="button"]').click(function(){
 
+  /* tıklanan butonun data-value özelliğini(yani urunid) yakaladık
+  alert($(this).attr('data-value'));
+  */
+  var id = $(this).attr('data-value');
+  
+  var textArea = $("<textarea id='"+id+"' name='adres' style='width:%100 height:%100 ' />");
+
+  // textareanin içini spandan gelen değerle doldur
+  textArea.val($(".adresSp"+id).html());
+
+  $(".adresSp"+id).parent().append(textArea);
+
+  // spanı uçur
+  $(".adresSp"+id).remove();
+  input.focus();
+
+});
+
+// sayfanın genelinde textareadaki hareketi yakala
+$(document).on('blur', 'textarea[name=adres]', function() {
+
+  // textarea ekle ve html işemini value değeri olarak yaz
+  $(this).parent().append($('<span/>').html($(this).val()));
+  var id = $(this).attr("id");
+  // textarea kaldır
+  $(this).remove();
+
+  // UrunGuncelle methoduna id ve adeti gönderdik
+  $.post("http://localhost/mvcproje/uye/AdresGuncelle",{"adresid":id, "adres":$(this).val()}, function(donen) {
+
+  //alert(donen);
+  window.location.reload();
+
+  });
+
+
+});
 
 
 
