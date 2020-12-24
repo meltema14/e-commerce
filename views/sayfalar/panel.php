@@ -33,7 +33,9 @@ if (Session::get("kulad") && Session::get("uye")) :
         </div>   
 
         <!-- İŞLEM BÖLÜMÜ(sipariş, hesap ayar, adres, yorumlar) -->
-        <div class="col-md-10">       
+        <div class="col-md-10">   
+
+        <div class="alert alert-success" id="Sonuc"></div>
 
         <?php 
 
@@ -51,7 +53,8 @@ if (Session::get("kulad") && Session::get("uye")) :
 
                 	<div class="col-md-12 text-center">
 
-                    <div class="alert alert-success" id="Sonuc"></div>
+                    <!-- Her alanda tek tek kullanmamak için burda yazdık  -->
+                    <div class="alert alert-success text-center" id="Sonuc"></div>
 
                        <?php 
                        // kaç adet yorum geliyosa onu gösterir, yorum yoksa belirtir
@@ -141,8 +144,14 @@ if (Session::get("kulad") && Session::get("uye")) :
                     	<div class="row">
                         	<div class="col-md-12" id="adresİd">'.$deger["adres"].'</div>
                             <div class="col-md-6"><a class="btn btn-sm btn-success" id="AdresGuncelBtn" href="#">Güncelle</a></div>
-                            <div class="col-md-6"><a class="btn btn-sm btn-danger" href="#" id="AdresSilBtn">Sil</a></div>
-                        
+                            <div class="col-md-6">' ?>
+                            
+                            
+                            <a onclick='UrunSil("<?php echo $deger["id"] ?>", "adresSil")' class="btn btn-sm btn-danger" id="AdresGuncelBtn">SİL</a>
+
+
+                        <?php echo '
+                        </div>
                         </div></div>';
 																																			
 					endforeach;

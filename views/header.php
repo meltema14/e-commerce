@@ -270,11 +270,33 @@ function UrunSil(deger, kriter) {
 		case "adresSil":
 
 			// post edildiğinde UrunSil fonk. gider
-			$.post("<?php echo URL; ?>/GenelGorev/UrunSil",{"urunid":deger}, function() {
+			$.post("<?php echo URL; ?>/uye/adresSil",{"adresid":deger}, function(donen) {
 
-			window.location.reload();
+			if (donen) {
+
+			$("#Sonuc").html("Adres başarıyla silindi.");
+
+			}
+			else{
+
+			$("#Sonuc").html("Silme işleminde hata oluştu.");
+
+			}
+			// yorum silindi yavaş bi şekilde gözükecek
+			$("#Sonuc").fadeIn(1000,function(){
+
+				// efekt tamamlandığında gizle
+				$("#Sonuc").fadeOut(1000,function(){
+					// sonucun içerisini temizleme
+					$("#Sonuc").html("");
+					// en son işlem bittiğinde sayfayı yenile
+					window.location.reload();
+
+				});
 
 			});
+
+		});
 
 		break;
 

@@ -42,6 +42,13 @@ class uye_model extends Model {
 
     }
 
+    function adresSil($tabloisim, $kosul) {
+
+        // db den yorumları çekme
+        return $this->db->sil($tabloisim, $kosul);
+
+    }
+
 
 
 }
