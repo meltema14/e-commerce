@@ -203,6 +203,23 @@ class uye extends Controller {
 
     }
 
+    function YorumGuncelle () {
+
+        if($_POST) :
+            /*
+            $_POST["yorum"];
+            $_POST["yorumid"]; */
+
+            echo $this->model->yorumGuncelle("yorumlar",
+            // sütunlar
+            array("icerik","durum"),
+            // sütunlara karşılık gelen değerler
+            array($_POST["yorum"],"0"),"id=".$_POST["yorumid"]);
+
+        endif;
+
+    }
+
     
 
 }

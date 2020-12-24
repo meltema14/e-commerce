@@ -44,8 +44,15 @@ class uye_model extends Model {
 
     function adresSil($tabloisim, $kosul) {
 
-        // db den yorumları çekme
+        // db den adresleri çekme
         return $this->db->sil($tabloisim, $kosul);
+
+    }
+
+    function yorumGuncelle ($tabloisim, $sutunlar, $veriler, $kosul) {
+
+        return $this->db->guncelle($tabloisim, $sutunlar, $veriler, $kosul);
+
 
     }
 

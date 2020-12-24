@@ -182,6 +182,50 @@ $('#GuncelForm input[type="button"]').click(function(){
 });
 
 
+// üye-panel yorumlar- guncelle butonu
+$('#GuncelButonlarinanasi input[type="button"]').click(function(){
+
+  /* tıklanan butonun data-value özelliğini(yani urunid) yakaladık
+  alert($(this).attr('data-value'));
+  */
+  var id = $(this).attr('data-value');
+  
+  var textArea = $("<textarea id='"+id+"' name='yorum' style='width:%100 height:200px' />");
+
+  // textareanin içini spandan gelen değerle doldur
+  textArea.val($(".sp"+id).html());
+
+  $(".sp"+id).parent().append(textArea);
+
+  // spanı uçur
+  $(".sp"+id).remove();
+  input.focus();
+
+});
+
+// sayfanın genelinde textareadaki hareketi yakala
+$(document).on('blur', 'textarea[name=yorum]', function() {
+
+  // textarea ekle ve html işemini value değeri olarak yaz
+  $(this).parent().append($('<span/>').html($(this).val()));
+  var id = $(this).attr("id");
+  // textarea kaldır
+  $(this).remove();
+
+  // UrunGuncelle methoduna id ve adeti gönderdik
+  $.post("http://localhost/mvcproje/uye/YorumGuncelle",{"yorumid":id, "yorum":$(this).val()}, function(donen) {
+
+  //alert(donen);
+  window.location.reload();
+
+  });
+
+  
+  // gelen veriyi posta aktar
+
+});
+
+
 
 
 

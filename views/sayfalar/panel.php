@@ -35,8 +35,6 @@ if (Session::get("kulad") && Session::get("uye")) :
         <!-- İŞLEM BÖLÜMÜ(sipariş, hesap ayar, adres, yorumlar) -->
         <div class="col-md-10">   
 
-        <div class="alert alert-success" id="Sonuc"></div>
-
         <?php 
 
             // $key: adres, yorumlar gibi kısımlar
@@ -60,7 +58,7 @@ if (Session::get("kulad") && Session::get("uye")) :
                        // kaç adet yorum geliyosa onu gösterir, yorum yoksa belirtir
                        echo count($veri["yorumlar"])>0 ? 
                        '<div class="alert alert-info">'.count($veri["yorumlar"]). 
-                       " adet yorumunuz var" : '<div class="alert alert-info">Henüz hiçbir ürüne yorum yazmamışsınız.</div>';  ?> 
+                       " adet yorumunuz var" : '<div class="alert alert-info text-center">Henüz hiçbir ürüne yorum yazmamışsınız.</div>';  ?> 
                     
                     </div>
                         <?php
@@ -92,11 +90,18 @@ if (Session::get("kulad") && Session::get("uye")) :
                                 $GelenUrun=$ayarlar->UrunCek($deger["urunid"]);
 
                                 echo '<tr>
-                                <td>'.$deger["icerik"].'</td>
+                                <td><span class="sp'.$deger["id"].'">'.$deger["icerik"].'</span></td>
                                 <td>'.$GelenUrun[0]["urunad"].'</td>
                                 <td>'.$deger["tarih"].'</td>
                                 <td>'; echo ($deger["durum"]==0) ? "Onaysız" : "Onaylı"; echo'</td>
-                                <td><a class="btn btn-sm btn-success" href="#">Güncelle</a></td>
+
+                                <td id="GuncelButonlarinanasi">
+                                
+                                <input type="button" class="btn btn-sm btn-success" data-value="'.$deger["id"].'" value="Güncelle">
+
+
+
+                                </td>
                                 <td>'; ?>
 
                                 <a onclick='UrunSil("<?php echo $deger["id"] ?>", "yorumsil")' class="btn btn-sm btn-danger">SİL</a> 

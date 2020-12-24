@@ -116,11 +116,11 @@ class Database extends PDO {
 
         if ($sorgum ->  execute($veriler)) : 
                                                             
-            return $this-> bilgi -> basarili("Güncelleme başarılı", "/kayit/listele");
+            return true;
 
         else:
 
-            return $this-> bilgi -> hata("Veri tabanı hatası", "/kayit/listele");
+            return false;
 
         endif;
     }
