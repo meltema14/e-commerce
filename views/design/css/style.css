@@ -3274,3 +3274,62 @@ table #baslik {
 	margin-top:3px;
 	float:right;	
 }
+
+#adresElemanlar {
+	color:#606060;
+	font-weight:300;
+	
+}
+
+#adresElemanlar td {
+	padding-top:10px;
+	padding-bottom:0px;
+		
+}
+
+#adresElemanlar td .onayli{
+	color:rgb(4, 197, 14);	
+}
+
+#adresElemanlar td .onaysiz{
+	color:#F00;
+}
+#ortala {
+	margin:auto;
+	background-color:#DCDCDC;
+	border:#CACACA 1px solid;
+}
+
+#satirlar input[type="text"] {
+	margin:5px 0px 0px 0px;	
+}
+
+#satirlar input[type="password"] {
+	margin:5px 0px 0px 0px;	
+}
+#satirlar label {
+	margin:5px 0px 0px 0px;
+	padding-top:10px;
+	float:left;	
+	
+}
+
+#satirlar .col-md-7,#satirlar .col-md-5 {
+	height:45px;
+	border-bottom:#CACACA 1px solid;	
+	
+}
+
+#satirlar .col-md-12 input[type="submit"] {
+	background-color:#55065a;
+	color:#FCFCFC;
+	margin:5px 0px 5px 0px;	
+}
+
+#satirlarbaslik {
+	background-color:#55065a;
+	color:#FCFCFC;
+	border-bottom:#CACACA 1px solid;
+	padding:10px;		
+}
+	

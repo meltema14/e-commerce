@@ -237,7 +237,31 @@ class uye extends Controller {
 
     }
 
+    // -----------------------------------------------------------------
+
+    // ---------   HESAP AYARLARI   -------------
+    function hesapayarlarim() {	
+	
+        $this->view->goster("sayfalar/panel",array(
+        // ilgili üyeyi ayarlar keyine attık
+        "ayarlar" => $this->model->yorumlarial("uye_panel","where id=".Session::get("uye"))));		  
+            
+    }
+        
+    function sifredegistir() {	
+       
+    $this->view->goster("sayfalar/panel",array(
+    "sifredegistir" => $this->model->yorumlarial("adresler","where uyeid=".Session::get("uye"))));	
+      
+    }
+        
+    function siparislerim() {	
     
+    $this->view->goster("sayfalar/panel",array(
+    "siparisler" => $this->model->yorumlarial("siparisler","where uyeid=".Session::get("uye"))));		
+           
+    }
+    //------------------------------------------
     
 }
 
