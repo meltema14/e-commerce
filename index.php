@@ -11,6 +11,7 @@ spl_autoload_register(function($className)
 
 require 'config/genel.php';
 require 'config/database.php';
+require 'config/HariciFonksiyonlar.php';
 
 $boots = new boots; // boots sınıfı dahil ettik
 
