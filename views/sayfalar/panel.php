@@ -195,19 +195,26 @@ if (Session::get("kulad") && Session::get("uye")) :
                              		<div class="col-md-5" >
                                     <form action="" method="">
                                     <label>Ad</label></div>
-                                    <div class="col-md-7"  ><input type="text" name="ad" value="" class="form-control" /></div>
+                                    <div class="col-md-7"  >
+                                    <input type="text" name="ad" value="<?php echo $veri["ayarlar"][0]["ad"] ?>" class="form-control" /></div>
                                     
                                         <!--  --------->         
-                                    <div class="col-md-5"><label>Soyad</label></div>
-                                    <div class="col-md-7" ><input type="text" name="soyad" value="" class="form-control" /></div>
+                                    <div class="col-md-5">
+                                    <label>Soyad</label></div>
+                                    <div class="col-md-7" >
+                                    <input type="text" name="soyad" value="<?php echo $veri["ayarlar"][0]["soyad"] ?>" class="form-control" /></div>
                                     
                                         <!--  --------->         
-                                    <div class="col-md-5"><label>Mail adresiniz</label></div>
-                                    <div class="col-md-7" ><input type="text" name="mail" value="" class="form-control" /></div>
+                                    <div class="col-md-5">
+                                    <label>Mail adresiniz</label></div>
+                                    <div class="col-md-7" >
+                                    <input type="text" name="mail" value="<?php echo $veri["ayarlar"][0]["mail"] ?>" class="form-control" /></div>
                                     
                                         <!--  --------->         
-                                    <div class="col-md-5"><label>Telefon</label></div>
-                                    <div class="col-md-7" ><input type="text" name="telefon" value="" class="form-control" /></div>
+                                    <div class="col-md-5">
+                                    <label>Telefon</label></div>
+                                    <div class="col-md-7" >
+                                    <input type="text" name="telefon" value="<?php echo $veri["ayarlar"][0]["telefon"] ?>" class="form-control" /></div>
                                     
                                         <!--  --------->         
                                     <div class="col-md-12">
