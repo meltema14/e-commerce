@@ -159,7 +159,9 @@ class uye extends Controller {
 
     function Panel() {// üye bilgileri
         
-        $this->view->goster("sayfalar/panel");
+        $this->view->goster("sayfalar/panel",
+        // varsayılan olarak ekranda direkt siparişler gözükecek
+        array("siparisler" => $this->model->yorumlarial("siparisler","where uyeid=".Session::get("uye"))));
           
     }
 
@@ -260,6 +262,64 @@ class uye extends Controller {
     $this->view->goster("sayfalar/panel",array(
     "siparisler" => $this->model->yorumlarial("siparisler","where uyeid=".Session::get("uye"))));		
            
+    }
+
+    function ayarGuncelle() {
+
+
+        // form classına gidip ad ve şifre boş mu değil mi diye bakar
+        $ad = $this->form->get("ad")->bosmu();
+        $soyad = $this->form->get("soyad")->bosmu();
+        $mail = $this->form->get("mail")->bosmu();
+        $telefon = $this->form->get("telefon")->bosmu();
+        $uyeid = $this->form->get("uyeid")->bosmu();
+
+        $this->form->GercektenMailmi($mail);
+
+        // hesap ayarlarında yazılan herhangi bi yerin boş olması
+        // bir hata var demek
+        if(!empty($this->form->error)):
+
+            // boş bırakılan varsa error arrayinde hangisi olduğunu göstericek
+            $this->view->goster("sayfalar/panel",
+            array(
+            "ayarlar" => $this->model->yorumlarial("uye_panel","where id=".Session::get("uye")),
+            "bilgi" => $this->bilgi->uyari("danger", " Girilen bilgiler hatalıdır."),
+            ));
+
+        // gelen veride sorun yoksa
+        else:
+
+            $sonuc=$this->model->ayarlarGuncelle("uye_panel", 
+            array("ad", "soyad", "mail", "telefon"),
+            array($ad, $soyad, $mail, $telefon), "id=".$uyeid );
+            
+
+            // sonuç başarılıysa
+            if($sonuc):
+
+                $this->view->goster("sayfalar/panel",
+                array(
+                "ayarlar" => $this->model->yorumlarial("uye_panel","where id=".Session::get("uye")),
+                // güncelleme başarılı uyarısından 3sn sonra anasayfaya yönlendirme
+                "bilgi" => $this->bilgi->basarili("GÜNCELLEME BAŞARILI", "/uye/panel")
+                )); 
+
+            else:
+
+                $this->view->goster("sayfalar/panel",
+                array(
+                "ayarlar" => $this->model->yorumlarial("uye_panel","where id=".Session::get("uye")),
+                "bilgi" => $this->bilgi->uyari("danger", " Güncelleme sırasında hata oluştu")
+                ));
+            
+            endif;
+
+
+        endif;
+    
+
+
     }
     //------------------------------------------
     

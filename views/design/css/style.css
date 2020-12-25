@@ -3241,8 +3241,9 @@ table tr td  {
 }
 
 table #baslik {
-	font-weight:900;
-	color:#000;
+	font-weight:400;
+	background-color:#55065a;
+	color:#FCFCFC;
 		
 }
 

@@ -54,16 +54,20 @@ if (Session::get("kulad") && Session::get("uye")) :
 														
 				break;
 								
-				case "adres":
-								
-                    $harici->UyeadresGetir($veri["adres"]);
+                case "adres":
+                    
+                    $harici->UyeadresGetir($veri["adres"]);      
 				
 				break;
 
                 case "ayarlar":
 
-                    $harici->UyeayarlarGetir($veri["ayarlar"]);
+                    // GÜNCELLEME BAŞARILI UYARISI
+                    if (isset($veri["bilgi"])):
+                    echo $veri["bilgi"];
+                    endif;
 
+                    $harici->UyeayarlarGetir($veri["ayarlar"]);
                 break;
 
                 case "sifredegistir":

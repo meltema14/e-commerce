@@ -300,7 +300,7 @@ class HariciFonksiyonlar extends Model{
                 
                 
                     <div class="col-md-5" >
-                    <form action="" method="">
+                    <form action="<?php echo URL; ?>/uye/ayarGuncelle" method="POST">
                     <label>Ad</label></div>
                     <div class="col-md-7"  ><input type="text" name="ad" value="<?php echo $dizimiz[0]["ad"] ?>" class="form-control" /></div>
      

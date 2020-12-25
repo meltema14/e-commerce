@@ -53,6 +53,11 @@ class uye_model extends Model {
 
         return $this->db->guncelle($tabloisim, $sutunlar, $veriler, $kosul);
 
+    }
+
+    function ayarlarGuncelle ($tabloisim, $sutunlar, $veriler, $kosul) {
+
+        return $this->db->guncelle($tabloisim, $sutunlar, $veriler, $kosul);
 
     }
 
