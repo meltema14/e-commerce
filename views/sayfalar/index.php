@@ -33,20 +33,20 @@
 					<ul class="rslides" id="slider4">
 					<li>
 								<div class="banner-info">
-									<h3><?php echo $ayarlar->sloganUst1; ?></h3>
-									<p><?php echo $ayarlar->sloganAlt1; ?></p>
+									<h3><?php echo $harici->sloganUst1; ?></h3>
+									<p><?php echo $harici->sloganAlt1; ?></p>
 								</div>
 							</li>
 							<li>
 								<div class="banner-info">
-								   <h3><?php echo $ayarlar->sloganUst2; ?></h3>
-									<p><?php echo $ayarlar->sloganAlt2; ?></p>
+								   <h3><?php echo $harici->sloganUst2; ?></h3>
+									<p><?php echo $harici->sloganAlt2; ?></p>
 								</div>
 							</li>
 							<li>
 								<div class="banner-info">
-								  <h3><?php echo $ayarlar->sloganUst3; ?></h3>
-									<p><?php $ayarlar->sloganAlt3; ?></p>
+								  <h3><?php echo $harici->sloganUst3; ?></h3>
+									<p><?php $harici->sloganAlt3; ?></p>
 								</div>								
 							</li>
 						</ul>
@@ -99,17 +99,17 @@
 
 					<div class="col-md-4 product simpleCart_shelfItem text-center">
 
-						<a href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]);  ?>">
+						<a href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $harici->seo($value["urunad"]);  ?>">
 
 						<img src="<?php  echo URL; ?>/views/design/images/<?php echo $value["res1"]; ?>" alt="<?php echo $value["urunad"]; ?>" /></a>
 
 							<div class="mask">
 
-								<a href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]); ?>">İNCELE</a>
+								<a href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $harici->seo($value["urunad"]); ?>">İNCELE</a>
 
 							</div>
 
-						<a class="product_name" href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]);  ?>"><?php echo $value["urunad"]; ?></a>
+						<a class="product_name" href="urunler/detay/<?php echo $value["id"]; ?>/<?php  echo $harici->seo($value["urunad"]);  ?>"><?php echo $value["urunad"]; ?></a>
 
 						<p><a class="item_add" href="#"><i></i> <span class="item_price">/<?php echo $value["fiyat"]; ?></span></a></p>
 
@@ -139,13 +139,13 @@
 						?>
 							
 							
-							<li><a href="<?php echo URL; ?>/urunler/detay/<?php  echo $value2["id"]; ?>/<?php  echo $ayarlar->seo($value2["urunad"]); ?>">
+							<li><a href="<?php echo URL; ?>/urunler/detay/<?php  echo $value2["id"]; ?>/<?php  echo $harici->seo($value2["urunad"]); ?>">
 
 							<img src="<?php echo URL; ?>/views/design/images/<?php  echo $value2["res2"]; ?>" class="img-responsive" alt="<?php  echo $value2["urunad"]; ?>" /></a>
 
 							<div class="product liked-product simpleCart_shelfItem">
 
-								<a class="like_name" href="<?php echo URL; ?>/urunler/detay/<?php  echo $value2["id"]; ?>/<?php  echo $ayarlar->seo($value["urunad"]); ?>"><?php  echo $value2["urunad"]; ?></a>
+								<a class="like_name" href="<?php echo URL; ?>/urunler/detay/<?php  echo $value2["id"]; ?>/<?php  echo $harici->seo($value["urunad"]); ?>"><?php  echo $value2["urunad"]; ?></a>
 
 								<p><a class="item_add" href="#"><i></i> <span class=" item_price"><?php  echo  number_format($value2["fiyat"],2,'.',','); ?></span></a></p>
 
@@ -199,7 +199,7 @@
 
 					<?php 
 
-					$ayarlar->bulten();
+					$harici->bulten();
 
 					?>
 					

@@ -29,7 +29,7 @@
 				// ürünler dizisini id ve adet olarak parçalanmış şekilde vericek
 				foreach (($_COOKIE["urun"]) as $id => $adet):
 
-					$GelenUrun = $ayarlar->UrunCek($id);
+					$GelenUrun = $harici->UrunCek($id);
 	
 					// sepete eklenen ürünleri çekme ve gösterme
 					echo '<div class="cart-header">

@@ -15,7 +15,7 @@
 					foreach($veri["data2"] as $value) :
 
 						// stoğu azalanlardaki ürünlere link veriyoruz
-						echo ' <li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'.$ayarlar->seo($value["ad"]).'"> '
+						echo ' <li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'.$harici->seo($value["ad"]).'"> '
 						.$value["ad"]. '</a></li>';
 
 					endforeach;
@@ -77,7 +77,7 @@
 					// kaç tane ürün varsa kategorilerde gösterilir
 					echo '
 					<li>
-						<a class="cbp-vm-image" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
+						<a class="cbp-vm-image" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $harici->seo($value["urunad"]).'">
 							<div class="simpleCart_shelfItem">
 								<div class="view view-first">
 									<div class="inner_content clearfix">
@@ -126,10 +126,10 @@
 			// kategoriye ait -öne çıkan ürünleri- gönderiyoruz
 			foreach($veri["data3"] as $value) :
 
-				echo '<li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
+				echo '<li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $harici->seo($value["urunad"]).'">
 				<img src="'.URL.'/views/design/images/'.$value["res1"].'" alt="'.$value["urunad"].'" class="img-responsive"/></a>
 				<div class="product liked-product simpleCart_shelfItem">
-				<a class="like_name" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">'.$value["urunad"].'</a>
+				<a class="like_name" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $harici->seo($value["urunad"]).'">'.$value["urunad"].'</a>
 				<p><a class="item_add" href="#"><i></i> <span class=" item_price">'.number_format($value["fiyat"],2,".",",").'</span></a></p>
 				</div>
 				</li>';

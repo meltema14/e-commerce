@@ -88,7 +88,7 @@ if (Session::get("kulad") && Session::get("uye")) :
                                 
                                 foreach ($veri["yorumlar"] as $deger) :	
                                 // ürünün adını çekebilmek için
-                                $GelenUrun=$ayarlar->UrunCek($deger["urunid"]);
+                                $GelenUrun=$harici->UrunCek($deger["urunid"]);
 
                                 echo '<tr id="adresElemanlar">
                                 <td><span class="sp'.$deger["id"].'">'.$deger["icerik"].'</span></td>
@@ -281,63 +281,8 @@ if (Session::get("kulad") && Session::get("uye")) :
 
                 case "siparisler":
 
-                    ?>
-				
-				<div class="row">
-
-                	<div class="col-md-12 text-center">                    
-                            
-                   <?php 
-				   
-				   if (count($veri["siparisler"])!=0) : 
-				   ?>
+                    $harici->UyeSiparisGetir($veri["siparisler"]);
                     
-                    <table class="table">
-                    <tbody>
-                    
-                       
-                    <tr id="baslik">
-                    <td>SİPARİŞ NO</td>
-                    <td>ÜRÜN AD</td>
-                    <td>ÜRÜN ADET</td>
-                    <td>ÜRÜN FİYAT</td>
-					<td>TOPLAM FİYAT</td>
-                    <td>KARGO DURUM</td>
-                    <td>TARİH</td>
-                   
-                    </tr>
-                    
-                    <?php
-					
-					foreach ($veri["siparisler"] as $deger) :	
-					
-					echo'<tr id="adresElemanlar">
-					
-                    <td>'.$deger["siparis_no"].'</span></td>
-                    <td>'.$deger["urunad"].'</td>
-                    <td>'.$deger["urunadet"].'</td>
-					<td>'.$deger["urunfiyat"].'</td>
-					<td>'.$deger["toplamfiyat"].'</td>
-					<td>'.$deger["kargodurum"].'</td>
-					<td>'.$deger["tarih"].'</td>
-					
-                   
-                    </tr>';
-                    endforeach;					
-					
-                ?>
-               
-                </tbody>
-                             
-                </table>
-                              
-                <?php endif; ?>
-                
-                </div>
-                        
-            </div>           
-            
-            <?php
 
                 break;
 

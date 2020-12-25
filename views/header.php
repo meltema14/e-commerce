@@ -5,7 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php 
-$ayarlar = new HariciFonksiyonlar();  
+$harici = new HariciFonksiyonlar();  
 
 ob_start();
 ?>
@@ -28,12 +28,12 @@ ob_start();
 
 
 
-<title><?php echo $ayarlar->title; ?></title>
+<title><?php echo $harici->title; ?></title>
 
 
 
-<meta name="description" content="<?php echo $ayarlar->sayfaAciklama; ?>" />
-<meta name="keywords" content="<?php echo $ayarlar->anahtarKelime; ?>" />
+<meta name="description" content="<?php echo $harici->sayfaAciklama; ?>" />
+<meta name="keywords" content="<?php echo $harici->anahtarKelime; ?>" />
 
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -110,7 +110,7 @@ ob_start();
 				<?php 
 
 					// menüler
-					$ayarlar->LinkleriGetir();
+					$harici->LinkleriGetir();
 
 
 				?>

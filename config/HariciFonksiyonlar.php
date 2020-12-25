@@ -152,6 +152,66 @@ class HariciFonksiyonlar extends Model{
 
     }
 
+    function UyeSiparisGetir ($dizimiz) { // ÜYENİN SİPARİŞLERİNİ GETİRİYOR
+
+        ?>
+				
+        <div class="row">
+
+            <div class="col-md-12 text-center">                    
+                    
+           <?php 
+           
+           if (count($dizimiz)!=0) : 
+           ?>
+            
+            <table class="table">
+            <tbody>
+               
+            <tr id="baslik">
+            <td>SİPARİŞ NO</td>
+            <td>ÜRÜN AD</td>
+            <td>ÜRÜN ADET</td>
+            <td>ÜRÜN FİYAT</td>
+            <td>TOPLAM FİYAT</td>
+            <td>KARGO DURUM</td>
+            <td>TARİH</td>
+           
+            </tr>
+            
+            <?php
+            
+            foreach ($dizimiz as $deger) :	
+            
+            echo'<tr id="adresElemanlar">
+            
+            <td>'.$deger["siparis_no"].'</span></td>
+            <td>'.$deger["urunad"].'</td>
+            <td>'.$deger["urunadet"].'</td>
+            <td>'.$deger["urunfiyat"].'</td>
+            <td>'.$deger["toplamfiyat"].'</td>
+            <td>'.$deger["kargodurum"].'</td>
+            <td>'.$deger["tarih"].'</td>
+            
+            </tr>';
+            endforeach;					
+            
+        ?>
+       
+        </tbody>
+                     
+        </table>
+                      
+        <?php endif; ?>
+        
+        </div>
+                
+    </div>           
+    
+    <?php
+
+    }
+
 
 
 

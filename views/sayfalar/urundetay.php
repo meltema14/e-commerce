@@ -17,7 +17,7 @@
 						foreach($veri["data2"] as $value) :
 
 							// stoğu azalanlardaki ürünlere link veriyoruz
-							echo ' <li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'.$ayarlar->seo($value["urunad"]).'"> '
+							echo ' <li><a href="'.URL.'/urunler/detay/'.$value["id"].'/'.$harici->seo($value["urunad"]).'"> '
 							.$value["urunad"]. '</a></li>';
 
 						endforeach;
@@ -297,15 +297,15 @@
 
 					// stoğu azalanlardaki ürünlere link veriyoruz
 					echo '<div class="col-md-4 product simpleCart_shelfItem text-center">
-					<a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">
+					<a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $harici->seo($value["urunad"]).'">
 
 					<img src="'.URL.'/views/design/images/'.$value["res1"].'" alt="'.$value["urunad"].'" /></a>
 
 					<div class="mask">
-						<a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">İNCELE</a>
+						<a href="'.URL.'/urunler/detay/'.$value["id"].'/'. $harici->seo($value["urunad"]).'">İNCELE</a>
 					</div>
 
-					<a class="product_name" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $ayarlar->seo($value["urunad"]).'">'.$value["urunad"].'</a>
+					<a class="product_name" href="'.URL.'/urunler/detay/'.$value["id"].'/'. $harici->seo($value["urunad"]).'">'.$value["urunad"].'</a>
 					<p><a class="item_add" href="#"><i></i> <span class="item_price">'
 					. number_format($value["fiyat"],2,".",",").'</span></a></p>
 				</div>';
@@ -325,7 +325,7 @@
 					
 					<?php 
 						// bültene kayıt
-						$ayarlar->bulten();
+						$harici->bulten();
 			
 					?>
 				
