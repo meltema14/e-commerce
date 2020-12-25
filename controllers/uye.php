@@ -179,7 +179,7 @@ class uye extends Controller {
         ));       
     }
 
-    function Yorumsil (){
+    function Yorumsil (){   // YORUM SİL
 
         // posttan geldiyse veri
         if ($_POST) :
@@ -191,7 +191,7 @@ class uye extends Controller {
 
     }
 
-    function adresSil () {
+    function adresSil () {  // ADRES SİL
 
         // posttan geldiyse veri
         if ($_POST) :
@@ -203,7 +203,7 @@ class uye extends Controller {
 
     }
 
-    function YorumGuncelle () {
+    function YorumGuncelle () { // YORUM GÜNCELLE
 
         if($_POST) :
             /*
@@ -220,7 +220,7 @@ class uye extends Controller {
 
     }
 
-    function AdresGuncelle () {
+    function AdresGuncelle () {  // ADRES GÜNCELLE
 
         if($_POST) :
             /*
@@ -255,7 +255,7 @@ class uye extends Controller {
       
     }
         
-    function siparislerim() {	
+    function siparislerim() {	// ÜYENİN SİPARİŞLERİNİ GETİRİR
     
     $this->view->goster("sayfalar/panel",array(
     "siparisler" => $this->model->yorumlarial("siparisler","where uyeid=".Session::get("uye"))));		

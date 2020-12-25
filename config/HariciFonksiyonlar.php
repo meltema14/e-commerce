@@ -10,7 +10,7 @@ class HariciFonksiyonlar extends Model{
 
 
     public $sonuc, $title, $sayfaAciklama, $anahtarKelime, $sloganUst1, $sloganAlt1, $sloganUst2, $sloganAlt2, $sloganUst3, $sloganAlt3;
-    
+    public $linkler=array();
 
     function __construct(){
         // ana modelin __construct miras aldık ki veri tabanına ulaşabilelim
@@ -152,7 +152,7 @@ class HariciFonksiyonlar extends Model{
 
     }
 
-    function UyeSiparisGetir ($dizimiz) { // ÜYENİN SİPARİŞLERİNİ GETİRİYOR
+    function UyesiparisGetir ($dizimiz) { // PANEL - ÜYENİN SİPARİŞLERİNİ GETİRİYOR
 
         ?>
 				
@@ -160,59 +160,231 @@ class HariciFonksiyonlar extends Model{
 
             <div class="col-md-12 text-center">                    
                     
-           <?php 
-           
-           if (count($dizimiz)!=0) : 
-           ?>
-            
-            <table class="table">
-            <tbody>
-               
-            <tr id="baslik">
-            <td>SİPARİŞ NO</td>
-            <td>ÜRÜN AD</td>
-            <td>ÜRÜN ADET</td>
-            <td>ÜRÜN FİYAT</td>
-            <td>TOPLAM FİYAT</td>
-            <td>KARGO DURUM</td>
-            <td>TARİH</td>
-           
-            </tr>
-            
-            <?php
-            
-            foreach ($dizimiz as $deger) :	
-            
-            echo'<tr id="adresElemanlar">
-            
-            <td>'.$deger["siparis_no"].'</span></td>
-            <td>'.$deger["urunad"].'</td>
-            <td>'.$deger["urunadet"].'</td>
-            <td>'.$deger["urunfiyat"].'</td>
-            <td>'.$deger["toplamfiyat"].'</td>
-            <td>'.$deger["kargodurum"].'</td>
-            <td>'.$deger["tarih"].'</td>
-            
-            </tr>';
-            endforeach;					
-            
-        ?>
-       
-        </tbody>
-                     
-        </table>
-                      
-        <?php endif; ?>
-        
-        </div>
+                <?php
+                if (count($dizimiz)!=0) : 
+                ?>
                 
-    </div>           
-    
-    <?php
+                <table class="table">
+                <tbody>
+                
+                <tr id="baslik">
+                <td>SİPARİŞ NO</td>
+                <td>ÜRÜN AD</td>
+                <td>ÜRÜN ADET</td>
+                <td>ÜRÜN FİYAT</td>
+                <td>TOPLAM FİYAT</td>
+                <td>KARGO DURUM</td>
+                <td>TARİH</td>
+            
+                </tr>
+                
+                <?php
+                
+                foreach ($dizimiz as $deger) :	
+                
+                echo'<tr id="adresElemanlar">
+                
+                <td>'.$deger["siparis_no"].'</span></td>
+                <td>'.$deger["urunad"].'</td>
+                <td>'.$deger["urunadet"].'</td>
+                <td>'.$deger["urunfiyat"].'</td>
+                <td>'.$deger["toplamfiyat"].'</td>
+                <td>'.$deger["kargodurum"].'</td>
+                <td>'.$deger["tarih"].'</td>
+                
+                </tr>';
+                
+                endforeach;					
+                
+                ?>
+        
+                </tbody>
+                            
+                </table>
+                            
+                <?php endif; ?>
+            
+            </div>
+                
+        </div>           
+        
+        <?php
 
     }
 
+    function UyeyorumGetir($dizimiz) {  // PANEL - ÜYENİN YORUMLARINI GETİRİYOR
+		                
+        echo'<div class="row"><div class="col-md-12 text-center">';
+        echo count($dizimiz)>0 ? '<div class="alert alert-info">'.count($dizimiz). " adet yorumunuz var</div>" : '<div class="alert alert-info">Henüz hiçbir ürüne yorum yazmamışsınız.</div>';  
+             
+        if (count($dizimiz)!=0) : 
 
+            echo'<table class="table">
+            <tbody> 
+            <tr id="baslik">
+            <td>YORUMUNUZ</td>
+            <td>ÜRÜN</td>
+            <td>TARİH</td>
+            <td>DURUM</td>
+            <td>GÜNCELLE</td>
+            <td>SİL</td>                   
+            </tr>';
+        
+            foreach ($dizimiz as $deger) :	
+            
+                $GelenUrun=$this->UrunCek($deger["urunid"]);
+                echo'<tr id="adresElemanlar">
+                <td><span class="sp'.$deger["id"].'">'.$deger["icerik"].'</span></td>
+                <td>'.$GelenUrun[0]["urunad"].'</td>
+                <td>'.$deger["tarih"].'</td>
+                <td>'; echo ($deger["durum"]==0) ? "<span class='onaysiz'>Onaysız</span>" : "<span class='onayli'>Onaylı</span>"; echo'</td>					
+                <td id="GuncelButonlarinanasi">					
+                <input type="button" class="btn btn-sm btn-success" data-value="'.$deger["id"].'" value="Güncelle"></td> <td>';?>
+                
+                <a onclick='UrunSil("<?php echo $deger["id"] ?>","yorumsil")' class="btn btn-sm btn-danger">SİL</a> <?php echo'</td> </tr>';
+
+            endforeach;
+        
+            echo '</tbody></table>';
+        endif; 
+        
+        echo '</div></div>';        
+  
+    } 
+
+    function UyeadresGetir($dizimiz) {  // PANEL - ÜYENİN ADRESLERİNİ GETİRİYOR
+		
+		
+        echo' <div class="row"><div class="col-md-12 text-center">';
+        
+        echo count($dizimiz)>0 ? '<div class="alert alert-info">'.count($dizimiz). " adet adresiniz kayıtlıdır</div>" : '<div class="alert alert-info">Kayıtlı adresiniz bulunmamaktadır.</div>';  
+        
+        echo'</div>'; 
+                    
+        foreach ($dizimiz as $deger) :			
+            
+            echo'<div class="col-md-2 text-center" id="adresiskelet">
+            
+            <div class="row" id="adresElemanlar">
+            <div class="col-md-12" id="adresİd">
+            <span class="adresSp'.$deger["id"].'">'.$deger["adres"].'</span></div>
+            <div class="col-md-6" id="AdresGuncelButonlarinanasi">
+                    
+            <input type="button" class="btn btn-sm btn-success" data-value="'.$deger["id"].'" id="AdresGuncelBtn" value="Güncelle">					
+                    
+            </div>						
+            <div class="col-md-6">';?>
+
+            <a onclick='UrunSil("<?php echo $deger["id"] ?>","adresSil")' class="btn btn-sm btn-danger" id="AdresSilBtn">SİL</a> <?php echo'</div>                        
+            </div></div>';
+
+        endforeach;		
+                        
+        echo '</div>'; 	
+
+    } 
+    
+    function UyeayarlarGetir($dizimiz) {   // PANEL - ÜYENİN AYARLARINI GETİRİYOR	
+	
+        ?>
+        <div class="row text-center">
+
+            <div class="col-md-4"></div> 
+
+            <div class="col-md-4 text-center" id="ortala">
+                       
+                       <!--  SATIRLAR BAŞLIYOR-->
+                       
+                <div class="row text-center" id="satirlar">
+                    <div class="col-md-12" id="satirlarbaslik">HESAP AYARLARI</div>
+                
+                
+                    <div class="col-md-5" >
+                    <form action="" method="">
+                    <label>Ad</label></div>
+                    <div class="col-md-7"  ><input type="text" name="ad" value="<?php echo $dizimiz[0]["ad"] ?>" class="form-control" /></div>
+     
+                    <!--  --------->         
+                    <div class="col-md-5"><label>Soyad</label></div>
+                    <div class="col-md-7" ><input type="text" name="soyad" value="<?php echo $dizimiz[0]["soyad"] ?>" class="form-control" /></div>
+     
+                    <!--  --------->         
+                    <div class="col-md-5"><label>Mail adresiniz</label></div>
+                    <div class="col-md-7" ><input type="text" name="mail" value="<?php echo $dizimiz[0]["mail"] ?>" class="form-control" /></div>
+     
+                    <!--  --------->         
+                    <div class="col-md-5"><label>Telefon</label></div>
+                    <div class="col-md-7" ><input type="text" name="telefon" value="<?php echo $dizimiz[0]["telefon"] ?>" class="form-control" /></div>
+     
+                                    <!--  --------->         
+                    <div class="col-md-12">
+                    <input type="hidden" name="uyeid"  value="<?php echo $dizimiz[0]["id"] ?>" />
+                    <input type="submit" class="btn"  value="GÜNCELLE" /></div>
+                    </div>	
+                                 
+                <!--  SATIRLAR BİTİYOR-->         
+     
+            </div> 
+                    <div class="col-md-4"></div> 
+
+        </div>
+                    
+                    
+        <?php	 
+    } 
+
+    function Uyesifredegistir() {   // PANEL - ÜYENİN ŞİFRE DEĞİŞTİRME
+		
+        ?>
+        <div class="row text-center">
+
+            <div class="col-md-4"></div> 
+                
+                <div class="col-md-4 text-center" id="ortala">
+           
+                    <!--  SATIRLAR BAŞLIYOR-->
+            
+                    <div class="row text-center" id="satirlar">
+
+                    <div class="col-md-12" id="satirlarbaslik">ŞİFRE DEĞİŞTİR</div>
+                        
+                        
+                    <div class="col-md-5" >
+                    <form action="" method="">
+                    <label>Mevcut Şifreniz</label></div>
+                    <div class="col-md-7"  ><input type="password" name="msifre" value="" class="form-control" /></div>
+
+                    <!--  --------->         
+                    <div class="col-md-5"><label>Yeni Şifreniz</label></div>
+                    <div class="col-md-7" ><input type="password" name="yen1" value="" class="form-control" /></div>
+
+                    <!--  --------->         
+                    <div class="col-md-5"><label>Şifre (Tekrar)</label></div>
+                    <div class="col-md-7" ><input type="password" name="yen2" value="" class="form-control" /></div>
+
+
+                    <!--  --------->         
+                    <div class="col-md-12">
+
+                        <input type="hidden" name="uyeid"  value="ÜYENİN İDSİ YAZILACAK" />
+                        <input type="submit" class="btn"  value="DEĞİŞTİR" /></div>
+                        
+                    </div>	
+                     
+                    <!--  SATIRLAR BİTİYOR-->         
+           
+                </div> 
+                <div class="col-md-4"></div> 
+       </div>
+        
+        
+        
+        
+        
+        
+        <?php		
+
+    }
 
 
 
