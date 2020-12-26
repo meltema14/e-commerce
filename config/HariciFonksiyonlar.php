@@ -37,7 +37,8 @@ class HariciFonksiyonlar extends Model{
        $this->encoksatan = $this->db->listele("urunler", "order by satisadet desc LIMIT 8");
 
        $this->stoguazalan=$this->db->listele("urunler","where stok < 200 order by stok asc LIMIT 8");	
-       
+
+       $this->populerkategori=$this->db->listele("alt_kategori","order by rand() LIMIT 8");
     }
 
     // SEO

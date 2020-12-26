@@ -49,17 +49,20 @@
 				
 				</div>
 				<div class="col-md-3 span1_of_4">
-					<h4>Popüler Kategoriler</h4>
+					<h4>Rastgele Kategoriler</h4>
 					<ul class="f_nav">
-						<li><a href="#">Yeni ürünler</a></li>
-						<li><a href="#">Erkek</a></li>
-						<li><a href="#">Kadın</a></li>
-						<li><a href="#">Çocuk</a></li>
-						<li><a href="#">Aksesuar</a></li>
-						<li><a href="#">Çanta</a></li>
-						<li><a href="#">Saat</a></li>
-						<li><a href="#">Oyuncak</a></li>
-					</ul>			
+
+					<?php				
+			
+					foreach ($harici->populerkategori as $deger):		
+				
+					echo '<li><a href="'.URL.'/urunler/kategori/'.$deger["id"].'/'.
+					$harici->seo($deger["ad"]).'">'.$deger["ad"].'</a></li>';			
+				
+					endforeach;		
+				
+					?> 
+			
 				</div>
 				<div class="clearfix"></div>
 				</div>
