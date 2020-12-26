@@ -34,13 +34,19 @@
 				<div class="col-md-3 span1_of_4">
 					<h4>Stoğu Azalanlar</h4>
 					<ul class="f_nav">
-						<li><a href="account.html">Giriş yap</a></li>
-						<li><a href="register.html">Üye ol</a></li>
-						<li><a href="#">Liste oluştur</a></li>
-						<li><a href="checkout.html">Sepetim</a></li>
-						<li><a href="#">Üyelik Hakları</a></li>
-						<li><a href="#">Üyelik Avantajları</a></li>
-					</ul>					
+					
+					<?php
+				
+					foreach ($harici->stoguazalan as $deger):
+				
+					echo '<li><a href="'.URL.'/urunler/detay/'.$deger["id"].'/'.
+					$harici->seo($deger["urunad"]).'">'.$deger["urunad"].'</a></li>';
+				
+					endforeach;
+				
+				
+				?>
+				
 				</div>
 				<div class="col-md-3 span1_of_4">
 					<h4>Popüler Kategoriler</h4>

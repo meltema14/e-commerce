@@ -36,6 +36,8 @@ class HariciFonksiyonlar extends Model{
        // footerdaki encoksatanlar bölümü
        $this->encoksatan = $this->db->listele("urunler", "order by satisadet desc LIMIT 8");
 
+       $this->stoguazalan=$this->db->listele("urunler","where stok < 200 order by stok asc LIMIT 8");	
+       
     }
 
     // SEO
