@@ -285,7 +285,11 @@ class HariciFonksiyonlar extends Model{
     } 
     
     function UyeayarlarGetir($dizimiz) {   // PANEL - ÜYENİN AYARLARINI GETİRİYOR	
-	
+    
+        // hesap ayarları güncelleme başarılıysa formu gizle değilse göster
+        // eğer gelen veri uye.php deki ayarguncelle methodunun içerisindeki ok a eşitse formu göster
+        if ($dizimiz != "ok") : 
+
         ?>
         <div class="row text-center">
 
@@ -316,10 +320,15 @@ class HariciFonksiyonlar extends Model{
                     <div class="col-md-5"><label>Telefon</label></div>
                     <div class="col-md-7" ><input type="text" name="telefon" value="<?php echo $dizimiz[0]["telefon"] ?>" class="form-control" /></div>
      
-                                    <!--  --------->         
+                    <!--  --------->         
                     <div class="col-md-12">
                     <input type="hidden" name="uyeid"  value="<?php echo $dizimiz[0]["id"] ?>" />
                     <input type="submit" class="btn"  value="GÜNCELLE" /></div>
+
+                    <?php
+                        endif;
+                    ?>
+
                     </div>	
                                  
                 <!--  SATIRLAR BİTİYOR-->         
@@ -334,7 +343,10 @@ class HariciFonksiyonlar extends Model{
     } 
 
     function Uyesifredegistir($dizimiz) {   // PANEL - ÜYENİN ŞİFRE DEĞİŞTİRME
-		
+        
+        // şifre güncelleme başarılıysa formu gizler değilse gösterir
+        if($dizimiz!="ok"):
+
         ?>
         <div class="row text-center">
 
@@ -428,13 +440,15 @@ class HariciFonksiyonlar extends Model{
                         ?>
                         
                     </div>	
+
+                    <?php endif; ?>
                      
                     <!--  SATIRLAR BİTİYOR-->         
            
                 </div> 
                 <div class="col-md-4"></div> 
        </div>
-    </div>
+        </div>
         
         
         

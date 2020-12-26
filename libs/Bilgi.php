@@ -9,7 +9,7 @@ class Bilgi {
 
         // $yol: yönlendirileceği sayfa
         // $deger: başarılı ya da başarısız olması(metin)
-        return '<div class="alert alert-success mt-5"> '.$deger.'</div>'
+        return '<div class="alert alert-success mt-5 text-center"> '.$deger.'</div>'
         . header("Refresh:3; url=".URL.$yol);
     }
 

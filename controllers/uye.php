@@ -252,9 +252,9 @@ class uye extends Controller {
         
     function sifredegistir() {	// ŞİFRE DEĞİŞTİR
        
-    $this->view->goster("sayfalar/panel",array(
-        // üye idsini tutuyo
-    "sifredegistir" => Session::get("uye")));	
+        $this->view->goster("sayfalar/panel",array(
+            // üye idsini tutuyo
+        "sifredegistir" => Session::get("uye")));	
       
     }
         
@@ -301,7 +301,7 @@ class uye extends Controller {
 
                 $this->view->goster("sayfalar/panel",
                 array(
-                "ayarlar" => $this->model->yorumlarial("uye_panel","where id=".Session::get("uye")),
+                "ayarlar" => "ok",
                 // güncelleme başarılı uyarısından 3sn sonra anasayfaya yönlendirme
                 "bilgi" => $this->bilgi->basarili("GÜNCELLEME BAŞARILI", "/uye/panel")
                 )); 
