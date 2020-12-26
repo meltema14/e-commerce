@@ -3333,4 +3333,17 @@ table #baslik {
 	border-bottom:#CACACA 1px solid;
 	padding:10px;		
 }
-	
+
+/* sayfaların en altındaki kısım */
+
+#digersayfa h3 {
+	margin-top:10px;
+	color:#55065a;
+	border-bottom:#CACACA 1px solid;
+	padding:5px;
+}
+#digersayfa p  {
+	margin-top:10px;
+	font-weight:700;
+	padding:5px;
+}
