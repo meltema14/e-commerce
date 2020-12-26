@@ -71,8 +71,13 @@ if (Session::get("kulad") && Session::get("uye")) :
                 break;
 
                 case "sifredegistir":
-                
-                    $harici->Uyesifredegistir();
+
+                    // ŞİFRE DEĞİŞTİRME BAŞARILI UYARISI
+                    if (isset($veri["bilgi"])):
+                    echo $veri["bilgi"];
+                    endif;
+                    
+                    $harici->Uyesifredegistir($veri["sifredegistir"]);
 
                 break;
 

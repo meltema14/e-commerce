@@ -61,6 +61,12 @@ class uye_model extends Model {
 
     }
 
+    function sifreGuncelle ($tabloisim, $sutunlar, $veriler, $kosul) {
+
+        return $this->db->guncelle($tabloisim, $sutunlar, $veriler, $kosul);
+
+    }
+
 
 
 }

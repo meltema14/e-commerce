@@ -66,7 +66,7 @@ class uye extends Controller {
             $sonuc=$this->model->GirisKontrol("uye_panel", "ad='$ad' and sifre='$sifre'");
 
             // giriş yapıldıysa
-            if(count($sonuc)>0):
+            if($sonuc):
 
                 // kullanıcı paneline girecek
                 $this->bilgi->direktYonlen("/uye/panel");
@@ -250,21 +250,22 @@ class uye extends Controller {
             
     }
         
-    function sifredegistir() {	
+    function sifredegistir() {	// ŞİFRE DEĞİŞTİR
        
     $this->view->goster("sayfalar/panel",array(
-    "sifredegistir" => $this->model->yorumlarial("adresler","where uyeid=".Session::get("uye"))));	
+        // üye idsini tutuyo
+    "sifredegistir" => Session::get("uye")));	
       
     }
         
     function siparislerim() {	// ÜYENİN SİPARİŞLERİNİ GETİRİR
     
-    $this->view->goster("sayfalar/panel",array(
-    "siparisler" => $this->model->yorumlarial("siparisler","where uyeid=".Session::get("uye"))));		
+        $this->view->goster("sayfalar/panel",array(
+        "siparisler" => $this->model->yorumlarial("siparisler","where uyeid=".Session::get("uye"))));		
            
     }
 
-    function ayarGuncelle() {
+    function ayarGuncelle() {   // ÜYE KENDİ AYARLARINI GÜNCELLİYOR
 
 
         // form classına gidip ad ve şifre boş mu değil mi diye bakar
@@ -322,6 +323,92 @@ class uye extends Controller {
 
     }
     //------------------------------------------
+
+    // -----------      ŞİFRE İŞLEMLERİ     -------------
+
+    function sifreguncelle() {   // ÜYE ŞİFRESİNİ GÜNCELLİYOR
+
+
+        // form classına gidip ad ve şifre boş mu değil mi diye bakar
+        $msifre = $this->form->get("msifre")->bosmu();
+        $yen1 = $this->form->get("yen1")->bosmu();
+        $yen2 = $this->form->get("yen2")->bosmu();
+        $uyeid = $this->form->get("uyeid")->bosmu();
+
+        // şifrelerin uyumlu olup olmamasını karşılaştırır
+        $sifre = $this->form->sifreKarsilastir($yen1, $yen2); // şifrelenmiş yeni hali alıyorum
+
+        /*
+            ÖNCE GELEN ŞİFRE SORGULANACAK DOĞRU MU DİYE
+            EĞER DOĞRU İSE DEVAM EDECEK
+            HATALI İSE İŞLEM BİTECEK
+        */
+
+        // mevcut şifreyi şifreleme
+        $msifre = $this->form->sifrele($msifre);
+
+        // hesap ayarlarında yazılan herhangi bi yerin boş olması
+        // bir hata var demek
+        if(!empty($this->form->error)):
+
+            // boş bırakılan varsa error arrayinde hangisi olduğunu göstericek
+            $this->view->goster("sayfalar/panel",
+            array(
+            // şifre değiştire üyenin idsini gönder
+            "sifredegistir" => Session::get("uye"),
+            "bilgi" => $this->bilgi->uyari("danger", " Girilen bilgiler hatalıdır.")
+            ));
+
+        // gelen veride sorun yoksa
+        else:
+
+            // MEVBUT ŞİFRE(eski şifre) DOĞRUYSA
+            // giriş yapıldığında kullanıcı adına ve mevcut şifresine bakar
+            $sonuc2=$this->model->GirisKontrol("uye_panel", "ad='".Session::get("kulad")."' and sifre='$msifre'");
+
+            // giriş yapıldıysa
+            if($sonuc2):
+
+                $sonuc=$this->model->sifreGuncelle("uye_panel", 
+                array("sifre"),
+                // yeni yazılmış şifrenin şifrelenmiş haliyle değiştir
+                array($sifre), "id=".$uyeid);
+
+                // şifre güncelleme başarılıysa
+                if($sonuc):
+
+                    $this->view->goster("sayfalar/panel",
+                    array(
+                    "sifredegistir" => "ok",
+                    // güncelleme başarılı uyarısından 3sn sonra anasayfaya yönlendirme
+                    "bilgi" => $this->bilgi->basarili("ŞİFRE DEĞİŞTİRME BAŞARILI", "/uye/panel")
+                    )); 
+
+                else:
+
+                    $this->view->goster("sayfalar/panel",
+                    array(
+                    "sifredegistir" => Session::get("uye"),
+                    "bilgi" => $this->bilgi->uyari("danger", " Şifre değiştirme sırasında hata oluştu")
+                    ));
+                
+                endif;
+
+            // HATA VARSA
+            else:
+
+                $this->view->goster("sayfalar/panel",
+                array(
+                // şifre değiştire üyenin idsini gönder
+                "sifredegistir" => Session::get("uye"),
+                "bilgi" => $this->bilgi->uyari("danger", " Mevcut şifre hatalıdır. ")
+                ));
+
+            endif;
+
+        endif;
+    
+    }
     
 }
 

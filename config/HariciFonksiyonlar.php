@@ -333,7 +333,7 @@ class HariciFonksiyonlar extends Model{
         <?php	 
     } 
 
-    function Uyesifredegistir() {   // PANEL - ÜYENİN ŞİFRE DEĞİŞTİRME
+    function Uyesifredegistir($dizimiz) {   // PANEL - ÜYENİN ŞİFRE DEĞİŞTİRME
 		
         ?>
         <div class="row text-center">
@@ -350,24 +350,82 @@ class HariciFonksiyonlar extends Model{
                         
                         
                     <div class="col-md-5" >
-                    <form action="" method="">
+
+                    <?php
+                        // form başlangıcını oluşturma
+                        Form::Olustur("1",array(
+                            "action" =>URL."/uye/sifreguncelle",
+                            "method" => "POST"
+                        ));
+                    ?>
+                    
                     <label>Mevcut Şifreniz</label></div>
-                    <div class="col-md-7"  ><input type="password" name="msifre" value="" class="form-control" /></div>
+
+                    <div class="col-md-7"  >
+
+                        <?php
+                            // form input oluşturma
+                            Form::Olustur("2",array(
+                                "type" =>"password",
+                                "name" => "msifre",
+                                "class" => "form-control"
+                            ));
+                        ?>
+
+                    </div>
 
                     <!--  --------->         
                     <div class="col-md-5"><label>Yeni Şifreniz</label></div>
-                    <div class="col-md-7" ><input type="password" name="yen1" value="" class="form-control" /></div>
+                    <div class="col-md-7" >
+
+                        <?php
+                            // form input oluşturma
+                            Form::Olustur("2",array(
+                                "type" =>"password",
+                                "name" => "yen1",
+                                "class" => "form-control"
+                            ));
+                        ?>
+
+                    </div>
 
                     <!--  --------->         
                     <div class="col-md-5"><label>Şifre (Tekrar)</label></div>
-                    <div class="col-md-7" ><input type="password" name="yen2" value="" class="form-control" /></div>
+
+                    <div class="col-md-7" >
+                    
+                        <?php
+                            // form input oluşturma
+                            Form::Olustur("2",array(
+                                "type" =>"password",
+                                "name" => "yen2",
+                                "class" => "form-control"
+                            ));
+                        ?>
+
+                    </div>
 
 
                     <!--  --------->         
                     <div class="col-md-12">
 
-                        <input type="hidden" name="uyeid"  value="ÜYENİN İDSİ YAZILACAK" />
-                        <input type="submit" class="btn"  value="DEĞİŞTİR" /></div>
+                        <?php
+                            // form input oluşturma
+                            Form::Olustur("2",array(
+                                "type" =>"hidden",
+                                "name" => "uyeid",
+                                "value" => "$dizimiz"
+                            ));
+                        ?>
+
+                        <?php
+                            // form input oluşturma
+                            Form::Olustur("2",array(
+                                "type" =>"submit",
+                                "class" => "btn",
+                                "value" => "DEĞİŞTİR"
+                            ));
+                        ?>
                         
                     </div>	
                      
@@ -376,6 +434,7 @@ class HariciFonksiyonlar extends Model{
                 </div> 
                 <div class="col-md-4"></div> 
        </div>
+    </div>
         
         
         
