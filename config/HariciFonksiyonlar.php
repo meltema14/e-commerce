@@ -10,7 +10,10 @@ class HariciFonksiyonlar extends Model{
 
 
     public $sonuc, $title, $sayfaAciklama, $anahtarKelime, $sloganUst1, $sloganAlt1, $sloganUst2, $sloganAlt2, $sloganUst3, $sloganAlt3;
-    public $linkler=array();
+    public $linkler=array(), $encoksatan=array(),
+    $stoguazalan=array(), $populerkategori=array();
+
+    
 
     function __construct(){
         // ana modelin __construct miras aldık ki veri tabanına ulaşabilelim
@@ -24,11 +27,14 @@ class HariciFonksiyonlar extends Model{
        $this->sayfaAciklama = $this-> sonuc[0]["sayfaAciklama"];
        $this->anahtarKelime = $this-> sonuc[0]["anahtarKelime"];
        $this->sloganUst1 = $this-> sonuc[0]["sloganUst1"];
-       $this->sloganAlt1 = $this-> sonuc[0]["sloganAlt1"];;
-       $this->sloganUst2 = $this-> sonuc[0]["sloganUst2"];;
-       $this->sloganAlt2 = $this-> sonuc[0]["sloganAlt2"];;
-       $this->sloganUst3 = $this-> sonuc[0]["sloganUst3"];;
-       $this->sloganAlt3 = $this-> sonuc[0]["sloganAlt3"];;
+       $this->sloganAlt1 = $this-> sonuc[0]["sloganAlt1"];
+       $this->sloganUst2 = $this-> sonuc[0]["sloganUst2"];
+       $this->sloganAlt2 = $this-> sonuc[0]["sloganAlt2"];
+       $this->sloganUst3 = $this-> sonuc[0]["sloganUst3"];
+       $this->sloganAlt3 = $this-> sonuc[0]["sloganAlt3"];
+
+       // footerdaki encoksatanlar bölümü
+       $this->encoksatan = $this->db->listele("urunler", "order by satisadet desc LIMIT 8");
 
     }
 
