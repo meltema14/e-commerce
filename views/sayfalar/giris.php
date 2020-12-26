@@ -51,14 +51,31 @@
 				  
 				<p>	Üye girişi yapın</p>
 
-				<!--							uye kontrolcüsünün giriskontrol methodunu çalıştırır			 -->
-				<form action="<?php echo URL; ?>/uye/giriskontrol" method="POST">
+				<!--				FORM BAŞLANGIÇ			 -->
 
+					<?php  
+						// formu dinamik hale getirme
+
+						Form::Olustur("1", array(
+						"action" => URL."/uye/giriskontrol",
+						"method" => "POST"
+						));  
+						 
+					?>
+			
 				  <div>
 
 					<span>Kullanıcı Adı<label>*</label></span>
 
-					<input type="text" name="ad"> 
+					<?php  
+						// formu dinamik hale getirme
+
+						Form::Olustur("2", array(
+						"type" =>"text",
+						"name" => "ad"
+						));  
+						 
+					?>
 
 				  </div>
 
@@ -66,7 +83,15 @@
 
 					<span>Şifre<label>*</label></span>
 
-					<input type="password" name="sifre"> 
+					<?php  
+						// formu dinamik hale getirme
+
+						Form::Olustur("2", array(
+						"type" =>"password",
+						"name" => "sifre"
+						));  
+						 
+					?>
 
 				  </div>
 

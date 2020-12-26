@@ -91,8 +91,7 @@
 						));  
 						 
 					 ?>
-
-					
+			
 						 <ul>
 							 <li class="text-info"><span class="text-danger">*</span> Adınız: </li>
 							 <li>

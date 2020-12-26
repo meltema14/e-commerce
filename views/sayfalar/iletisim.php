@@ -17,18 +17,57 @@
 			</div>
 
 			<div id="FormSonuc"></div>
+			<!--				FORM BAŞLANGIÇ			 -->
+			<?php   
+				Form::Olustur("1",array(
+				"id" => "iletisimForm"	 				
+				));    
+			?>
 
-			<form id="iletisimForm">
-				<div class="contact-left">
-					<input type="text" name="ad" placeholder="Adınız ve Soyadınız" required>
-					<input type="text" name="mail" placeholder="Mail adresi" required>
-					<input type="text" name="konu" placeholder="Konu" required>
-				</div>
-				<div class="contact-right">
-					<textarea name="mesaj" placeholder="Mesajınız" required></textarea>
-				</div>
-				<div class="clearfix"></div>
-				<input type="button" value="GÖNDER" id="İletisimbtn">
+			<div class="contact-left">
+				
+			<?php   
+				Form::Olustur("2",array(
+				"type" => "text",
+				"name" => "ad",
+				"placeholder"=>"Adınız ve soyadınız",
+				"required"=>"required"
+				));   
+			?>
+
+			<?php   
+				Form::Olustur("2",array(
+				"type" => "text",
+				"name" => "mail",
+				"placeholder"=>"Mail adresiniz",
+				"required"=>"required"
+				));   
+			?>
+
+			<?php   
+				Form::Olustur("2",array(
+				"type" => "text",
+				"name" => "konu",
+				"placeholder"=>"Konu",
+				"required"=>"required"
+				));   
+			?>
+				
+			</div>
+			<div class="contact-right">
+
+			<?php   
+				Form::Olustur("3",array(
+				"type" => "text",
+				"name" => "mesaj",
+				"placeholder"=>"Mesajınız",
+				"required"=>"required"
+				));   
+			?>
+			
+			</div>
+			<div class="clearfix"></div>
+			<input type="button" value="GÖNDER" id="İletisimbtn">
 			</form>
 		</div>
 	</div>
