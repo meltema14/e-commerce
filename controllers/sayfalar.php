@@ -16,14 +16,12 @@ class sayfalar extends Controller {
         $this-> view -> goster("sayfalar/iletisim");
 
     }
-
     // sepet sayfasını dahil etme
     function sepet() {
 
         $this-> view -> goster("sayfalar/sepet");
 
-    }
-    
+    }   
     // en alt kısımdaki yer
     function kargonezamangelir() {
 
@@ -54,6 +52,14 @@ class sayfalar extends Controller {
         $this-> view -> goster("sayfalar/diger/satissozlesmesi");
 
     }
+
+    // siparişi tamamla sayfasını dahil etme
+    function siparisitamamla() {
+
+        $this->view-> goster("sayfalar/siparisitamamla");
+
+    }
+
 
 
 

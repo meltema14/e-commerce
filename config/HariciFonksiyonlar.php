@@ -19,6 +19,9 @@ class HariciFonksiyonlar extends Model{
         // ana modelin __construct miras aldık ki veri tabanına ulaşabilelim
        parent::__construct();
 
+       // giriş bilgilerini alabilmek için
+       Session::init();
+
        // diziden dönen sonuç
        $this-> sonuc = $this->db->listele("ayarlar");
 
@@ -39,6 +42,7 @@ class HariciFonksiyonlar extends Model{
        $this->stoguazalan=$this->db->listele("urunler","where stok < 200 order by stok asc LIMIT 8");	
 
        $this->populerkategori=$this->db->listele("alt_kategori","order by rand() LIMIT 8");
+
     }
 
     // SEO
@@ -160,6 +164,8 @@ class HariciFonksiyonlar extends Model{
         return $this->db->listele("urunler", "where id=".$id);
 
     }
+
+    // ---------------   PANEL   ----------------
 
     function UyesiparisGetir ($dizimiz) { // PANEL - ÜYENİN SİPARİŞLERİNİ GETİRİYOR
 
@@ -468,7 +474,19 @@ class HariciFonksiyonlar extends Model{
 
     }
 
+    // -------------   SİPARİŞ TAMAMLAMA   -------------
+    
+    function UyeBilgileriniGetir() { // SİPARİŞ TAMAMLA - ÜYE BİLGİLERİNİ GETİRİYOR
 
+        return $this->db->listele("uye_panel","where id=".Session::get("uye"));
+
+    }
+
+    function UyeAdresleriniGetir() { // SİPARİŞ TAMAMLA - ÜYE ADRESLERİNİ GETİRİYOR
+
+        return $this->db->listele("adresler","where uyeid=".Session::get("uye"));
+ 
+    }
 
   
 

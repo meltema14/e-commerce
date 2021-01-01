@@ -3347,3 +3347,96 @@ table #baslik {
 	font-weight:700;
 	padding:5px;
 }
+
+/* SİPARİŞİ TAMAMLA KODLARI */
+
+#sipTamamlaİskelet {
+	border:#CACACA 1px solid;
+	margin-top:10px;
+	border-radius:5px;
+	overflow:hidden;
+}
+
+#soltaraf  {
+	border-right:#CACACA 1px solid;
+
+}
+#sagtaraf #baslik {
+	text-align:center;
+	background-color:#55065a;
+	color:#F7F7F7;
+
+}	
+#sagtaraf #icbaslik {
+	text-align:center;
+	border-bottom:#CACACA 1px solid;
+	padding:3px;
+	background-color:#D6D6D6;
+	font-weight:700;
+}	
+
+#sagtaraf #icurunler {
+	text-align:center;
+	border-bottom:#CACACA 1px solid;
+	padding:3px;
+	font-weight:700;
+	color:#55065a;
+}
+
+#uyelik {
+	text-align:center;
+	font-weight:700;
+	color:#55065a;
+}
+#uyelik  h4 {
+	border-bottom:#CACACA 1px solid;
+}
+
+ #label {
+	padding-top:5px;	
+}
+
+#input {
+	padding:5px;
+}
+
+#radioBtn  {
+	padding-top:5px;
+	text-align:left;
+}
+
+
+#adresSatir {
+padding:5px;	
+}
+
+#sagtaraf #toplam {
+	text-align:center;
+	border-bottom:#CACACA 1px solid;
+	padding:3px;
+	font-weight:700;
+	color:#F03;
+}
+
+.btn_1 {
+	background-color: #3d173f;
+	color:#fff;
+	float: right;
+	margin-top: 20px;
+	width: 300px;
+}
+
+.btn_1:hover {
+
+	color: #4fd8af;
+}
+
+#adressecim {
+	background-color: #d9d5d9;
+	margin: 10px;
+	border-radius: 10px;
+	overflow: hidden;
+	border: #CACACA 1px solid;
+	color: #797979;
+
+}

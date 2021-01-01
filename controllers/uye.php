@@ -10,6 +10,7 @@ class uye extends Controller {
 
         // uye_model ile bağlantısını sağladık
         $this->Modelyukle('uye');
+        // her kontorolcünün constructında çalıştır
         Session::init();
 
     }
