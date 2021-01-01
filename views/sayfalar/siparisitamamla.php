@@ -27,41 +27,41 @@
                             <div class="col-md-9" id="input">
 
                                 <?php Form::Olustur("2",array("type" => "text", "name" => "ad", 
-                                "value" => $sonuc[0]["ad"], "class"=>"form-control")) ?>
+                                "id" => "sipAd", "value" => $sonuc[0]["ad"], "class"=>"form-control")) ?>
 
                             </div>
                             <div class="col-md-3" id="label">Soyad</div>
                             <div class="col-md-9" id="input">
 
                                 <?php Form::Olustur("2",array("type" => "text", "name" => "soyad", 
-                                "value" => $sonuc[0]["soyad"], "class"=>"form-control")) ?>
+                                "id" => "sipSoyad", "value" => $sonuc[0]["soyad"], "class"=>"form-control")) ?>
 
                             </div>
                             <div class="col-md-3" id="label">Mail</div>
                             <div class="col-md-9" id="input">
 
                                 <?php Form::Olustur("2",array("type" => "text", "name" => "mail", 
-                                "value" => $sonuc[0]["mail"], "class"=>"form-control")) ?>
+                                "id" => "sipMail", "value" => $sonuc[0]["mail"], "class"=>"form-control")) ?>
 
                             </div>
                             <div class="col-md-3" id="label">Telefon</div>
                             <div class="col-md-9" id="input">
 
                                 <?php Form::Olustur("2",array("type" => "text", "name" => "telefon", 
-                                "value" => $sonuc[0]["telefon"], "class"=>"form-control")) ?>
+                                "id" => "sipTlf", "value" => $sonuc[0]["telefon"], "class"=>"form-control")) ?>
 
                             </div>
 
                             <div class="col-md-12" id="radioBtn">
 
                                 <?php Form::Olustur("2",array("type" => "radio", "name" => "bilgiTercih",
-                                "checked"=>"checked")) ?> Üyelik Bilgilerimi Kullan
+                                "checked"=>"checked","value"=>0)) ?> Üyelik Bilgilerimi Kullan
 
                             </div>
 
                             <div class="col-md-12" id="radioBtn">
 
-                                <?php Form::Olustur("2",array("type" => "radio", "name" => "bilgiTercih",)) ?> 
+                                <?php Form::Olustur("2",array("type" => "radio", "name" => "bilgiTercih","value"=>1)) ?> 
                                 Farklı Bilgiler Kullan
 
                             </div>
@@ -125,8 +125,33 @@
                     <div class="row" id="uyelik">
 
                         <div class="col-md-12"><h4>ÖDEME YÖNTEMİ</h4></div>
-                        <div class="col-md-12" id="adresSatir">Ödeme yöntemi seçilmesi sağlanacak</div>
+
+                        <div class="col-md-6" id="adresSatir">
+
+                            <label>
+
+                            <?php
+                            Form::Olustur("2", 
+                            array("type"=>"radio","name"=>"odeme",
+                            "value" => "1", "checked"=>"checked")); ?> HAVALE / EFT
+
+                            </label>
+
+                        </div>
                         
+                        <div class="col-md-6" id="adresSatir">
+
+                            <label>
+
+                            <?php
+                            Form::Olustur("2", 
+                            array("type"=>"radio",
+                            "disabled"=>"disabled")); ?> KREDİ KARTI (Yakında)
+
+                            </label>
+
+                        </div>
+
                     </div>              
                 
                 </div>
