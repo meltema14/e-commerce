@@ -329,6 +329,7 @@ class uye extends Controller {
 
     function sifreguncelle() {   // ÜYE ŞİFRESİNİ GÜNCELLİYOR
 
+        if ($_POST) : // POST İLE GELİNDİYSE
 
         // form classına gidip ad ve şifre boş mu değil mi diye bakar
         $msifre = $this->form->get("msifre")->bosmu();
@@ -408,10 +409,15 @@ class uye extends Controller {
             endif;
 
         endif;
+    // POST İLE GELMEDİYSE
+    else:
+
+        $this->bilgi->direktYonlen("/");
+    endif;
     
     }
 
-    // SİPARİŞ TAMAMLANDI
+    // -------------        SİPARİŞ İŞLEMLERİ      --------------
     function siparisTamamlandi() {
 
         if ($_POST) : // POST İLE GELİNDİYSE
@@ -505,16 +511,18 @@ class uye extends Controller {
             
         endif; 
 
-    endif;
-// POST İLE GELİNMEDİYSE    
-else:
+        endif;
+        // POST İLE GELİNMEDİYSE    
+        else:
 
-    $this->bilgi->direktYonlen("/");
+            $this->bilgi->direktYonlen("/");
 
-endif;
+        endif;
 
     }
-    
+
+
+     
 }
 
 

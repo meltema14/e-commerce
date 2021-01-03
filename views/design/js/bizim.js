@@ -304,7 +304,7 @@ $(document).ready(function(e) {
 
 });
 
-  // linkten gelen degeri urunid olarak karşılıyoruz
+  // YORUM, ADRES, SEPET SİLME
   function UrunSil(deger, kriter) {
 
   switch (kriter) {

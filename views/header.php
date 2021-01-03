@@ -55,7 +55,12 @@ ob_start();
 					<ul>
 						<?php
 							// giriş yapıldıysa "hesabım" gözükecek
-							if(Session::get("kulad")): ?>
+							if(Session::get("kulad") && Session::get("uye")): 
+
+							// oturum kontrolü
+							Session::OturumKontrol(Session::get("kulad"),Session::get("uye"));
+
+						?>
 
 								<li><a href="<?php echo URL;?>/uye/panel">Hesabım</a></li>
 

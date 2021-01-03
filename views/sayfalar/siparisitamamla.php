@@ -10,7 +10,11 @@
 if (isset($_COOKIE["urun"])):
 
  // oturum kontrolü
- if (Session::get("kulad") && Session::get("uye")) : ?>
+ if (Session::get("kulad") && Session::get("uye")) : 
+ 
+    // oturum kontrolü
+    Session::OturumKontrol(Session::get("kulad"),Session::get("uye"));
+ ?>
 
 	<div class="container" id="sipTamamlaİskelet" >
     

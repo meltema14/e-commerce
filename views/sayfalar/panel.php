@@ -7,6 +7,9 @@
 // oturum açılmadıysa İŞLEMLER kısmı gözükmeyecek
 if (Session::get("kulad") && Session::get("uye")) :
 
+    // oturum kontrolü
+    Session::OturumKontrol(Session::get("kulad"),Session::get("uye"));
+
 ?>
 
 <div class="container" id="UyeCont">

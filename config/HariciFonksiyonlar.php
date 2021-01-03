@@ -162,7 +162,7 @@ class HariciFonksiyonlar extends Model{
 	
         return $this->db->listele("urunler","where id=".$id);
             
-        } // ÜRÜN ÇEK
+    } // ÜRÜN ÇEK
 
     // ---------------   PANEL   ----------------
 

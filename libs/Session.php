@@ -3,9 +3,14 @@
 
 class Session {
 
+    public static $db;
+
     // oturum hareketi burdan başlar
     public static function init() {
 
+        // db classı içindeki fonksiyonlara erişme
+        self::$db= new Database();
+        // oturum başlatma
         session_start();
 
     }
@@ -35,6 +40,20 @@ class Session {
 
         session_destroy();
 
+    }
+
+    
+    public static function OturumKontrol($deger1,$deger2) {
+        
+        // oturum acan kullanıcının bilgileri veri tabanı ile eşleşiyor mu
+        $sonuc = self::$db->listele("uye_panel","where ad='".$deger1."' and id=".$deger2);
+        
+        // 
+        if (!isset($sonuc[0])) :
+	
+            self::destroy();
+            
+        endif;
     }
 
 
