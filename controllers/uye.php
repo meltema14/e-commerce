@@ -414,6 +414,8 @@ class uye extends Controller {
     // SİPARİŞ TAMAMLANDI
     function siparisTamamlandi() {
 
+        if ($_POST) : // POST İLE GELİNDİYSE
+
         $ad=$this->form->get("ad")->bosmu();
         $soyad=$this->form->get("soyad")->bosmu();
         $mail=$this->form->get("mail")->bosmu();
@@ -439,32 +441,43 @@ class uye extends Controller {
         
         // toplu sorgu işlemini başlatma
         $this->model->TopluislemBaslat();
-            
-        // cookiedeki siparişleri tabloya kaydetme
-        foreach ($_COOKIE["urun"] as $id => $adet) :
-            
-            // siparişleri çek
-            $GelenUrun=$this->model->SiparisTamamlamaUrunCek("urunler","where id=".$id);
-    
-            $this->model->SiparisTamamlama(
-            array(
-            $siparisNo, 
-            $adrestercih, 
-            $uyeid, 
-            $GelenUrun[0]["urunad"], 
-            $adet,
-            $GelenUrun[0]["fiyat"],
-            $GelenUrun[0]["fiyat"]*$adet,
-            $odemeturu,
-            $tarih
-            ));
 
-        endforeach;
+        // sepette ürün varsa
+        if (isset($_COOKIE["urun"])) :
 
+            
+            // cookiedeki siparişleri tabloya kaydetme
+            foreach ($_COOKIE["urun"] as $id => $adet) :
+                
+                // siparişleri çek
+                $GelenUrun=$this->model->SiparisTamamlamaUrunCek("urunler","where id=".$id);
+        
+                $this->model->SiparisTamamlama(
+                array(
+                $siparisNo, 
+                $adrestercih, 
+                $uyeid, 
+                $GelenUrun[0]["urunad"], 
+                $adet,
+                $GelenUrun[0]["fiyat"],
+                $GelenUrun[0]["fiyat"]*$adet,
+                $odemeturu,
+                $tarih
+                ));
+
+            endforeach;
+
+        
+        else:
+            // sepetteki ürünün siparişi tamamlandıktan sonra anasayfaya yönlendirir
+            $this->bilgi->direktYonlen("/");
+
+        endif;
         // toplu sorgu işlemini bitirme
         $this->model->TopluislemTamamla();
 
-        // İŞLEM BİTTİĞİNDE COOKİE(SEPET) BOŞALTILACAK
+        // İŞLEM BİTTİĞİNDE COOKİE(SEPET) BOŞALTIR
+        Cookie::SepetiBosalt();
         
         $TeslimatBilgileri=$this->model->Ekleİslemi("teslimatbilgileri",
         array("siparis_no","ad","soyad","mail","telefon"),
@@ -493,6 +506,12 @@ class uye extends Controller {
         endif; 
 
     endif;
+// POST İLE GELİNMEDİYSE    
+else:
+
+    $this->bilgi->direktYonlen("/");
+
+endif;
 
     }
     

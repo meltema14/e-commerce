@@ -6,6 +6,10 @@
 //BU SAYFANIN GÖRÜNTÜLENMESİNDE OTURUM KONTROLÜ YANI SIRA SEPETTE ÜRÜN VARMI DİYE KONTROL
 //EDİLECEK VE SEPETTE ÜRÜN YOK İSE BU SAYFA GÖRÜNTÜLENEMEYECEK 
 
+// sepette ürün varsa
+if (isset($_COOKIE["urun"])):
+
+ // oturum kontrolü
  if (Session::get("kulad") && Session::get("uye")) : ?>
 
 	<div class="container" id="sipTamamlaİskelet" >
@@ -242,11 +246,19 @@
 </div>
 
 <?php
+// bu otorum açılmış mı ona bakar
     else:
 	
 	header("Location:".URL);
 	
-	endif;
+    endif;
+
+// sepette ürün var mı ona bakar
+else:
+	
+	header("Location:".URL);
+
+endif;
 ?>
 
 
