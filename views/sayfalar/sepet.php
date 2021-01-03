@@ -101,7 +101,7 @@
 					<div class="col-md-12">
 					
 						<a href="'.URL.'" class="btn btn_1">ALIŞVERİŞE DEVAM ET</a>
-						<a href="#" class="btn btn_1">SİPARİŞİ TAMAMLA</a>
+						<a href="'.URL.'/sayfalar/siparisitamamla" class="btn btn_1">SİPARİŞİ TAMAMLA</a>
 				
 					</div>
 		

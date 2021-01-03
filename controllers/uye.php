@@ -125,7 +125,7 @@ class uye extends Controller {
 
             // gelen verilerden eşleşen var mı diye db ye soruyoruz
             // 0 ya da 1 olarak geri döndürecek
-            $sonuc=$this->model->UyeKayit("uye_panel", 
+            $sonuc=$this->model->Eklemeİslemi("uye_panel", 
             // sütunlar
             array("ad", "soyad", "mail", "sifre", "telefon"),
             // değerler
@@ -188,7 +188,7 @@ class uye extends Controller {
         if ($_POST) :
 
             // posttan gelen idyi db ye sorgu atarak yorumu silme
-            echo $this->model->yorumSil("yorumlar", " id=".$_POST["yorumid"]);
+            $this->model->yorumSil("yorumlar", " id=".$_POST["yorumid"]);
 
         endif;
 
@@ -200,7 +200,7 @@ class uye extends Controller {
         if ($_POST) :
 
             // posttan gelen idyi db ye sorgu atarak yorumu silme
-            echo $this->model->adresSil("adresler", " id=".$_POST["adresid"]);
+            $this->model->adresSil("adresler", " id=".$_POST["adresid"]);
 
         endif;
 
@@ -213,7 +213,7 @@ class uye extends Controller {
             $_POST["yorum"];
             $_POST["yorumid"]; */
 
-            echo $this->model->yorumGuncelle("yorumlar",
+            $this->model->yorumGuncelle("yorumlar",
             // sütunlar
             array("icerik","durum"),
             // sütunlara karşılık gelen değerler
@@ -230,7 +230,7 @@ class uye extends Controller {
             $_POST["yorum"];
             $_POST["yorumid"]; */
 
-            echo $this->model->yorumGuncelle("adresler",
+            $this->model->yorumGuncelle("adresler",
             // sütunlar
             array("adres"),
             // sütunlara karşılık gelen değerler
@@ -409,6 +409,91 @@ class uye extends Controller {
 
         endif;
     
+    }
+
+    // SİPARİŞ TAMAMLANDI
+    function siparisTamamlandi() {
+
+        $ad=$this->form->get("ad")->bosmu();
+        $soyad=$this->form->get("soyad")->bosmu();
+        $mail=$this->form->get("mail")->bosmu();
+        $telefon=$this->form->get("telefon")->bosmu();
+        $toplam=$this->form->get("toplam")->bosmu();
+
+        $odeme=$this->form->get("odeme")->bosmu();
+        $adrestercih=$this->form->get("adrestercih")->bosmu();
+        $odemeturu = ($odeme==1) ? "Nakit" : "Hata"; 
+        $tarih=date("d.m.Y");
+
+        // formda boş varsa
+        if (!empty($this->form->error)) :
+
+            $this->view->goster("sayfalar/siparistamamla",
+            array("bilgi" => $this->bilgi->uyari("danger","Bilgiler eksiksiz doldurulmalıdır")));
+        
+        else:
+    
+        // 0-99999999 arasında random sayı verir
+        $siparisNo=mt_rand(0,99999999);
+        $uyeid=Session::get("uye");
+        
+        // toplu sorgu işlemini başlatma
+        $this->model->TopluislemBaslat();
+            
+        // cookiedeki siparişleri tabloya kaydetme
+        foreach ($_COOKIE["urun"] as $id => $adet) :
+            
+            // siparişleri çek
+            $GelenUrun=$this->model->SiparisTamamlamaUrunCek("urunler","where id=".$id);
+    
+            $this->model->SiparisTamamlama(
+            array(
+            $siparisNo, 
+            $adrestercih, 
+            $uyeid, 
+            $GelenUrun[0]["urunad"], 
+            $adet,
+            $GelenUrun[0]["fiyat"],
+            $GelenUrun[0]["fiyat"]*$adet,
+            $odemeturu,
+            $tarih
+            ));
+
+        endforeach;
+
+        // toplu sorgu işlemini bitirme
+        $this->model->TopluislemTamamla();
+
+        // İŞLEM BİTTİĞİNDE COOKİE(SEPET) BOŞALTILACAK
+        
+        $TeslimatBilgileri=$this->model->Ekleİslemi("teslimatbilgileri",
+        array("siparis_no","ad","soyad","mail","telefon"),
+        array(
+        $siparisNo, 
+        $ad, 
+        $soyad, 
+        $mail, 
+        $telefon
+        ));
+
+        // ekleme işleminde bi problem yoksa
+        if ($TeslimatBilgileri): 
+		
+            $this->view->goster("sayfalar/siparistamamlandi",
+            array(
+            "siparisno" => $siparisNo,
+            "toplamtutar" => $toplam		
+            ));	
+   
+        else:
+            
+            $this->view->goster("sayfalar/siparisitamamla",
+            array("bilgi" => $this->bilgi->uyari("danger","Sipariş oluşturulurken hata oluştu")));
+            
+        endif; 
+
+    endif;
+
     }
     
 }

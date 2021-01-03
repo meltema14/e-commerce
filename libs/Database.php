@@ -162,6 +162,16 @@ class Database extends PDO {
 
     }
 
+    // SİPARİŞ TAMAMLAMA
+    function siparisTamamla($veriler=array()) {
+		
+		$sorgu=$this->prepare('insert into siparisler (siparis_no,adresid,uyeid,urunad,urunadet,urunfiyat,toplamfiyat,odemeturu,tarih) 	
+		VALUES(?,?,?,?,?,?,?,?,?)'); 
+        
+        // value ya karşılık gelen veriler execute olarak gelecek
+		$sorgu->execute($veriler);
+			
+	}
     
 }
 

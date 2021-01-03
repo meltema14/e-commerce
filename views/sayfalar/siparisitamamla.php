@@ -21,6 +21,11 @@
 
                             <div class="col-md-12"><h4>ÜYELİK BİLGİLERİ</h4></div>
 
+                            <?php 
+                                // FORMU BAŞLATMA
+                                Form::Olustur("1",array("method"=>"POST","action"=>URL."/uye/siparisTamamlandi")); 
+                            ?>
+
                             <?php $sonuc = $harici -> UyeBilgileriniGetir(); ?>
 
                             <div class="col-md-3" id="label">Ad</div>
@@ -211,7 +216,19 @@
 
                     <?php
 
-                        Form::Olustur("2",array("type" => "button", "value"=>"TAMAMLA","class"=>"btn btn_1"))
+                        Form::Olustur("2",
+                        array("type" => "hidden","value"=>$toplamfiyat,"name"=>"toplam"));
+                        // TAMAMLA BUTONU
+                        Form::Olustur("2",array("type" => "submit", "value"=>"TAMAMLA","class"=>"btn btn_1"));
+                        // FORMU KAPATMA
+                        Form::Olustur("kapat");
+
+                        // hata olursa
+                        if (isset($veri["bilgi"])) :			
+                            
+                            echo $veri["bilgi"];		
+                            
+                        endif;
 
                     ?>
 

@@ -158,12 +158,11 @@ class HariciFonksiyonlar extends Model{
 
     }
 
-    // ÜRÜN ÇEK
-    function UrunCek($id) { // gelen $id hangi ürüne aitse onları döndürür
-
-        return $this->db->listele("urunler", "where id=".$id);
-
-    }
+    function UrunCek($id) {
+	
+        return $this->db->listele("urunler","where id=".$id);
+            
+        } // ÜRÜN ÇEK
 
     // ---------------   PANEL   ----------------
 

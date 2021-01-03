@@ -20,7 +20,7 @@ class uye_model extends Model {
 
     }
 
-    function UyeKayit($tabloisim, $sutunadlari, $veriler) {
+    function Ekleİslemi($tabloisim, $sutunadlari, $veriler) {
 
         // db ye sorgu atıcaz, yani db den veri çekicez
 
@@ -66,6 +66,31 @@ class uye_model extends Model {
         return $this->db->guncelle($tabloisim, $sutunlar, $veriler, $kosul);
 
     }
+
+    // ------- SİPARİŞ TAMAMLAMA ------
+    function  SiparisTamamlamaUrunCek($tabloisim, $kosul) {
+
+        return $this->db->listele($tabloisim, $kosul);
+
+    }
+
+    // toplu sorgu işlemi
+    function TopluislemBaslat() {	
+
+        return $this->db->beginTransaction();	
+            
+    }
+        
+    function TopluislemTamamla() {
+
+        return $this->db->commit();
+
+    }
+    function SiparisTamamlama($veriler) {
+	
+        return $this->db->siparisTamamla($veriler);
+            
+    } 
 
 
 
