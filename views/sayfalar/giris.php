@@ -1,5 +1,11 @@
 <?php require 'views/header.php'; // İlk önce headerı dahil ettik ?> 
 
+<?php 
+// kullanıcı adı ve id gelemiyosa yani giris yapıldıysa uye/giris gözükemyecek
+if (!Session::get("kulad") && !Session::get("uye")) : 
+Session::OturumKontrol(Session::get("kulad"),Session::get("uye"));
+?>
+
 <div class="content">
 
 	<div class="container">
@@ -124,7 +130,13 @@
 
 		   </div>
 </div>
-
+<?php
+else:
+	
+	header("Location:".URL);
+	
+	endif;
+?>
 
 
 <?php require 'views/footer.php';   ?> 

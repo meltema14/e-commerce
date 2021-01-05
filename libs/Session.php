@@ -48,7 +48,7 @@ class Session {
         // oturum acan kullanıcının bilgileri veri tabanı ile eşleşiyor mu
         $sonuc = self::$db->listele("uye_panel","where ad='".$deger1."' and id=".$deger2);
         
-        // 
+        // tanımsızsa
         if (!isset($sonuc[0])) :
 	
             self::destroy();
