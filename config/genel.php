@@ -6,6 +6,9 @@
 // ana (kök dizini) tutan parametre
 define("URL", "http://localhost/mvcproje");
 
+// controllers klasorunu tek tek cagırmamak ıcın
+define ("CONTROLLER","controllers/");
+
 
 
 ?>

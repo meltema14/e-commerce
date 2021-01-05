@@ -409,11 +409,11 @@ class uye extends Controller {
             endif;
 
         endif;
-    // POST İLE GELMEDİYSE
-    else:
+        // POST İLE GELMEDİYSE
+        else:
 
-        $this->bilgi->direktYonlen("/");
-    endif;
+            $this->bilgi->direktYonlen("/");
+        endif;
     
     }
 

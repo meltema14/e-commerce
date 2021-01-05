@@ -11,7 +11,7 @@ class Session {
         // db classı içindeki fonksiyonlara erişme
         self::$db= new Database();
         // oturum başlatma
-        session_start();
+       session_start();
 
     }
 

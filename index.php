@@ -9,11 +9,14 @@ spl_autoload_register(function($className)
     include($dosyayolu);
 });
 
+// index dosyası çalıştığında bu dosaları çalıştıracak 
+
 require 'config/genel.php';
 require 'config/database.php';
 require 'config/HariciFonksiyonlar.php';
+require 'Route.php';
 
-$boots = new boots; // boots sınıfı dahil ettik
+$Route = new Route; // URL YÖNLENDİRME
 
 
 ?>
