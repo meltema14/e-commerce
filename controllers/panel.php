@@ -24,8 +24,13 @@ class panel extends Controller {
 
     function siparisler() { // ADMİN PANEL SİPARİS SAYFASI
 
-        // yönetim paneli siparisler ekranını yükledik
-        $this->view->goster("YonPanel/sayfalar/siparis");
+        // yönetim paneli siparisler ekranına dbden gelen verileri yükleme
+        $this->view->goster("YonPanel/sayfalar/siparis",array(
+        
+        // dönen sonucu dataya gönder
+        "data" => $this->model->Verial("siparisler",false)
+
+        ));
 
     }
     

@@ -11,6 +11,12 @@ class adminpanel_model extends Model {
 
     }
 
+    function Verial ($tabloisim, $kosul) { // siparişleri çekmek için db deki ana sorgumuza ulaşma
+
+        return $this->db->listele($tabloisim, $kosul);
+
+    }
+
 
     
 

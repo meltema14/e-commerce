@@ -8,6 +8,22 @@
 
       <div class="col-xl-12 col-md-12 mb-12 text-center">
 
+   <?php 
+
+   // aynı sipariş numarısını ayrı ayrı göstermek yerine 1 sipariş olarak gösterme
+   $dizim = array(); // sip_no tutar
+   $sayi = 0;
+   foreach ($veri["data"] as $value):
+
+      if (!in_array($value["siparis_no"], $dizim)):
+         $sayi++;
+      endif;
+   $dizim[] = $value["siparis_no"];
+   endforeach;
+
+   ?>
+
+
          <!-- BAŞLIK -->
          <div class="row text-left border-bottom-mvc mb-2">
 
@@ -22,7 +38,15 @@
 
             <div class="col-xl-4 col-md-12 mb-12 p-2">
 
-               <h1 class="h3 mb-0 text-gray-800">Toplam sipariş : 000</h1>
+               <h1 class="h3 mb-0 text-gray-800">Toplam sipariş : 
+
+               <?php 
+
+                  echo $sayi;
+
+               ?>
+               
+               </h1>
 
             </div>
 
@@ -97,58 +121,42 @@
          <!--  ÜRÜNLER-->
          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-2 p-0">
 
-            <div class="row">
+            <div class="row">   
 
-               <table class="table table-striped">
-
-                  <tbody>
-
-                     <tr class="bg-gradient-gri text-dark">
-
-                        <td class="kalinyap">ÜRÜN ADI</td>
-                        <td class="kalinyap">ÜRÜN ADET</td>
-                        <td class="kalinyap">ÜRÜN FİYAT</td>
-                        <td class="kalinyap">TOPLAM FİYAT</td>
-
-                     </tr>
-
-                     <tr>
-
-                        <td>gömlek</td>
-                        <td>2</td>
-                        <td>12.20</td>
-                        <td>24.40</td>
-
-                     </tr>
-
-                     <tr>
-
-                        <td>kazak</td>
-                        <td>5</td>
-                        <td>2</td>
-                        <td>10.00</td>
-
-                     </tr>
-
-                  </tbody>
-
-               </table>
-
-               <table class="table text-right p-0 m-0">
-
-                  <tbody>
-
-                     <tr class="geneltext2">
-
-                        <td><span>SİPARİŞ TOPLAMI :</span> <span>34.40</span> </td>
-
-                     </tr>
-
-                  </tbody>
-
-               </table>
+               <div class="col-lg-3 bg-gradient-gri text-dark kalinyap p-2">ÜRÜN ADI</div>
+               <div class="col-lg-3 bg-gradient-gri text-dark kalinyap p-2">ÜRÜN ADET</div>
+               <div class="col-lg-3 bg-gradient-gri text-dark kalinyap p-2">ÜRÜN FİYAT</div>
+               <div class="col-lg-3 bg-gradient-gri text-dark kalinyap p-2">TOPLAM FİYAT</div>
 
             </div>
+
+            <div class="row border border-light">   
+
+               <div class="col-lg-3 text-dark kalinyap p-2">gömlek</div>
+               <div class="col-lg-3 text-dark kalinyap p-2">2</div>
+               <div class="col-lg-3 text-dark kalinyap p-2">3</div>
+               <div class="col-lg-3 text-dark kalinyap p-2">10</div>
+
+            </div>
+
+            <div class="row border border-light">   
+
+               <div class="col-lg-3 text-dark kalinyap p-2">hırka</div>
+               <div class="col-lg-3 text-dark kalinyap p-2">3</div>
+               <div class="col-lg-3 text-dark kalinyap p-2">5</div>
+               <div class="col-lg-3 text-dark kalinyap p-2">15</div>
+
+            </div>
+
+            <!-- TOPLAM FİYAT -->      
+            <div class="row"> 
+                      
+               <div class="col-lg-9 text-dark kalinyap p-2"></div>    
+               <div class="col-lg-2  geneltext2 text-right p-2"><span>SİPARİŞ TOPLAMI :</span></div>  
+               <div class="col-lg-1  geneltext2 text-left kalinyap p-2"><span >34.40</span></div>        
+               
+            </div>    
+            <!-- TOPLAM FİYAT --> 
 
          </div>
          <!--  ÜRÜNLER  -->
