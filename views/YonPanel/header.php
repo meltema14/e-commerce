@@ -40,7 +40,7 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="<?php echo URL."/panel/siparisler"; ?>">
           <i class="fas fa-donate"></i>
           <span>Sipariş Yönetimi</span></a>
       </li>

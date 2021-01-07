@@ -145,6 +145,43 @@ class Form extends Bilgi {
 
     }
 
+    public static function OlusturSelect($kriter, array $veri=NULL) {
+		// select açma işlemi
+		if ($kriter==1) :
+		
+			echo '<select '; 		
+		
+			foreach ($veri as $anahtar => $deger) :
+			
+			echo $anahtar."='".$deger."' ";	
+					
+			endforeach;
+				
+			echo'>'; 
+			
+		elseif ($kriter==2):		 
+		  
+		echo'</select>'; 
+		
+		endif;
+			
+    }
+    
+    public static function OlusturOption(array $option=NULL, $selected=false, $optionmetin) {
+			
+		echo '<option ' ;
+		//  Form::OlusturOption(array("value"=>0),"Tedarik");			
+		
+        foreach ($option as $anahtar => $deger) :	
+            
+            // ne kadar array varsa onu anahtar ve indis değeriyle işler
+		    echo  $anahtar."='".$deger."' ".$selected." ";
+				
+		endforeach;
+		echo "> ".$optionmetin."</option>";		
+	
+	}
+
 
 
 }

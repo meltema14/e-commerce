@@ -8,8 +8,114 @@
 
       <div class="col-xl-12 col-md-12 mb-12 text-center">
 
-   <?php 
+      <?php
 
+         // olumlu veya olumsuz sonuç uyarısı buraya yazılacak
+			if (isset($veri["bilgi"])) :
+
+				echo $veri["bilgi"];
+
+			endif;
+
+			if (isset($veri["KargoGuncelle"])) :
+
+
+
+				if (!$_POST) :
+
+			?>
+
+<!-- BAŞLIK -->
+      
+<div class="row text-left border-bottom-mvc mb-2">
+
+   <div class="col-xl-12 col-md-12 mb-12 border-left-mvc text-left p-2 mb-2">
+
+      <h1 class="h3 mb-0 text-gray-800">
+
+      <i class="fas fa-th basliktext"></i> Kargo Durum Güncelle</h1>
+
+   </div>
+
+</div>
+<!-- BAŞLIK -->
+
+   <?php
+   
+   // KARGO GÜNCELLEME
+
+   Form::Olustur("1", array(
+      "action" => URL . "/panel/kargoguncelleSon",
+      "method" => "POST"
+   ));
+   ?> 
+
+   <!--  FORMUN İSKELETİ-->
+
+   <div class="col-xl-12 col-md-12  text-center">
+
+      <div class="row text-center">
+
+         <div class="col-xl-4 col-md-6 mx-auto">
+
+            <div class="row bg-gradient-beyazimsi">
+
+               <div class="col-lg-12 col-md-12 col-sm-12 bg-gradient-mvc pt-2 basliktext2">
+
+                  <h3>Kargo Durum Güncelle</h3>
+
+               </div>
+
+               <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Mevcut Sipariş Durumu</div>
+
+               <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">
+
+                  <?php
+
+                  Form::OlusturSelect("1", array("name" => "durum", "class" => "form-control"));
+
+                  Form::OlusturOption(array("value" => "0"), $veri["KargoGuncelle"][0]["kargodurum"] == "0" ? "selected" : false, "Tedarik Sürecinde");
+
+                  Form::OlusturOption(array("value" => "1"), $veri["KargoGuncelle"][0]["kargodurum"] == "1" ? "selected" : false, "Paketleniyor");
+
+                  Form::OlusturOption(array("value" => "2"), $veri["KargoGuncelle"][0]["kargodurum"] == "2" ? "selected" : false, "Kargoya Verildi");
+
+                  Form::OlusturSelect("2", null);	?>
+
+               </div>
+
+
+               <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi"><?php
+
+                  Form::Olustur("2", array("type" => "submit", "value" => "GÜNCELLE", "class" => "btn btn-success"));
+                  // güncelle butonuna basıldığında sip no gönderme
+                  Form::Olustur("2", array("type" => "hidden", "name" => "sipno", "value" => $veri["KargoGuncelle"][0]["siparis_no"]));
+
+                  Form::Olustur("kapat");	 ?>
+                  
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <!--  FORMUN İSKELETİ-->
+
+<?php
+
+endif;
+
+endif; // KARGO DURUM GÜNCELLEME  
+
+// ---------------------------------------------------------
+
+   // SİPARİŞLERİN TÜMÜNÜN GÖRÜNDÜĞÜ YER
+
+   if (isset($veri["data"])) :
    // aynı sipariş numarısından birden fazla varsa bunu tek  1 sipariş olarak gösterme
    $dizim = array(); // sip_no tutar
    $sayi = 0;
@@ -21,9 +127,7 @@
 
    $dizim[] = $value["siparis_no"]; // döngüden gelen sip noları diziye tanımladım
    endforeach;
-
    ?>
-
 
       <!-- BAŞLIK -->
       
@@ -41,18 +145,10 @@
 
          <div class="col-xl-4 col-md-12 mb-12 p-2">
 
-            <h1 class="h3 mb-0 text-gray-800">Toplam sipariş : 
-
-            <?php 
-
-               echo $sayi;
-
-            ?>
-            
+            <h1 class="h3 mb-0 text-gray-800">Toplam sipariş : <?php echo $sayi; ?>
             </h1>
 
          </div>
-
 
          <div class="col-xl-4 col-md-12 mb-12 text-right">
 
@@ -146,7 +242,7 @@
 
          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 geneltext bg-gradient-mvc">
 
-            <a href="#" class="btn btn-sm btn-success btn-block mb-1">DURUM GÜNCELLE</a>
+            <a href="<?php echo URL."/panel/kargoguncelle/".$value["siparis_no"];?>" class="btn btn-sm btn-success btn-block mb-1">DURUM GÜNCELLE</a>
 
          </div>
 
@@ -196,10 +292,15 @@
       </div>
       <!-- SİPARİŞİN İSKELETİ BİTİYOR -->
 
-   
+      <?php 
+      // SİPARİŞLERİN TÜMÜNÜN GÖRÜNDÜĞÜ YER
+      endif; 
+      ?>
 
 </div>
-<!-- /.row bitiyor -->
+
+   </div>
+   <!-- /.row bitiyor -->
 
 </div>
 <!-- /.container-fluid -->
