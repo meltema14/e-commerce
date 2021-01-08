@@ -21,6 +21,12 @@ class adminpanel_model extends Model {
 		
         return $this->db->guncelle($tabloisim,$sutunlar,$veriler,$kosul);
         
+    }
+    
+    function Arama($tabloisim, $kosul) { // sipariş ara
+		
+        return $this->db->arama($tabloisim, $kosul);
+        
 	}
 
 

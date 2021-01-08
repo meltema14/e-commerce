@@ -25,20 +25,20 @@
 
 			?>
 
-<!-- BAŞLIK -->
-      
-<div class="row text-left border-bottom-mvc mb-2">
+   <!-- BAŞLIK -->
+         
+   <div class="row text-left border-bottom-mvc mb-2">
 
-   <div class="col-xl-12 col-md-12 mb-12 border-left-mvc text-left p-2 mb-2">
+      <div class="col-xl-12 col-md-12 mb-12 border-left-mvc text-left p-2 mb-2">
 
-      <h1 class="h3 mb-0 text-gray-800">
+         <h1 class="h3 mb-0 text-gray-800">
 
-      <i class="fas fa-th basliktext"></i> Kargo Durum Güncelle</h1>
+         <i class="fas fa-th basliktext"></i> Kargo Durum Güncelle</h1>
+
+      </div>
 
    </div>
-
-</div>
-<!-- BAŞLIK -->
+   <!-- BAŞLIK -->
 
    <?php
    
@@ -133,7 +133,7 @@ endif; // KARGO DURUM GÜNCELLEME
       
       <div class="row text-left border-bottom-mvc mb-2">
 
-         <div class="col-xl-4 col-md-12 mb-12 border-left-mvc text-left p-2 mb-2">
+         <div class="col-lg-2 col-xl-2 col-md-12 mb-12 border-left-mvc text-left p-2 mb-2">
 
             <h1 class="h3 mb-0 text-gray-800">
 
@@ -143,30 +143,58 @@ endif; // KARGO DURUM GÜNCELLEME
 
          </div>
 
-         <div class="col-xl-4 col-md-12 mb-12 p-2">
+         <div class="col-lg-3 col-xl-3 col-md-12 mb-12 p-2">
 
             <h1 class="h3 mb-0 text-gray-800">Toplam sipariş : <?php echo $sayi; ?>
             </h1>
 
          </div>
 
-         <div class="col-xl-4 col-md-12 mb-12 text-right">
+         <div class="col-xl-7 col-md-12 mb-12 text-right">
 
             <div class="row">
 
-               <div class="col-xl-8">
+               <div class="col-xl-4"> 
+                  <?php
+                  //       SİPARİŞ ARAMA FORMU BAŞLATMA
+                  Form::Olustur("1", array(
+				      "action" => URL . "/panel/siparisarama",
+				      "method" => "POST"
+                  ));
 
-                  <form action="#" method="post">
+                  Form::OlusturSelect("1", array("name" => "aramatercih", "class" => "form-control", "id" => "aramaselect"));
 
-                  <input type="text" class="form-control" name="sipno" placeholder="Sipariş numarası" />
+                  // sipariş numarasına göre arama
+			         Form::OlusturOption(array("value" => "sipno"), false, "Sipariş numarası");
+
+                  // üye bilgisine göre arama
+			         Form::OlusturOption(array("value" => "uyebilgi"), false, "Üye Bilgisi");
+
+			         Form::OlusturSelect("2", null);
+
+
+               ?>
+               </div>
+
+
+               <div class="col-xl-4">
+
+               <?php
+               //     SİPARİŞ ARAMA KUTUSU
+
+               Form::Olustur("2", array("type" => "text", "name" => "aramaverisi", "class" => "form-control", "id" => "aramakutusu"));
+
+			      ?>
 
                </div>
 
                <div class="col-xl-4">
 
-                  <input type="submit" value="ARA" class="btn btn-sm btn-mvc btn-block mt-1" />
+               <?php
 
-                  </form>
+               Form::Olustur("2", array("type" => "submit", "value" => "ARA", "class" => "btn btn-sm btn-mvc btn-block mt-1"));
+
+               Form::Olustur("kapat");	 ?>
 
                </div>
 
@@ -178,14 +206,62 @@ endif; // KARGO DURUM GÜNCELLEME
 
       <?php
 
+      //             TOPLAM FİYAT   
       $dizi2 = array();
+      // döngü döndükçe toplam fiyatı bu arraye atıyoruz
+      // bir sonraki siparişe geçtiğinde tuttuğu toplam fiyatı(arrayi) ekrana basıp içini boşaltıyoruz 
+      $toplam = array();
+      // foeach nerede bittiğini yakalayıp oraya toplamı yazmak için
+      $dongusayisi = 0;
+      // döngünün bir sonraki siparişi anlaması için true yapıcaz 
+      $izin = false;
+   
+		$satirsayi = count($veri["data"]);
 
       foreach ($veri["data"] as $value):
          // sipariş numarası dizi2de yoksa yeni ürünü alt dive atacak
          if (!in_array($value["siparis_no"], $dizi2)): 
-           
 
-      ?>
+            $dongusayisi++;
+
+            if (empty($toplam)) :
+            // dizi boşsa toplam fiyatı ekledim
+            $toplam[] = $value["toplamfiyat"];
+
+            // dizi boş değilse yani bi önceki siparişin kayıtları varsa
+            else:
+               
+            ?>
+
+            <!-- TOPLAM FİYAT -->      
+            <div class="row"> 
+                      
+               <div class="col-lg-9 text-dark kalinyap p-2"></div>    
+               <div class="col-lg-2  geneltext2 text-right p-2"><span>SİPARİŞ TOPLAMI :</span></div>  
+               <div class="col-lg-1  geneltext2 text-left kalinyap p-2"><span >
+               <?php
+
+               // toplam dizisinin sayısal elemanlarının değerleri toplayarak ekrana yazdırma
+                  print_r(array_sum($toplam));
+
+                  ?>
+
+               </span></div>        
+               
+            </div>    
+            <!-- TOPLAM FİYAT --> 
+
+            <?php
+
+            // bi sonraki eleman için diziyi temizler
+            unset($toplam);
+            $toplam = array();
+            // gelen yeni değeri toplam arrayine yazar
+            $toplam[] = $value["toplamfiyat"];
+
+         endif;
+
+         ?>
 
 
       <!-- SİPARİŞİN İSKELETİ BAŞLIYOR -->
@@ -199,7 +275,7 @@ endif; // KARGO DURUM GÜNCELLEME
 
          <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 pt-3 geneltext bg-gradient-mvc">
 
-            <span>Üye id :</span> <span class="spantext">21554</span>
+            <span>Üye id :</span> <span class="spantext"><?php echo $value["uyeid"]; ?></span>
 
          </div>
 
@@ -260,7 +336,23 @@ endif; // KARGO DURUM GÜNCELLEME
 
             <?php
 
-               endif;
+            // gelen sip no diziye daha önce kayıt edildiyse
+            else:
+
+               $dongusayisi++;
+                  // döngü bitimi
+                  if ($satirsayi == $dongusayisi) :
+                     $toplam[] = $value["toplamfiyat"];
+                     $izin = true;
+                  // bi sonraki sip no gelene kadar eklemeye devam et
+                  else :
+
+                     $toplam[] = $value["toplamfiyat"];
+                  endif;
+
+                  // burada başka işler var
+
+            endif;
                echo '<div class="row border border-light">   
 
                <div class="col-lg-3 text-dark kalinyap p-2">'.$value["urunad"].'</div>
@@ -269,6 +361,35 @@ endif; // KARGO DURUM GÜNCELLEME
                <div class="col-lg-3 text-dark kalinyap p-2">'.$value["toplamfiyat"].'</div>
 
                </div>';
+
+               // döngü bittiyse
+               if ($izin) :
+
+                  ?>
+
+                  <!-- TOPLAM FİYAT -->
+
+                  <div class="row">
+
+                     <div class="col-lg-9 text-dark kalinyap p-2"></div>
+                     <div class="col-lg-2  geneltext2 text-right p-2"><span>SİPARİŞ TOPLAMI :</span></div>
+                     <div class="col-lg-1  geneltext2 text-left kalinyap p-2"><span>
+
+                     <?php
+                     print_r(array_sum($toplam));
+
+                     ?></span></div>
+
+                  </div>
+                  <!-- TOPLAM FİYAT -->
+                  <?php
+
+                  unset($toplam);
+                  $toplam = array();
+
+               endif;
+
+
                // yazma işlemi bittikten sonra aynı sipariş noyu diziye ataarak döngüye devam eder
                $dizi2[] = $value["siparis_no"];
                endforeach;
@@ -276,15 +397,7 @@ endif; // KARGO DURUM GÜNCELLEME
 
             ?>
 
-            <!-- TOPLAM FİYAT -->      
-            <div class="row"> 
-                      
-               <div class="col-lg-9 text-dark kalinyap p-2"></div>    
-               <div class="col-lg-2  geneltext2 text-right p-2"><span>SİPARİŞ TOPLAMI :</span></div>  
-               <div class="col-lg-1  geneltext2 text-left kalinyap p-2"><span >34.40</span></div>        
-               
-            </div>    
-            <!-- TOPLAM FİYAT --> 
+            
 
          </div>
          <!--  ÜRÜNLER  -->

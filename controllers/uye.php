@@ -125,7 +125,7 @@ class uye extends Controller {
 
             // gelen verilerden eşleşen var mı diye db ye soruyoruz
             // 0 ya da 1 olarak geri döndürecek
-            $sonuc=$this->model->Eklemeİslemi("uye_panel", 
+            $sonuc=$this->model->Ekleİslemi("uye_panel", 
             // sütunlar
             array("ad", "soyad", "mail", "sifre", "telefon"),
             // değerler

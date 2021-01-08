@@ -14,11 +14,11 @@ class Bilgi {
     }
 
 
-    function hata($deger = false, $yol) {
+    function hata($deger = false, $yol, $sure=3) {
 
         // $deger: başarılı ya da başarısız olması(metin)
         return '<div class="alert alert-danger mt-5"> '.$deger.'</div>'
-        . header("Refresh:3; url=".URL.$yol);
+        . header("Refresh:".$sure."; url=".URL.$yol);
     }
 
     function uyari($tur, $metin, $id=false) {

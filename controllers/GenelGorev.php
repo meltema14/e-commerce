@@ -11,6 +11,8 @@ class GenelGorev extends Controller {
         // GenelGorev model dosyasını ekleme
         $this->Modelyukle('GenelGorev');
 
+        Session::init();
+
     }
 
     function YorumFormKontrol()  { // YORUM KONTROL

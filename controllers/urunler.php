@@ -10,7 +10,7 @@ class urunler extends Controller {
     {
         parent::__construct();
 
-        Session::init();
+        //Session::init();
 
         // modeli yükledik
         $this-> Modelyukle('urunler');
