@@ -1,6 +1,28 @@
 
 $(document).ready(function(e) {
 
+  // YonPanel - siparişler: selectboxta seçileni inuta yazdırma
+  $("#aramakutusu").attr("placeholder","Sipariş numarası");	
+	// değişimi yakala
+	$("#aramaselect").on('change', function(e) {
+		
+		var secilenial = $(this);
+		var valueninDegeri=secilenial.val();		
+		if (valueninDegeri=="sipno") {
+      // daha önceden girilen değer varsa seçimden sonra onu temizler
+		$("#aramakutusu").val("");	
+		$("#aramakutusu").attr("placeholder","Sipariş numarası yazın");	
+		}
+		if (valueninDegeri=="uyebilgi") {
+		$("#aramakutusu").val("");	
+		$("#aramakutusu").attr("placeholder","Üye bilgilerinden herhangi birini yazın");		
+		}
+		
+		
+	});
+
+
+
   // header sepet ikonu
   $("#SepetDurum").load("http://localhost/mvcproje/GenelGorev/SepetKontrol");
 
