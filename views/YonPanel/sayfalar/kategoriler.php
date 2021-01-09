@@ -69,7 +69,11 @@
 
                             <div class="row kategorieleman">
                             
-                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi"><?php echo $deger["ad"];?></div>
+                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi">
+                                    
+                                    <?php echo $deger["ad"];?>
+
+                                </div>
                                 
                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3  ">
 
@@ -145,7 +149,11 @@
 
                             <div class="row kategorieleman">
                             
-                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi"><?php echo $deger["ad"];?></div>
+                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi">
+
+                                    <?php echo $deger["ad"];?>
+
+                                </div>
                                     
                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3  ">
 
@@ -216,11 +224,20 @@
                         </div> 
 
                         <!-- Eleman -->      
+                        <?php
+                        //       --------   ALT KATEGORİ   --------
+                        foreach ($veri["altkategori"] as $deger) :
+
+                        ?>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">  
 
                             <div class="row kategorieleman">
                             
-                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi">Kategori Adı</div>
+                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi">
+                                    
+                                    <?php echo $deger["ad"];?>
+
+                                </div>
 
                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3  ">
 
@@ -244,6 +261,10 @@
                             </div> 
                         
                         </div> 
+                        <?php
+                        //      --------   ALT KATEGORİ   --------
+                        endforeach;
+                        ?> 
                         <!-- Eleman -->      
         
                     </div>
