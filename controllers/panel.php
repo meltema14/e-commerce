@@ -83,7 +83,7 @@ class panel extends Controller {
   
     }
     
-    function siparisarama() {   // SİPARİŞ NO İLE ARAMA
+    function siparisarama() {   // SİPARİŞ ARAMA
 
         // arama inputundan giriş yapıldıysa
         if ($_POST) :
@@ -103,18 +103,19 @@ class panel extends Controller {
             // selectboxtan gelen tercihe göre işlem yapma
             else:
 
+                // sipariş numarasına göre arama
                 if ($aramatercih=="sipno") :
-				
 				
                     $this->view->goster("YonPanel/sayfalar/siparis",array(
                     
                     // aranan numarayı arayıp data parametrisine gönderdim
                     "data" => $this->model->arama("siparisler","siparis_no LIKE '".$aramaverisi."'")));	
                     
+                // üye bilgilerine göre arama
                 elseif($aramatercih=="uyebilgi"):
                     
                     // eşleşen üyenin bilgisini alma
-                    // üye panelden id ad soyad sütunlarında aranan veriyi içeren varsa alıcak
+                    // üye panelden id, ad, soyad sütunlarında aranan veriyi içeren varsa alıcak
                     $bilgicek=$this->model->arama("uye_panel",
                     "id LIKE '%".$aramaverisi."%' or 
                     ad LIKE '%".$aramaverisi."%'  or 
@@ -124,7 +125,7 @@ class panel extends Controller {
                     if ($bilgicek):
                 
                     $this->view->goster("YonPanel/sayfalar/siparis",array(				
-                    "data" => $bilgicek				
+                    "data" => $this->model->Verial("siparisler", "where uyeid=".$bilgicek[0]["id"])			
                     ));		
                     
                     else:
@@ -146,6 +147,8 @@ class panel extends Controller {
 		endif;
 
     }
+
+    
      
 }
 

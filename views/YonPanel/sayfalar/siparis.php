@@ -214,9 +214,10 @@ endif; // KARGO DURUM GÜNCELLEME
       // foeach nerede bittiğini yakalayıp oraya toplamı yazmak için
       $dongusayisi = 0;
       // döngünün bir sonraki siparişi anlaması için true yapıcaz 
+
+      $satirsayi = count($veri["data"]);
       $izin = false;
-   
-		$satirsayi = count($veri["data"]);
+
 
       foreach ($veri["data"] as $value):
          // sipariş numarası dizi2de yoksa yeni ürünü alt dive atacak
