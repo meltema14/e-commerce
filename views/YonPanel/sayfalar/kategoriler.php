@@ -60,7 +60,7 @@
                         <!-- Eleman -->      
                         
                         <?php
-
+                        //       --------   ANA KATEGORİ   --------
                         foreach ($veri["anakategori"] as $deger) :
 
                         ?>
@@ -94,7 +94,9 @@
                             </div> 
         
                         </div> 
+
                         <?php
+                        //      --------   ANA KATEGORİ   --------
                         endforeach;
                         ?> 
                         <!-- Eleman -->      
@@ -114,6 +116,7 @@
                         <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 bg-gradient-mvc p-1"> <a href="#" class="fas fa-plus-square m-0 p-1 eklemebuton "></a></div>
         
                         <!-- Eleman -->    
+
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12"> 
 
                             <div class="row kategorieleman">
@@ -133,12 +136,16 @@
                 
                         </div> 
                         <!-- Eleman -->      
-                    
+                        <?php
+                        //       --------   ÇOCUK KATEGORİ   --------
+                        foreach ($veri["cocukkategori"] as $deger) :
+
+                        ?>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12"> 
 
                             <div class="row kategorieleman">
                             
-                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi">Kategori Adı</div>
+                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  pt-3 yescizgi"><?php echo $deger["ad"];?></div>
                                     
                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3  ">
 
@@ -163,6 +170,10 @@
                             </div> 
         
                         </div> 
+                        <?php
+                        //      --------   ÇOCUK KATEGORİ   --------
+                        endforeach;
+                        ?> 
                         <!-- Eleman -->                     
             
                     </div>
