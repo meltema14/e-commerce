@@ -148,8 +148,21 @@ class panel extends Controller {
 
     }
 
-    
+    function kategoriler() {
+			
+        $this->view->goster("YonPanel/sayfalar/kategoriler",array(
+        // tablolara dbden verileri çekme
+        "anakategori" => $this->model->Verial("ana_kategori",false),
+        "cocukkategori" => $this->model->Verial("cocuk_kategori",false),
+        "altkategori" => $this->model->Verial("alt_kategori",false)
+
+        ));
      
+    }
+
+
+
+
 }
 
 
