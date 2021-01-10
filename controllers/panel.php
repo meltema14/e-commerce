@@ -148,10 +148,11 @@ class panel extends Controller {
 
     }
 
-    function kategoriler() {
+    function kategoriler() { // KATEGORİLER ANA EKRANA GELİYOR
 			
         $this->view->goster("YonPanel/sayfalar/kategoriler",array(
-        // tablolara dbden verileri çekme
+        // kategoriler sayfasına ayrı ayrı sorgu atarak sorgunun sonuçlarını
+        // dizi oalrak tablolara gönderme
         "anakategori" => $this->model->Verial("ana_kategori",false),
         "cocukkategori" => $this->model->Verial("cocuk_kategori",false),
         "altkategori" => $this->model->Verial("alt_kategori",false)
@@ -160,6 +161,91 @@ class panel extends Controller {
      
     }
 
+    function kategoriGuncelle($kriter,$id){
+        // $kriter: ana, çocuk, alt
+        $this->view->goster("YonPanel/sayfalar/kategoriguncelleme",array(
+            //kategoriguncelleme sayfasına db den cektiğimizsorguları atıyoruz
+            "data" => $this->model->Verial($kriter."_kategori","where id=".$id),
+            // get ile gelen kriteri(ana, cocuk, alt) gönderme
+            "kriter" => $kriter,
+            "AnaktegorilerTumu" => $this->model->Verial("ana_kategori",false),
+            "CocukkategorilerTumu" => $this->model->Verial("cocuk_kategori",false)
+        
+        ));	
+        
+    }
+
+    function kategoriGuncelSon() {
+    
+        if ($_POST) :	
+
+            $kriter=$this->form->get("kriter")->bosmu();
+            $kayitid=$this->form->get("kayitid")->bosmu();
+            $katad=$this->form->get("katad")->bosmu();
+
+            @$anakatid=$_POST["anakatid"];
+            @$cocukkatid=$_POST["cocukkatid"];
+
+            // kategori id boş bırakıldığında hataya düşer
+            if (!empty($this->form->error)) :
+		
+                $this->view->goster("YonPanel/sayfalar/kategoriguncelleme",
+                array(		
+                "bilgi" => $this->bilgi->hata("Kategori adı girilmelidir.","/panel/kategoriler",1)
+
+            ));
+
+            // hata yoksa
+            else:
+
+                // kategori ana ise adı günceller
+                if ($kriter=="ana") :
+
+                    $sonuc=$this->model->Guncelle("ana_kategori",
+                    array("ad"),
+                    array($katad),"id=".$kayitid);
+                
+                // kategori cocuk ise ana_kat_id ve adı günceller
+                elseif($kriter=="cocuk") :
+                
+                    $sonuc=$this->model->Guncelle("cocuk_kategori",
+                    array("ana_kat_id","ad"),
+                    array($anakatid,$katad),"id=".$kayitid);
+
+                // kategori alt ise cocuk_kat_id, ana_kat_id, ad günceller
+                elseif($kriter=="alt") :
+
+                    $sonuc=$this->model->Guncelle("alt_kategori",
+                    array("cocuk_kat_id","ana_kat_id","ad"),
+                    array($cocukkatid,$anakatid,$katad),"id=".$kayitid);
+                    endif;
+                
+                // herhangi birinde güncelleme yapıldıysa
+                if ($sonuc): 
+
+                    $this->view->goster("YonPanel/sayfalar/kategoriguncelleme",
+                    array(
+                    "bilgi" => $this->bilgi->basarili("GÜNCELLEME BAŞARILI","/panel/kategoriler",2)
+                    ));
+                        
+                else:
+
+                    $this->view->goster("YonPanel/sayfalar/kategoriguncelleme",
+                    array(
+                    "bilgi" => $this->bilgi->hata("GÜNCELLEME SIRASINDA HATA OLUŞTU.","/panel/kategoriler",2)
+                    ));	
+            
+                endif;
+
+            endif;
+    
+            else:
+
+            $this->bilgi->direktYonlen("/panel/kategoriler");
+                
+            endif;	
+
+    }
 
 
 

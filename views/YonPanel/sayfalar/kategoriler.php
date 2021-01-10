@@ -8,6 +8,19 @@
 
         <div class="col-xl-12 col-md-12 mb-12 text-center"> 
 
+        <?php
+      
+     	 if (isset($veri["bilgi"])) :
+			
+			echo $veri["bilgi"];
+		
+		endif;
+  	   
+        if (isset($veri["anakategori"])) :		
+                    
+        
+        ?>
+
             <!-- BAŞLIK -->
             <div class="row text-left border-bottom-mvc mb-2">  
     
@@ -81,13 +94,13 @@
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-right"> 
 
-                                            <a href="#" class="fas fa-sync mt-2   p-1  guncelbuton"></a>
+                                            <a href="<?php echo URL."/panel/kategoriGuncelle/ana/".$deger["id"];?>" class="fas fa-sync mt-2   p-1  guncelbuton"></a>
 
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-left"> 
 
-                                            <a href="#" class="fas fa-times mt-1 p-1   silbuton"></a>
+                                            <a href="<?php echo URL."/panel/kategoriSil/ana/".$deger["id"];?>" class="fas fa-times mt-1 p-1   silbuton"></a>
 
                                         </div>
                                     
@@ -161,13 +174,13 @@
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-right"> 
 
-                                            <a href="#" class="fas fa-sync mt-2   p-1  guncelbuton"></a>
+                                            <a href="<?php echo URL."/panel/kategoriGuncelle/cocuk/".$deger["id"];?>" class="fas fa-sync mt-2   p-1  guncelbuton"></a>
 
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-left"> 
 
-                                            <a href="#" class="fas fa-times mt-1 p-1   silbuton"></a>
+                                            <a href="<?php echo URL."/panel/kategoriSil/cocuk/".$deger["id"];?>" class="fas fa-times mt-1 p-1   silbuton"></a>
                                             
                                         </div>
                                     
@@ -245,13 +258,14 @@
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-right"> 
 
-                                            <a href="#" class="fas fa-sync mt-2   p-1  guncelbuton"></a>
+                                            <a href="<?php echo URL."/panel/kategoriGuncelle/alt/".$deger["id"];?>" class="fas fa-sync mt-2   p-1  guncelbuton"></a>
 
                                         </div>
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-left"> 
 
-                                            <a href="#" class="fas fa-times mt-1 p-1   silbuton"></a>
+                                            <a href="<?php echo URL."/panel/kategoriSil/alt/".$deger["id"];?>" class="fas fa-times mt-1 p-1   silbuton"></a>
+
                                         </div> 
 
                                     </div>  
@@ -274,7 +288,7 @@
             
             </div>
             <!-- SİPARİŞİN İSKELETİ BİTİYOR -->
-
+            <?php  endif; ?>
         </div> 
 
     </div>  
