@@ -358,7 +358,7 @@ class panel extends Controller {
     
         ));
     }  
-     
+
     function uyearama() {	// ÜYE ARAMA
 
         if ($_POST) :
@@ -406,6 +406,31 @@ class panel extends Controller {
     
         endif;
     } 
+
+    function uyeSil($id) {  // ÜYE SİL	
+
+        // üye panelde seçilen idli ürünü sil
+		$sonuc=$this->model->Sil("uye_panel","id=".$id);
+
+        // silme başarılıysa üyeler tablosunda SİLME BAŞARILI uyarısı göster
+		if ($sonuc): 
+
+			$this->view->goster("YonPanel/sayfalar/uyeler",
+			array(
+			"bilgi" => $this->bilgi->basarili("SİLME BAŞARILI","/panel/uyeler",2)
+            ));
+            
+		// hata varsa
+		else:
+
+			$this->view->goster("YonPanel/sayfalar/uyeler",
+			array(
+			"bilgi" => $this->bilgi->hata("SİLME SIRASINDA HATA OLUŞTU.","/panel/uyeler",2)
+			));	
+
+		endif;
+
+	}  
 
    
     
