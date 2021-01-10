@@ -68,7 +68,7 @@
 				</div>
 		  </div>
 		  <div class="cards text-center">
-				<img src="images/cards.jpg" alt="" />
+				
 		  </div>
 		  <div class="copyright text-center">
 				<p>© 2021 | All Rights Reserved </p>

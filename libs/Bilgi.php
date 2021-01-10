@@ -5,12 +5,12 @@
 // hatayı yazdırıp, yönlendirme yapıyor
 class Bilgi {
 
-    function basarili($deger, $yol) {
+    function basarili($deger, $yol, $sure=3) {
 
         // $yol: yönlendirileceği sayfa
         // $deger: başarılı ya da başarısız olması(metin)
         return '<div class="alert alert-success mt-5 text-center"> '.$deger.'</div>'
-        . header("Refresh:3; url=".URL.$yol);
+        . header("Refresh:".$sure."; url=".URL.$yol);
     }
 
 

@@ -21,7 +21,7 @@ class magaza extends Controller {
                     // modele bağlanarak ürünlerden durum=0 olan ve en son eklenenleri getirir.(ANASAYFADAKİ ÜRÜNLER)
         "data1" => $this->model->anasayfaUrunler("urunler", "where durum=0 order by id desc LIMIT 9"),
                     // durumu 1 olanları getirir
-        "data2" => $this->model->anasayfaUrunler("urunler", "where durum=1 order by id desc"),
+        //"data2" => $this->model->anasayfaUrunler("urunler", "where durum=1 order by id desc"),
         ));
 
 

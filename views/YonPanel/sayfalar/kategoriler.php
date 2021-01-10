@@ -10,7 +10,7 @@
 
         <?php
       
-     	 if (isset($veri["bilgi"])) :
+     	if (isset($veri["bilgi"])) :
 			
 			echo $veri["bilgi"];
 		
@@ -74,6 +74,7 @@
                         
                         <?php
                         //       --------   ANA KATEGORİ   --------
+                        
                         foreach ($veri["anakategori"] as $deger) :
 
                         ?>

@@ -175,7 +175,7 @@ class panel extends Controller {
         
     }
 
-    function kategoriGuncelSon() {
+    function kategoriGuncelSon() { // KATEGORİLER GÜNCELLENİYOR VE SON POST İŞLEMİ
     
         if ($_POST) :	
 
@@ -245,6 +245,27 @@ class panel extends Controller {
                 
             endif;	
 
+    }
+
+    function kategoriSil($kriter,$id) { // KATEGORİ SİL
+
+        $sonuc=$this->model->Sil($kriter."_kategori","id=".$id);
+    
+        if ($sonuc): 
+    
+            $this->view->goster("YonPanel/sayfalar/kategoriler",
+            array(
+            "bilgi" => $this->bilgi->basarili("SİLME BAŞARILI","/panel/kategoriler",2)
+            ));
+                
+        else:
+    
+            $this->view->goster("YonPanel/sayfalar/kategoriler",
+            array(
+            "bilgi" => $this->bilgi->hata("SİLME SIRASINDA HATA OLUŞTU.","/panel/kategoriler",2)
+            ));	
+    
+        endif;
     }
 
 

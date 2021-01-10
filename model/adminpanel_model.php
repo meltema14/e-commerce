@@ -29,6 +29,11 @@ class adminpanel_model extends Model {
         
 	}
 
+    function Sil($tabloisim,$kosul) {
+		
+		return $this->db->sil($tabloisim,$kosul);
+		
+	}
 
     
 
