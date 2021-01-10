@@ -22,6 +22,8 @@ class panel extends Controller {
 
     }
 
+    //--------------------------------------------------------------------------------
+
     function siparisler() { // SİPARİSLERİN ANA EKRANI
 
         // yönetim paneli siparisler ekranına dbden gelen verileri yükleme
@@ -148,6 +150,8 @@ class panel extends Controller {
 
     }
 
+    //--------------------------------------------------------------------------------
+
     function kategoriler() { // KATEGORİLER ANA EKRANA GELİYOR
 			
         $this->view->goster("YonPanel/sayfalar/kategoriler",array(
@@ -161,7 +165,7 @@ class panel extends Controller {
      
     }
 
-    function kategoriGuncelle($kriter,$id){
+    function kategoriGuncelle($kriter,$id){ // KATEGORİ GÜNCELLEME
         // $kriter: ana, çocuk, alt
         $this->view->goster("YonPanel/sayfalar/kategoriguncelleme",array(
             //kategoriguncelleme sayfasına db den cektiğimizsorguları atıyoruz
@@ -277,7 +281,7 @@ class panel extends Controller {
     
     } 
 
-    function kategoriEkleSon() { 
+    function kategoriEkleSon() { // KATEGORİ EKLE SON
 
         if ($_POST) :	
 
@@ -343,6 +347,19 @@ class panel extends Controller {
         endif;	         
 
     }   
+
+    //--------------------------------------------------------------------------------
+
+    function uyeler () {  // ÜYELER ANA EKRANA GELİYOR	
+
+        $this->view->goster("YonPanel/sayfalar/uyeler",array(
+    
+        "data" => $this->model->Verial("uye_panel",false)
+    
+        ));
+    }   
+
+   
     
 
 

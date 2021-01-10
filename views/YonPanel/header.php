@@ -52,12 +52,12 @@
           <span>Kategori Yönetimi</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="<?php echo URL."/panel/uyeler"; ?>">
           <i class="fas fa-user"></i>
           <span>Üye Yönetimi</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="<?php echo URL."/panel/urunler"; ?>">
           <i class="fas  fa-award"></i>
           <span>Ürün Yönetimi</span></a>
       </li>
