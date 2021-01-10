@@ -46,7 +46,7 @@
 
                         <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 bg-gradient-mvc p-1"> 
                         
-                            <a href="#" class="fas fa-plus-square m-0 p-1 eklemebuton "></a>
+                            <a href="<?php echo URL."/panel/kategoriEkle/ana/";?>" class="fas fa-plus-square m-0 p-1 eklemebuton "></a>
 
                         </div>
             
@@ -131,7 +131,11 @@
                         
                         <div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 pt-3 bg-gradient-mvc">ÇOCUK KATEGORİLER</div>
 
-                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 bg-gradient-mvc p-1"> <a href="#" class="fas fa-plus-square m-0 p-1 eklemebuton "></a></div>
+                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 bg-gradient-mvc p-1"> 
+
+                            <a href="<?php echo URL."/panel/kategoriEkle/cocuk/";?>" class="fas fa-plus-square m-0 p-1 eklemebuton "></a>
+
+                        </div>
         
                         <!-- Eleman -->    
 
@@ -212,7 +216,7 @@
 
                         <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 bg-gradient-mvc p-1"> 
 
-                            <a href="#" class="fas fa-plus-square m-0 p-1 eklemebuton "></a>
+                            <a href="<?php echo URL."/panel/kategoriEkle/alt/";?>" class="fas fa-plus-square m-0 p-1 eklemebuton "></a>
                             
                         </div>
 

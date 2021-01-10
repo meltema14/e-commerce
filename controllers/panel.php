@@ -268,6 +268,83 @@ class panel extends Controller {
         endif;
     }
 
+    function kategoriEkle($kriter) { // KATEGORİ EKLE
+
+        $this->view->goster("YonPanel/sayfalar/kategoriEkle",
+        array("kriter" => $kriter,
+        "AnaktegorilerTumu" => $this->model->Verial("ana_kategori",false),
+        "CocukkategorilerTumu" => $this->model->Verial("cocuk_kategori",false)));		
+    
+    } 
+
+    function kategoriEkleSon() { 
+
+        if ($_POST) :	
+
+			$kriter=$this->form->get("kriter")->bosmu();		
+			$katad=$this->form->get("katad")->bosmu();
+			
+			@$anakatid=$_POST["anakatid"];
+			@$cocukkatid=$_POST["cocukkatid"];
+
+            // hata varsa kategoriler sayfasına yönlendir
+			if (!empty($this->form->error)) :
+			
+                $this->view->goster("YonPanel/sayfalar/kategoriekle",
+                array(		
+                "bilgi" => $this->bilgi->hata("Kategori adı girilmelidir.","/panel/kategoriler",1)
+			));		
+			
+            else:	
+
+                if ($kriter=="ana") :
+
+                    $sonuc=$this->model->Ekleme("ana_kategori",
+                    array("ad"),
+                    array($katad));
+                            
+                    elseif($kriter=="cocuk") :
+
+                    $sonuc=$this->model->Ekleme("cocuk_kategori",
+                    array("ana_kat_id","ad"),
+                    array($anakatid,$katad));
+                        
+                    elseif($kriter=="alt") :
+                
+                    $sonuc=$this->model->Ekleme("alt_kategori",
+                    array("cocuk_kat_id","ana_kat_id","ad"),
+                    array($cocukkatid,$anakatid,$katad));
+
+                endif;
+
+                // sonuç olumlu ise başarılı uyarısı gösterir ve kategoriler sayfasına yönlendirir
+                if ($sonuc): 
+
+                    $this->view->goster("YonPanel/sayfalar/kategoriekle",
+                    array(
+                    "bilgi" => $this->bilgi->basarili("EKLEME BAŞARILI","/panel/kategoriler",2)
+                    ));
+                        
+                else:
+            
+                    $this->view->goster("YonPanel/sayfalar/kategoriekle",
+                    array(
+                    "bilgi" => $this->bilgi->hata("EKLEME SIRASINDA HATA OLUŞTU.","/panel/kategoriler",2)
+                    ));	
+            
+                endif;
+                
+            endif;
+		
+        else:
+
+            $this->bilgi->direktYonlen("/panel/kategoriler");
+
+        endif;	         
+
+    }   
+    
+
 
 
 }

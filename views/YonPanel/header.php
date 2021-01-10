@@ -47,7 +47,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="<?php echo URL."/panel/kategoriler"; ?>">
           <i class="fas fa-sliders-h"></i>
           <span>Kategori Yönetimi</span></a>
       </li>

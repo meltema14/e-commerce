@@ -33,6 +33,12 @@ class adminpanel_model extends Model {
 		
 		return $this->db->sil($tabloisim,$kosul);
 		
+    }
+    
+    function Ekleme($tabloisim,$sutunlar,$veriler) {
+		
+        return $this->db->Ekle($tabloisim,$sutunlar,$veriler);
+        
 	}
 
     
