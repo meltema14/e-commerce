@@ -358,6 +358,53 @@ class panel extends Controller {
     
         ));
     }   
+    function uyearama() {	// ÜYE ARAMA
+
+        if ($_POST) :
+                
+            $aramaverisi=$this->form->get("aramaverisi")->bosmu();
+            
+            // boş bırakılmadıysa hata yoksa uyeler sayfasına yönlendir
+            if (!empty($this->form->error)) :
+            
+            $this->view->goster("YonPanel/sayfalar/uyeler",
+            array(		
+            "bilgi" => $this->bilgi->hata("KRİTER GİRİLMELİDİR.","/panel/uyeler",2)
+            ));      
+            
+            else:
+                // uye_panele sorgu atıyor
+                $bilgicek=$this->model->arama("uye_panel",
+                "id LIKE '%".$aramaverisi."%' or 
+                ad LIKE '%".$aramaverisi."%'  or 
+                soyad LIKE '%".$aramaverisi."%' or 
+                telefon LIKE '%".$aramaverisi."%'");
+                
+                // girilen veri(kriter:ad,soyad,id,telefon) tanımlı ise
+                if (isset($bilgicek[0]["id"])):
+            
+                    $this->view->goster("YonPanel/sayfalar/uyeler",array(
+                    // ilgili id yi çekme
+                    "data" => $this->model->Verial("uye_panel", "where id=".$bilgicek[0]["id"])			
+                    ));		
+                
+                else:
+                
+                    $this->view->goster("YonPanel/sayfalar/uyeler",
+                    array(		
+                    "bilgi" => $this->bilgi->hata("HİÇBİR KRİTER UYUŞMADI.","/panel/uyeler",2)
+                    ));	
+                    		
+                endif;
+                
+            endif;
+
+        else:
+            // posttan gelinmiyor ise
+            $this->bilgi->direktYonlen("/panel/uyeler");		
+    
+        endif;
+    } 
 
    
     
