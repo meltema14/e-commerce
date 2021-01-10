@@ -357,7 +357,8 @@ class panel extends Controller {
         "data" => $this->model->Verial("uye_panel",false)
     
         ));
-    }   
+    }  
+     
     function uyearama() {	// ÜYE ARAMA
 
         if ($_POST) :

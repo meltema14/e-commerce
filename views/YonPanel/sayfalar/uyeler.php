@@ -200,7 +200,11 @@
             <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 text-dark kalinyap p-2">' . $value["soyad"] . '</div>
             <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 text-dark kalinyap p-2">' . $value["mail"] . '</div>
             <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 text-dark kalinyap p-2">' . $value["telefon"] . '</div> 
-            <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2">durum</div> 
+            <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2">';
+            
+            echo $value["durum"] == 1 ? '<span class="text-success">Aktif</span>' :'<span class="text-danger">Pasif</span>';
+            
+            echo '</div> 
                 
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-right">
             <a href="' . URL . '/panel/uyeGuncelle/' . $value["id"] . '" class="fas fa-sync mt-1 guncelbuton"></a></div>
