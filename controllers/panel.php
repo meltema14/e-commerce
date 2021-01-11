@@ -127,7 +127,7 @@ class panel extends Controller {
                     if ($bilgicek):
                 
                     $this->view->goster("YonPanel/sayfalar/siparis",array(				
-                    "data" => $this->model->Verial("siparisler", "where uyeid=".$bilgicek[0]["id"])			
+                    "data" => $bilgicek			
                     ));		
                     
                     else:
@@ -382,11 +382,11 @@ class panel extends Controller {
                 telefon LIKE '%".$aramaverisi."%'");
                 
                 // girilen veri(kriter:ad,soyad,id,telefon) tanımlı ise
-                if (isset($bilgicek[0]["id"])):
+                if ($bilgicek):
             
                     $this->view->goster("YonPanel/sayfalar/uyeler",array(
                     // ilgili id yi çekme
-                    "data" => $this->model->Verial("uye_panel", "where id=".$bilgicek[0]["id"])			
+                    "data" =>$bilgicek		
                     ));		
                 
                 else:
@@ -506,6 +506,59 @@ class panel extends Controller {
         ));
     
     }  
+
+    function urunarama(){    // ÜRÜNLER ARAMA
+
+		if ($_POST) :
+
+			$aramaverisi = $this->form->get("arama")->bosmu();
+            // hata avrsa ürünler sayfasına yönlendirip uyarı verir
+			if (!empty($this->form->error)) :
+
+				$this->view->goster(
+					"YonPanel/sayfalar/urunler",
+					array(
+					"bilgi" => $this->bilgi->hata("KRİTER GİRİLMELİDİR.", "/panel/urunler", 2)
+					)
+				);
+            
+            // hata yoksa ürünler tablosuna bağlanıp aranacak dataları çeker
+			else :
+
+				$bilgicek = $this->model->arama("urunler",
+					"urunad LIKE '%" . $aramaverisi . "%' or 
+		            kumas LIKE '%" . $aramaverisi . "%'  or 
+		            urtYeri LIKE '%" . $aramaverisi . "%' or 
+		            stok LIKE '%" . $aramaverisi . "%'"
+				);
+
+                // gelen veriyi dizi olarak aktarma
+				if ($bilgicek) :
+
+					$this->view->goster("YonPanel/sayfalar/urunler", array(
+
+						"data" => $bilgicek,
+						"data2" => $this->model->Verial("alt_kategori", false)
+					));
+
+				else :
+
+					$this->view->goster("YonPanel/sayfalar/urunler",array(
+						"bilgi" => $this->bilgi->hata("HİÇBİR KRİTER UYUŞMADI.", "/panel/urunler", 2)
+						)
+					);
+				endif;
+
+			endif;
+
+        else :
+            
+			$this->bilgi->direktYonlen("/panel/urunler");
+
+		endif;
+    } 
+    
+    
 
    
     

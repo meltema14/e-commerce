@@ -251,16 +251,15 @@
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-right">
             <a href="' . URL . '/panel/urunGuncelle/' . $value["id"] . '" class="fas fa-sync mt-1 guncelbuton"></a></div>
                       
-                    <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-left">               
+            <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-left">               
             <a href="' . URL . '/panel/urunSil/' . $value["id"] . '" class="fas fa-times   silbuton"></a>  </div>
             </div> 
             
-            
-              </div>';
+            </div>';
 
           endforeach;
 
-            ?>
+          ?>
 
             <!-- -->
 
