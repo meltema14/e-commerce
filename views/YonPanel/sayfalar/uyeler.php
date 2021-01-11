@@ -16,7 +16,7 @@
 
       endif;
 
-      if (isset($veri["uyeGuncelle"])) :
+      if (isset($veri["Uyeguncelle"])) :
 
         if (!$_POST) :
 
@@ -48,21 +48,57 @@
                   <div class="col-lg-12 col-md-12 col-sm-12 bg-gradient-mvc pt-2 basliktext2">
                     <h3>Üye Bilgileri Güncelle</h3>
                   </div>
+
                   <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Üye Adı</div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                  <?php
+
+                  Form::Olustur("1", array(
+                    "action" => URL . "/panel/uyeguncelleSon",
+                    "method" => "POST"
+                  ));
+
+                  Form::Olustur("2", array("type" => "text", "value" => $veri["Uyeguncelle"][0]["ad"], "class" => "form-control", "name" => "ad"));
+
+                  ?>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Üye soyadı</div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                    <?php
+
+                    Form::Olustur("2", array("type" => "text", "value" => $veri["Uyeguncelle"][0]["soyad"], "class" => "form-control", "name" => "soyad"));
+
+                    ?>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Mail adresi</div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                    <?php
+
+                    Form::Olustur("2", array("type" => "text", "value" => $veri["Uyeguncelle"][0]["mail"], "class" => "form-control", "name" => "mail"));
+
+                    ?>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Telefon</div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                    <?php
+
+                    Form::Olustur("2", array("type" => "text", "value" => $veri["Uyeguncelle"][0]["telefon"], "class" => "form-control", "name" => "telefon"));
+
+                    ?>
+                  </div>
+
                   <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">
 
                     <?php
-
-                    Form::Olustur("1", array(
-                      "action" => URL . "/panel/uyeguncelleSon",
-                      "method" => "POST"
-                    ));
-
+                    // durum (aktif/pasif)
                     Form::OlusturSelect("1", array("name" => "durum", "class" => "form-control"));
 
-                    Form::OlusturOption(array("value" => "0"), false, "Aktif");
+                    Form::OlusturOption(array("value" => "0"), $veri["Uyeguncelle"][0]["durum"] == 0 ? "selected" : false, "Pasif");
 
-                    Form::OlusturOption(array("value" => "1"), false, "Pasif");
+                    Form::OlusturOption(array("value" => "1"), $veri["Uyeguncelle"][0]["durum"] == 1 ? "selected" : false, "Aktif");
 
                     Form::OlusturSelect("2", null);  
 
@@ -76,7 +112,7 @@
 
                     Form::Olustur("2", array("type" => "submit", "value" => "GÜNCELLE", "class" => "btn btn-success"));
 
-                    Form::Olustur("2", array("type" => "hidden", "name" => "sipno", "value" => $veri["KargoGuncelle"][0]["siparis_no"]));
+                    Form::Olustur("2", array("type" => "hidden", "name" => "uyeid", "value" => $veri["Uyeguncelle"][0]["id"]));
 
                     Form::Olustur("kapat");   
                     ?>
@@ -96,9 +132,9 @@
 
         endif;
 
-      endif; // KARGO DURUM GÜNCELLEME
+      endif; // ÜYE GÜNCELLEME
 
-      // SİPARİŞLERİN TÜMÜNÜN GÖRÜNDÜĞÜ YER
+      // ÜYELERİN TÜMÜNÜN GÖRÜNDÜĞÜ YER
       if (isset($veri["data"])) :
 
         ?>

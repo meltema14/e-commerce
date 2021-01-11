@@ -430,7 +430,72 @@ class panel extends Controller {
 
 		endif;
 
-	}  
+    }  
+    
+    function uyeGuncelle($id) { // ÜYELER GÜNCELLE
+			
+        $this->view->goster("YonPanel/sayfalar/uyeler",array(	
+        "Uyeguncelle" => $this->model->Verial("uye_panel","where id=".$id)	
+        ));	
+
+    } 
+
+    function uyeguncelleSon() { // ÜYELER GÜNCEL SON	
+        
+        // bilgiler posttan girildiyse
+		if ($_POST) :	
+            
+            // forma girilen bilgileri çekme
+			$ad=$this->form->get("ad")->bosmu();
+			$soyad=$this->form->get("soyad")->bosmu();
+			$mail=$this->form->get("mail")->bosmu();
+			$telefon=$this->form->get("telefon")->bosmu();
+			//$durum=$this->form->get("durum")->bosmu();
+			$uyeid=$this->form->get("uyeid")->bosmu();
+			$durum=$_POST["durum"];
+            
+            // formdan girilen verilerden herhangi biri boş bırakıldıysa
+			if (!empty($this->form->error)) :
+			
+                $this->view->goster("YonPanel/sayfalar/uyeler",
+                array(		
+                "bilgi" => $this->bilgi->hata("Tüm alanlar doldurulmalıdır.","/panel/uyeler",2)
+                ));		
+			
+            else:	
+                    
+                $sonuc=$this->model->Guncelle("uye_panel",
+                array("ad","soyad","mail","telefon","durum"),
+                array($ad,$soyad,$mail,$telefon,$durum),"id=".$uyeid);
+                    
+                if ($sonuc): 
+
+                    $this->view->goster("YonPanel/sayfalar/uyeler",
+                    array(
+                    "bilgi" => $this->bilgi->basarili("GÜNCELLEME BAŞARILI","/panel/uyeler",2)
+                    ));
+                        
+                else:
+                
+                    $this->view->goster("YonPanel/sayfalar/uyeler",
+                    array(
+                    "bilgi" => $this->bilgi->hata("GÜNCELLEME SIRASINDA HATA OLUŞTU.","/panel/uyeler",2)
+                    ));	
+                
+                endif;
+            
+            endif;	
+				
+        else:
+            
+			$this->bilgi->direktYonlen("/panel/uyeler");
+				
+		endif;		
+		
+
+
+		
+	} 
 
    
     
