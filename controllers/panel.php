@@ -492,10 +492,20 @@ class panel extends Controller {
 				
 		endif;		
 		
+    } 
+    
+    //--------------------------------------------------------------------------------
 
+    function urunler () {   // ÜRÜNLER GELİYOR
 
-		
-	} 
+        $this->view->goster("YonPanel/sayfalar/urunler",array(
+    
+        "data" => $this->model->Verial("urunler",false),
+        "data2" => $this->model->Verial("alt_kategori",false)
+         
+        ));
+    
+    }  
 
    
     
