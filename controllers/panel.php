@@ -941,6 +941,74 @@ class panel extends Controller {
     } 
     
     
+    function sistemayar () {   // SİSTEM AYARLARI GELİYOR
+
+        $this->view->goster("YonPanel/sayfalar/sistemayar",array(
+    
+        "sistemayar" => $this->model->Verial("ayarlar",false)
+         
+        ));
+    
+    }
+
+    function ayarguncelle(){    // SİSTEM AYARLARI GÜNCELLEME SON	
+
+		if ($_POST) :
+
+            // form verilerinin boş olup olmadığını test eder
+			$sloganust1 = $this->form->get("sloganust1")->bosmu();
+			$sloganalt1 = $this->form->get("sloganalt1")->bosmu();
+			$sloganust2 = $this->form->get("sloganust2")->bosmu();
+			$sloganalt2 = $this->form->get("sloganalt2")->bosmu();
+			$sloganust3 = $this->form->get("sloganust3")->bosmu();
+			$sloganalt3 = $this->form->get("sloganalt3")->bosmu();
+
+			$sayfatitle = $this->form->get("sayfatitle")->bosmu();
+			$sayfaaciklama = $this->form->get("sayfaaciklama")->bosmu();
+            $anahtarkelime = $this->form->get("anahtarkelime")->bosmu();
+            $kayitid = $this->form->get("kayitid")->bosmu();
+
+            // form elemanlarında boş alan bırakıldıysa
+			if (!empty($this->form->error)) :
+
+				$this->view->goster(
+					"YonPanel/sayfalar/sistemayar",array(
+					"bilgi" => $this->bilgi->hata("Tüm alanlar doldurulmalıdır.", "/panel/sistemayar", 2)
+				));
+
+            // sorun yoksa kayıt işlemine başlar
+			else :
+
+				$sonuc = $this->model->Guncelle(
+					"ayarlar",
+					array("sloganUst1", "sloganAlt1", "sloganUst2", "sloganAlt2", "sloganUst3", "sloganAlt3", "title", "sayfaAciklama", "anahtarKelime"),
+					array($sloganust1, $sloganalt1, $sloganust2, $sloganalt2, $sloganust3, $sloganalt3, $sayfatitle, $sayfaaciklama, $anahtarkelime), "id=".$kayitid
+				);
+
+				if ($sonuc) :
+
+					$this->view->goster(
+						"YonPanel/sayfalar/sistemayar",array(
+						"bilgi" => $this->bilgi->basarili("SİSTEM AYARLARI BAŞARIYLA GÜNCELLENDİ", "/panel/sistemayar", 2)
+					));
+
+				else :
+
+					$this->view->goster(
+						"YonPanel/sayfalar/sistemayar",array(
+						"bilgi" => $this->bilgi->hata("GÜNCELLEME SIRASINDA HATA OLUŞTU.", "/panel/sistemayar", 2)
+					));
+
+				endif;
+
+			endif;
+
+        else :
+            
+			$this->bilgi->direktYonlen("/panel/sistemayar");
+
+		endif;
+	}
 
 
 
