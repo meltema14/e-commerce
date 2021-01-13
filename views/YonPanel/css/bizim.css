@@ -148,3 +148,12 @@
 .adresbuton:hover {
 	color:#5E5E5E;	
 }
+
+/* 	bülten yönetimi */ 
+
+.mailcerceve {
+	border:1px solid #CACACA; 
+	background-color:#E6E6E6;
+	color:#737373;
+	border-radius:5px;
+}

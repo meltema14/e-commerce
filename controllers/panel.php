@@ -814,6 +814,42 @@ class panel extends Controller {
 		endif;
 	}	 
    
+    //--------------------------------------------------------------------------------
+
+    function bulten () {   // BÜLTEN GELİYOR
+
+        $this->view->goster("YonPanel/sayfalar/bulten",array(
+    
+        "data" => $this->model->Verial("bulten",false)
+         
+        ));
+    
+    }
+
+    function mailSil($id) { // BÜLTEN MAİL SİL	
+
+		$sonuc = $this->model->Sil("bulten", "id=" . $id);
+
+		if ($sonuc) :
+
+			$this->view->goster(
+				"YonPanel/sayfalar/bulten",
+				array(
+					"bilgi" => $this->bilgi->basarili("SİLME BAŞARILI", "/panel/bulten", 2)
+				)
+			);
+
+		else :
+
+			$this->view->goster(
+				"YonPanel/sayfalar/urunler",
+				array(
+					"bilgi" => $this->bilgi->hata("SİLME SIRASINDA HATA OLUŞTU.", "/panel/bulten", 2)
+				)
+			);
+
+		endif;
+	} 
     
 
 

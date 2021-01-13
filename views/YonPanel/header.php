@@ -63,19 +63,19 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="<?php echo URL."/panel/bulten"; ?>">
           <i class="fas  fa-envelope-square"></i>
           <span>Bülten Yönetimi</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="<?php echo URL."/panel/sistemayar"; ?>">
           <i class="fas  fa-cogs"></i>
           <span>Sistem Ayarları</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="<?php echo URL."/panel/sistembakim"; ?>">
           <i class="fas  fa-wrench"></i>
           <span>Sistem Bakım</span></a>
       </li>
