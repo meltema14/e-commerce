@@ -136,3 +136,15 @@
 	border-top:1px solid #CACACA;
 	padding:10px;
 }
+
+/* 	ürün yönetimi adrs butonu */
+
+.adresbuton:link, .adresbuton:visited {
+	font-size:20px;
+	text-decoration:none;
+	color:#313131;	
+}
+
+.adresbuton:hover {
+	color:#5E5E5E;	
+}

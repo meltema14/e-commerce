@@ -60,7 +60,7 @@
                 <div class="row bg-gradient-beyazimsi">
 
                   <div class="col-lg-12 col-md-12 col-sm-12 bg-gradient-mvc pt-2 basliktext2">
-                    <h3>Ürün Güncelle</h3>
+                    <h3>Ürün Güncelleme</h3>
                   </div>
                   
                   <div class="col-lg-12 col-md-12 col-sm-12">
@@ -671,6 +671,7 @@
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2">' . $value["satisadet"] . '</div> 
                 
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-right">
+            
             <a href="' . URL . '/panel/urunGuncelle/' . $value["id"] . '" class="fas fa-sync mt-1 guncelbuton"></a></div>
                       
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-left">               

@@ -137,7 +137,7 @@ class uye extends Controller {
 
                 // üye olma işlemi tamamlandıysa
                 $this->view->goster("sayfalar/uyeol",
-                array("bilgi" => $this->bilgi->uyari("success"," KAYIT BAŞARILI ")));
+                array("bilgi" => $this->bilgi->basarili("KAYIT BAŞARILI","/uye/giris")));
 
             else:
 

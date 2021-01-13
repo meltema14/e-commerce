@@ -134,6 +134,84 @@
 
       endif; // ÜYE GÜNCELLEME
 
+      //****************************************************************************
+
+      if (isset($veri["UyeadresBak"])) :
+
+          ?>
+
+          <!-- BAŞLIK -->
+
+          <div class="row text-left border-bottom-mvc mb-2">
+
+            <div class="col-xl-12 col-md-12 mb-12 border-left-mvc text-left p-2 mb-2">
+              <h1 class="h3 mb-0 text-gray-800"> <i class="fas fa-th basliktext"></i> ÜYE ADRESLERİ </h1>
+            </div>
+
+
+          </div>
+          <!-- BAŞLIK -->
+
+          <!--  FORMUN İSKELETİ-->
+
+          <div class="col-xl-12 col-md-12  text-center">
+
+            <div class="row text-center">
+
+              <div class="col-xl-4 col-md-6 mx-auto">
+
+
+                <div class="row bg-gradient-beyazimsi">
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 bg-gradient-mvc pt-2 basliktext2">
+                    <h3>Üye Adresleri</h3>
+                  </div>
+
+                  <?php
+
+                  // üyenin adresi yoksa
+                  if(empty($veri["UyeadresBak"])):
+
+                    echo '<div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                    <div class="alert alert-danger">Kayıtlı Adres Yok</div>
+                    </div>';
+
+                  else:
+
+                    // ÜYENİN KAÇ TANE ADRESİ VARSA HEPSİNİ GÖSTERECEK
+                    foreach ($veri["UyeadresBak"] as $deger) :
+
+                      echo '<div class="col-lg-12 col-md-12 col-sm-12 formeleman">'.$deger ["adres"];
+                      
+                      // varsayılan adresi gösterme
+                      echo $deger ["varsayilan"]==1 ? "<br><span class='text-danger'> (Varsayilan Adres)</span>" : "";
+                      echo'</div>';
+                      
+                    endforeach;
+
+                  endif;
+
+                  ?>
+
+            
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!--  FORMUN İSKELETİ-->
+          <?php
+
+      endif; // ÜYE ADRESLERİ
+
+
+      //****************************************************************************
+
+
       // ÜYELERİN TÜMÜNÜN GÖRÜNDÜĞÜ YER
       if (isset($veri["data"])) :
 
@@ -243,6 +321,8 @@
             echo '</div> 
                 
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-right">
+
+            <a href="'.URL.'/panel/uyeadresbak/'.$value["id"].'"  class="fas fa-address-book adresbuton mr-2"  ></a>
             <a href="' . URL . '/panel/uyeGuncelle/' . $value["id"] . '" class="fas fa-sync mt-1 guncelbuton"></a></div>
                       
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 text-dark kalinyap p-2 text-left">               

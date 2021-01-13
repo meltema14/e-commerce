@@ -493,6 +493,14 @@ class panel extends Controller {
 		endif;		
 		
     } 
+
+    function uyeadresbak($id) { // ÜYELERİN ADRESLERİNİ GETİRİR
+			
+        $this->view->goster("YonPanel/sayfalar/uyeler",array(	
+        "UyeadresBak" => $this->model->Verial("adresler","where uyeid=".$id)	
+        ));	
+
+    } 
     
     //--------------------------------------------------------------------------------
 
