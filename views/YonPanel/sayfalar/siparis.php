@@ -317,9 +317,19 @@ endif; // KARGO DURUM GÜNCELLEME
 
          </div>
 
-         <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 geneltext bg-gradient-mvc">
 
-            <a href="<?php echo URL."/panel/kargoguncelle/".$value["siparis_no"];?>" class="btn btn-sm btn-success btn-block mb-1">DURUM GÜNCELLE</a>
+         <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 geneltext bg-gradient-mvc" id="detaygoster">
+
+            <a class="btn btn-info" data-value="<?php echo $value["siparis_no"]; ?>" data-value2="<?php 
+            echo $value["adresid"]; ?>" data-toggle="modal" data-target="#exampleModalCenter">
+            <i class="fas fa-truck"></i>
+            </a>
+           
+         </div>
+
+         <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 geneltext bg-gradient-mvc">
+  
+            <a href="<?php echo URL."/panel/kargoguncelle/".$value["siparis_no"];?>" class="btn btn-sm btn-success btn-block mb-1">GÜNCELLE</a>
 
          </div>
 

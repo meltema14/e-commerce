@@ -18,53 +18,59 @@ class GenelGorev extends Controller {
     function YorumFormKontrol()  { // YORUM KONTROL
 
         // --------- AD VE YORUM KISMINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
+        if ($_POST) :
+            $ad = $this->form->get("ad")->bosmu();
+            $yorum = $this->form->get("yorum")->bosmu();
+            $urunid = $this->form->get("urunid")->bosmu();
+            $uyeid = $this->form->get("uyeid")->bosmu();
+            $tarih = date("d-m-Y");
 
-        $ad = $this->form->get("ad")->bosmu();
-        $yorum = $this->form->get("yorum")->bosmu();
-        $urunid = $this->form->get("urunid")->bosmu();
-        $uyeid = $this->form->get("uyeid")->bosmu();
-        $tarih = date("d-m-Y");
+            // ad ya da yorum boşsa
+            // bir hata var demek
+            if(!empty($this->form->error)):
 
-        // ad ya da yorum boşsa
-        // bir hata var demek
-        if(!empty($this->form->error)):
-
-            echo $this->bilgi->uyari("danger"," lÜTFEN BOŞ ALAN BIRAKMAYINIZ. ");
-            
-        // gelen ad ve yorum verisinde sorun yoksa
-        else:
-
-            // gelen verilerden eşleşen var mı diye db ye soruyoruz
-            // 0 ya da 1 olarak geri döndürecek
-            $sonuc=$this->model->YorumEkleme("yorumlar", 
-            // sütunlar
-            array("uyeid","urunid", "ad", "icerik","tarih"),
-            // değerler
-            array($uyeid ,$urunid, $ad, $yorum, $tarih)
-            );
-
-            // giriş yapıldıysa
-            if($sonuc==1):
-
-                // üye olma işlemi tamamlandıysa
-                /*$this->view->goster("sayfalar/uyeol",
-                array("bilgi" => $this->bilgi->uyari("success"," Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.")));*/
+                echo $this->bilgi->uyari("danger"," lÜTFEN BOŞ ALAN BIRAKMAYINIZ. ");
                 
-                echo $this->bilgi->uyari("success","Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.", 'id="ok"');
-
+            // gelen ad ve yorum verisinde sorun yoksa
             else:
 
-                // eşleşme yok yani üye yok
-                /*$this->view->goster("sayfalar/uyeol",
-                array(
-                "bilgi" => 
-                $this->bilgi->uyari("danger"," Kayıt esnasında hata oluştu"))); */
+                // gelen verilerden eşleşen var mı diye db ye soruyoruz
+                // 0 ya da 1 olarak geri döndürecek
+                $sonuc=$this->model->YorumEkleme("yorumlar", 
+                // sütunlar
+                array("uyeid","urunid", "ad", "icerik","tarih"),
+                // değerler
+                array($uyeid ,$urunid, $ad, $yorum, $tarih)
+                );
 
-                echo $this->bilgi->uyari("danger"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
-            
+                // giriş yapıldıysa
+                if($sonuc==1):
+
+                    // üye olma işlemi tamamlandıysa
+                    /*$this->view->goster("sayfalar/uyeol",
+                    array("bilgi" => $this->bilgi->uyari("success"," Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.")));*/
+                    
+                    echo $this->bilgi->uyari("success","Yorumunuz kayıt edildi. Onaylandıktan sonra yayınlanacaktır.", 'id="ok"');
+
+                else:
+
+                    // eşleşme yok yani üye yok
+                    /*$this->view->goster("sayfalar/uyeol",
+                    array(
+                    "bilgi" => 
+                    $this->bilgi->uyari("danger"," Kayıt esnasında hata oluştu"))); */
+
+                    echo $this->bilgi->uyari("danger"," HATA OLUŞTU. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ.");
+                
+
+                endif;
 
             endif;
 
+        else:
+
+            $this->bilgi->direktYonlen("/");
+            
         endif;
 
     }
@@ -223,7 +229,83 @@ class GenelGorev extends Controller {
         
     }
 
+    function teslimatgetir () {
 
+        // --------- sipno VE uyeid KISMINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
+        if ($_POST) :
+
+            $sipno = $this->form->get("sipno")->bosmu();
+            $adresid = $this->form->get("adresid")->bosmu();
+
+            $teslimatbilgileriGetir=$this->model->Verial("teslimatbilgileri","where siparis_no=".$sipno);
+
+            $AdresGetir=$this->model->Verial("adresler","where id=".$adresid);
+
+            echo '<div class="row">
+
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 border-dark">
+                <div class="row">
+
+                    <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 text-left">
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 border-bottom border-secondary mb-2">
+                                <h5>KİŞİSEL BİLGİLER</h5>
+                            </div>
+
+                            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                                <span class="font-weight-bold">Ad : </span>'.$teslimatbilgileriGetir[0]["ad"].'
+                            </div>
+
+
+                            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                                <span class="font-weight-bold">Soyad : </span>'.$teslimatbilgileriGetir[0]["soyad"].'
+                            </div>
+
+
+                            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                                <span class="font-weight-bold">Mail : </span>'.$teslimatbilgileriGetir[0]["mail"].'
+                            </div>
+
+
+                            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                                <span class="font-weight-bold">Telefon : </span>'.$teslimatbilgileriGetir[0]["telefon"].'
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 text-left">
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 border-bottom border-secondary mb-2">
+                                <h5>ADRES BİLGİSİ</h5>
+                            </div>
+
+                            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                                <span class="font-weight-bold">Adres : </span>'.$AdresGetir [0]["adres"].'
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>';
+
+        else:
+
+        $this->bilgi->direktYonlen("/");
+        
+        endif;
+
+
+    }
+
+
+    
 }
 
 ?>

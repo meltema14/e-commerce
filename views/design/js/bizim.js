@@ -1,6 +1,25 @@
 
 $(document).ready(function(e) {
 
+
+  // detaygoster divinin içerisindeki tüm a etiketinin tıklama hareketini yakalama
+  $('#detaygoster a').click(function(){
+
+    /* tıklanan a etiketinin data-value özelliğini(yani sipariş no) yakaladık */
+    var sipno = $(this).attr('data-value');
+    var adresid = $(this).attr('data-value2');
+
+    // teslimatgetir methoduna sipno ve adresid gönderdik
+    $.post("http://localhost/mvcproje/GenelGorev/teslimatgetir",{"sipno":sipno, "adresid":adresid},
+     function(cevap) {
+      // gelen sonucu bu classın içine yaz
+      $(".modal-body").html(cevap);
+
+    });
+
+  });
+
+
   // YonPanel - siparişler: selectboxta seçileni inuta yazdırma
   $("#aramakutusu").attr("placeholder","Sipariş numarası");	
 	// değişimi yakala

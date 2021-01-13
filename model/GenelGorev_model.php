@@ -10,6 +10,12 @@ class GenelGorev_model extends Model {
        parent::__construct(); 
 
     }
+
+    function Verial($tabloisim, $kosul) {
+
+        // db ye sorgu atıcaz, yani db den veri çekicez
+        return $this->db->listele($tabloisim, $kosul);
+    }
     
     function YorumEkleme($tabloisim, $sutunadlari, $veriler) {
 
