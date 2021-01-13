@@ -9,6 +9,13 @@ define("URL", "http://localhost/mvcproje");
 // controllers klasorunu tek tek cagırmamak ıcın
 define ("CONTROLLER","controllers/");
 
+// dökümantasyon olarak dosyaların tutulduğu ana dizin
+define ("DOCUMENT",$_SERVER['DOCUMENT_ROOT']);
+
+// resimlerin ekleneceği klasör yolu
+define ("RESİMYOL",DOCUMENT."/mvcproje/views/design/images/");
+
+
 
 
 ?>

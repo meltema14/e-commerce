@@ -113,3 +113,26 @@
 .silbuton:hover {
  	color:#f44c7f; 
 }
+
+/* 			 ÜRÜN YÖNETİMİ			*/
+
+.uruneklemeElemanlar{
+	font-weight:700;
+	padding:10px;
+	border-bottom:1px solid #CACACA;
+	border-right:1px solid #CACACA;
+}
+
+.uruneklemeElemanlarDiger{
+	font-weight:700;
+	padding:10px;
+	border-bottom:1px solid #CACACA;
+}
+
+.bloklararasi{
+	border-right:1px solid #CACACA;
+}
+.uruneklemeBtn{
+	border-top:1px solid #CACACA;
+	padding:10px;
+}

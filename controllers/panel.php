@@ -507,7 +507,7 @@ class panel extends Controller {
     
     }  
 
-    function urunarama(){    // ÜRÜNLER ARAMA
+    function urunarama() {  // ÜRÜNLER ARAMA
 
 		if ($_POST) :
 
@@ -557,9 +557,254 @@ class panel extends Controller {
 
 		endif;
     } 
-    
-    
 
+    function urunSil($id) { // ÜRÜNLER SİL	
+
+		$sonuc = $this->model->Sil("urunler", "id=" . $id);
+
+		if ($sonuc) :
+
+			$this->view->goster(
+				"YonPanel/sayfalar/urunler",
+				array(
+					"bilgi" => $this->bilgi->basarili("SİLME BAŞARILI", "/panel/urunler", 2)
+				)
+			);
+
+		else :
+
+			$this->view->goster(
+				"YonPanel/sayfalar/urunler",
+				array(
+					"bilgi" => $this->bilgi->hata("SİLME SIRASINDA HATA OLUŞTU.", "/panel/urunler", 2)
+				)
+			);
+
+		endif;
+	}  
+    
+    function urunGuncelle($id){ // ÜRÜNLER GÜNCELLE	
+
+		$this->view->goster("YonPanel/sayfalar/urunler", array(
+			"Urunguncelle" => $this->model->Verial("urunler", "where id=" . $id),
+			"data2" => $this->model->Verial("alt_kategori", false)
+		));
+    } 
+    
+    function urunguncelleSon(){ // ÜRÜNLER GÜNCEL SON
+
+		if ($_POST) :
+
+			$urunad = $this->form->get("urunad")->bosmu();
+			$katid = $this->form->get("katid")->bosmu();
+			$kumas = $this->form->get("kumas")->bosmu();
+			$uretimyeri = $this->form->get("uretimyeri")->bosmu();
+			$renk = $this->form->get("renk")->bosmu();
+			$fiyat = $this->form->get("fiyat")->bosmu();
+			$stok = $this->form->get("stok")->bosmu();
+			$durum = $this->form->get("durum")->bosmu();
+			$urunaciklama = $this->form->get("urunaciklama")->bosmu();
+			$urunozellik = $this->form->get("urunozellik")->bosmu();
+			$urunekstra = $this->form->get("urunekstra")->bosmu();
+			$kayitid = $this->form->get("kayitid")->bosmu();
+
+            if ($this->Upload->uploadPostAl("res1")) : 
+                $this->Upload->UploadDosyaKontrol("res1");
+			endif;
+
+            if ($this->Upload->uploadPostAl("res2")) : 
+                $this->Upload->UploadDosyaKontrol("res2");
+			endif;
+
+            if ($this->Upload->uploadPostAl("res3")) : 
+                $this->Upload->UploadDosyaKontrol("res3");
+			endif;
+
+
+			if (!empty($this->form->error)) :
+
+				$this->view->goster(
+					"YonPanel/sayfalar/urunler",array(
+					"bilgi" => $this->bilgi->hata("Tüm alanlar doldurulmalıdır.", "/panel/urunler", 2)
+				));
+
+			elseif (!empty($this->Upload->error)) :
+
+				$this->view->goster(
+					"YonPanel/sayfalar/urunler",array(
+					"bilgi" => $this->Upload->error,
+					"yonlen" => $this->bilgi->sureliYonlen(3, "/panel/urunler")
+				));
+
+			else :
+
+				$sutunlar = array("katid", "urunad", "durum", "aciklama", "kumas", "urtYeri", "renk", "fiyat", "stok", "ozellik", "ekstraBilgi");
+
+				$veriler = array($katid, $urunad, $durum, $urunaciklama, $kumas, $uretimyeri, $renk, $fiyat, $stok, $urunozellik, $urunekstra);
+
+
+				if ($this->Upload->uploadPostAl("res1")) :
+                    $sutunlar[] = "res1";
+                    // yükleyecek ve sonra veriler arrayine yazıcak
+					$veriler[] = $this->Upload->Yukle("res1", true);
+				endif;
+
+				if ($this->Upload->uploadPostAl("res2")) :
+					$sutunlar[] = "res2";
+					$veriler[] = $this->Upload->Yukle("res2", true);
+				endif;
+				if ($this->Upload->uploadPostAl("res3")) :
+					$sutunlar[] = "res3";
+					$veriler[] = $this->Upload->Yukle("res3", true);
+				endif;
+
+                // güncel hali $sonuc değişkeninde
+				$sonuc = $this->model->Guncelle(
+					"urunler",
+					$sutunlar,
+					$veriler,
+					"id=" . $kayitid
+				);
+
+				if ($sonuc) :
+
+					$this->view->goster(
+						"YonPanel/sayfalar/urunler",array(
+						"bilgi" => $this->bilgi->basarili("ÜRÜN BAŞARIYLA GÜNCELLENDİ", "/panel/urunler", 2)
+					));
+
+				else :
+
+					$this->view->goster(
+						"YonPanel/sayfalar/urunler",array(
+						"bilgi" => $this->bilgi->hata("GÜNCELLEME SIRASINDA HATA OLUŞTU.", "/panel/urunler", 2)
+				    ));
+
+				endif;
+
+			endif;
+
+		else :
+			$this->bilgi->direktYonlen("/panel/urunler");
+
+
+		endif;
+    } 
+    
+	function katgoregetir() { // ÜRÜNLERi KATEGORİYE GÖRE GETİR	
+
+		if ($_POST) :
+
+            // $katid: selectboxtan gelen name
+			$katid = $this->form->get("katid")->bosmu();
+
+			$bilgicek = $this->model->Verial("urunler", "where katid=" . $katid);
+
+			if ($bilgicek) :
+
+				$this->view->goster("YonPanel/sayfalar/urunler", array(
+
+					"data" => $bilgicek,
+					"data2" => $this->model->Verial("alt_kategori", false)
+				));
+
+			else :
+
+				$this->view->goster(
+					"YonPanel/sayfalar/urunler",
+					array(
+						"bilgi" => $this->bilgi->hata("HİÇBİR KRİTER UYUŞMADI.", "/panel/urunler", 2)
+					)
+				);
+			endif;
+
+        else :
+            
+			$this->bilgi->direktYonlen("/panel/urunler");
+
+		endif;
+	} 
+
+    function Urunekleme(){  // ÜRÜN EKLEME
+
+		$this->view->goster("YonPanel/sayfalar/urunler", array(
+            "Urunekleme" => true,
+            // selectbox
+			"data2" => $this->model->Verial("alt_kategori", false)
+		));
+    }	 
+    
+    function urunekle(){    // ÜRÜN EKLEME SON	
+
+		if ($_POST) :
+
+            // form verilerinin boş olup olmadığını test eder
+			$urunad = $this->form->get("urunad")->bosmu();
+			$katid = $this->form->get("katid")->bosmu();
+			$kumas = $this->form->get("kumas")->bosmu();
+			$uretimyeri = $this->form->get("uretimyeri")->bosmu();
+			$renk = $this->form->get("renk")->bosmu();
+			$fiyat = $this->form->get("fiyat")->bosmu();
+			$stok = $this->form->get("stok")->bosmu();
+			$durum = $this->form->get("durum")->bosmu();
+			$urunaciklama = $this->form->get("urunaciklama")->bosmu();
+			$urunozellik = $this->form->get("urunozellik")->bosmu();
+			$urunekstra = $this->form->get("urunekstra")->bosmu();
+
+            // resimleri kontrol eder
+			$this->Upload->UploadResimYeniEkleme("res", 3);
+
+            // form elemanlarında boş alan bırakıldıysa
+			if (!empty($this->form->error)) :
+
+				$this->view->goster(
+					"YonPanel/sayfalar/urunler",array(
+					"bilgi" => $this->bilgi->hata("Tüm alanlar doldurulmalıdır.", "/panel/urunler", 2)
+				));
+
+            // resim yüklemede sorun var mı
+			elseif (!empty($this->Upload->error)) :
+
+				$this->view->goster(
+					"YonPanel/sayfalar/urunler",array(
+					"bilgi" => $this->Upload->error
+				));
+
+            // sorun yoksa kayıt işlemine başlar
+			else :
+
+				$dosyayukleme = $this->Upload->Yukle();
+
+				$sonuc = $this->model->Ekleme(
+					"urunler",
+					array("katid", "urunad", "res1", "res2", "res3", "durum", "aciklama", "kumas", "urtYeri", "renk", "fiyat", "stok", "ozellik", "ekstraBilgi"),
+					array($katid, $urunad, $dosyayukleme[0], $dosyayukleme[1], $dosyayukleme[2], $durum, $urunaciklama, $kumas, $uretimyeri, $renk, $fiyat, $stok, $urunozellik, $urunekstra)
+				);
+
+				if ($sonuc) :
+
+					$this->view->goster(
+						"YonPanel/sayfalar/urunler",array(
+						"bilgi" => $this->bilgi->basarili("ÜRÜN BAŞARIYLA EKLENDİ", "/panel/urunler", 2)
+					));
+
+				else :
+
+					$this->view->goster(
+						"YonPanel/sayfalar/urunler",array(
+						"bilgi" => $this->bilgi->hata("EKLEME SIRASINDA HATA OLUŞTU.", "/panel/urunler", 2)
+					));
+
+				endif;
+
+			endif;
+
+        else :
+            
+			$this->bilgi->direktYonlen("/panel/urunler");
+
+		endif;
+	}	 
    
     
 

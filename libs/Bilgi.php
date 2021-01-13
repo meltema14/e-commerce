@@ -37,6 +37,11 @@ class Bilgi {
         return header("Location:".URL.$yol);
     }
 
+    function sureliYonlen($zaman,$yol) {
+			
+        return  header("Refresh:".$zaman."; url=".URL.$yol);
+    }
+
 
 }
 

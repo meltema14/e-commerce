@@ -14,6 +14,8 @@ class Controller{
 
         $this -> bilgi = new Bilgi();
 
+        $this -> Upload = new Upload();
+
     }
 
     // ihtiyacımız olan modeli dahil ediyoruz

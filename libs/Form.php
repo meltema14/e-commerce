@@ -98,7 +98,7 @@ class Form extends Bilgi {
 
     }
 
-    public static function Olustur($kriter, array $veri=NULL) { // dinamik form oluşturma
+    public static function Olustur($kriter, array $veri=NULL, $textmetin=false) { // dinamik form oluşturma
 
         /*
         $kriter: oluşacak olan form elemanının başlangıç etkiketini belirler
@@ -126,7 +126,7 @@ class Form extends Bilgi {
         endforeach;
 
         // ternay sorgu
-        echo ($kriter == 3) ? '></textarea>' : '>';
+        echo ($kriter == 3) ? '>'.$textmetin.'</textarea>' : '>';
 
         endif;	
         /*

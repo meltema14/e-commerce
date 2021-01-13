@@ -12,15 +12,27 @@
 
       if (isset($veri["bilgi"])) :
 
+        // array olup olmadığını anlar 
+        if (is_array($veri["bilgi"])) :
 
-        echo $veri["bilgi"];
+          // bilgi dizi ise deger olarak parçalar
+          foreach ($veri["bilgi"] as $deger) :
 
+            echo '<div class="alert alert-danger mt-5">' . $deger . '</div>';
+
+            echo $veri["yonlen"];
+
+          endforeach;
+
+        else :
+          // bilgi dizi değilse normal yaz
+          echo $veri["bilgi"];
+
+        endif;
 
       endif;
 
-      if (isset($veri["urunGuncelle"])) :
-
-        if (!$_POST) :
+      if (isset($veri["Urunguncelle"])) :
 
       ?>
 
@@ -42,7 +54,7 @@
 
             <div class="row text-center">
 
-              <div class="col-xl-4 col-md-6 mx-auto">
+              <div class="col-lg-10 col-xl-10 col-md-6 mx-auto">
 
 
                 <div class="row bg-gradient-beyazimsi">
@@ -50,39 +62,197 @@
                   <div class="col-lg-12 col-md-12 col-sm-12 bg-gradient-mvc pt-2 basliktext2">
                     <h3>Ürün Güncelle</h3>
                   </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Ürün Adı</div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">
+                  
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="row">
+                      <!-- SOL -->
+                      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 bloklararasi">
+                        <div class="row">
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Ürün Adı</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
 
-                    <?php
+                            <?php
 
-                    Form::Olustur("1", array(
-                      "action" => URL . "/panel/urunguncelleSon",
-                      "method" => "POST"
-                    ));
+                            Form::Olustur("1", array(
+                              "action" => URL . "/panel/urunguncelleSon",
+                              "method" => "POST",
+                              "enctype" => "multipart/form-data"
+                            ));
 
-                    Form::OlusturSelect("1", array("name" => "durum", "class" => "form-control"));
+                            Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "urunad", "value" => $veri["Urunguncelle"][0]["urunad"]));
 
-                    Form::OlusturOption(array("value" => "0"), false, "Aktif");
+                            ?>
 
-                    Form::OlusturOption(array("value" => "1"), false, "Pasif");
+                          </div>
 
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Kategori</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
 
-                    Form::OlusturSelect("2", null);  ?></div>
+                          Form::OlusturSelect("1", array("name" => "katid", "class" => "form-control"));
 
+                          foreach ($veri["data2"] as $deger) :
 
-                  <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">
-                    <?php
+                            // gelen değer kategori id ye eşitse seçili getir değilse normal
+                            if ($deger["id"] == $veri["Urunguncelle"][0]["katid"]) :
 
-                    Form::Olustur("2", array("type" => "submit", "value" => "GÜNCELLE", "class" => "btn btn-success"));
+                              Form::OlusturOption(array("value" => $deger["id"]), "selected", $deger["ad"]);
 
-                    Form::Olustur("2", array("type" => "hidden", "name" => "sipno", "value" => $veri["KargoGuncelle"][0]["siparis_no"]));
+                            else :
 
-                    Form::Olustur("kapat");  
+                              Form::OlusturOption(array("value" => $deger["id"]), false, $deger["ad"]);
 
-                    ?>
+                            endif;
+
+                          endforeach;
+
+                          Form::OlusturSelect("2", null);
+
+                          ?>
+
+                        </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Kumaş</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "kumas", "value" => $veri["Urunguncelle"][0]["kumas"]));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Üretim yeri</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "uretimyeri", "value" => $veri["Urunguncelle"][0]["urtYeri"]));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Renk</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "renk", "value" => $veri["Urunguncelle"][0]["renk"]));
+
+                          ?>
+                        
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Fiyat</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "fiyat", "value" => $veri["Urunguncelle"][0]["fiyat"]));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Stok</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "stok", "value" => $veri["Urunguncelle"][0]["stok"]));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Durum</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+
+                          <?php
+
+                          Form::OlusturSelect("1", array("name" => "durum", "class" => "form-control"));
+
+                          Form::OlusturOption(array("value" => "0"), $veri["Urunguncelle"][0]["durum"] == 0 ? "selected" : false, "Standart");
+                          Form::OlusturOption(array("value" => "1"), $veri["Urunguncelle"][0]["durum"] == 1 ? "selected" : false, "En çok Satanlar");
+                          Form::OlusturOption(array("value" => "2"), $veri["Urunguncelle"][0]["durum"] == 2 ? "selected" : false, "Öne çıkanlar");
+
+                          Form::OlusturSelect("2", null);
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-4 col-xl-4 col-md-9 col-sm-12">
+
+                            <img src="<?php echo URL . '/views/design/images/' . $veri["Urunguncelle"][0]["res1"]; ?>" class="img-fluid" />
+                            <?php Form::Olustur("2", array("type" => "file", "class" => "form-control", "name" => "res1"));          
+                            ?>
+
+                          </div>
+
+                          <div class="col-lg-4 col-xl-4 col-md-9 col-sm-12">
+
+                          <img src="<?php echo URL . '/views/design/images/' . $veri["Urunguncelle"][0]["res2"]; ?>" class="img-fluid" />
+                          <?php Form::Olustur("2", array("type" => "file", "class" => "form-control", "name" => "res2"));           
+                          ?>
+                          
+                          </div>
+
+                          <div class="col-lg-4 col-xl-4 col-md-9 col-sm-12 ">
+
+                          <img src="<?php echo URL . '/views/design/images/' . $veri["Urunguncelle"][0]["res3"]; ?>" class="img-fluid" />
+                          <?php Form::Olustur("2", array("type" => "file", "class" => "form-control", "name" => "res3"));           
+                          ?>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <!-- SOL -->
+
+                      <!-- SAĞ -->
+                      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 ">
+                        <div class="row">
+
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">Ürün Açıklama</div>
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">
+                          <?php Form::Olustur("3", array("class" => "form-control", "name" => "urunaciklama", "rows" => 4), $veri["Urunguncelle"][0]["aciklama"]);  ?>
+                          </div>
+
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">Ürün Özellik</div>
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger"> 
+                          <?php Form::Olustur("3", array("class" => "form-control", "name" => "urunozellik", "rows" => 4), $veri["Urunguncelle"][0]["ozellik"]);  ?>
+                          </div>
+
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">Ürün Ekstra Bilgi</div>
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">
+                          <?php Form::Olustur("3", array("class" => "form-control", "name" => "urunekstra", "rows" => 4), $veri["Urunguncelle"][0]["ekstraBilgi"]);  ?>
+                          </div>
+
+                        </div>
+                      </div>
+                      <!-- SAĞ -->
+
+                    </div> <!-- İÇ ROW -->
+                  </div> <!-- İÇ ANASI -->
+
+                  <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeBtn">
+                  <?php
+
+                  // idyi taşıyoruz
+                  Form::Olustur("2", array("type" => "hidden", "value" => $veri["Urunguncelle"][0]["id"], "class" => "btn btn-success", "name" => "kayitid"));
+
+                  Form::Olustur("2", array("type" => "submit", "value" => "ÜRÜN GÜNCELLEME", "class" => "btn btn-success"));
+
+                  Form::Olustur("kapat");    
+                  ?>
                   </div>
 
-                </div>
+                </div> <!-- ROWWW -->
 
               </div>
 
@@ -94,9 +264,257 @@
 
         <?php
 
-        endif;
 
       endif;
+
+      // ******************************************************************************************
+      if (isset($veri["Urunekleme"])) : // veri taşımak için değil buraya gelindiğini anlamak için
+
+      ?>
+
+          <!-- BAŞLIK -->
+
+          <div class="row text-left border-bottom-mvc mb-2">
+
+            <div class="col-xl-12 col-md-12 mb-12 border-left-mvc text-left p-2 mb-2">
+              <h1 class="h3 mb-0 text-gray-800"> <i class="fas fa-th basliktext"></i> ÜRÜN EKLEME </h1>
+            </div>
+
+
+          </div>
+          <!-- BAŞLIK -->
+
+          <!--  FORMUN İSKELETİ-->
+
+          <div class="col-xl-12 col-md-12  text-center">
+
+            <div class="row text-center">
+
+              <div class="col-lg-10 col-xl-10 col-md-6 mx-auto">
+
+
+                <div class="row bg-gradient-beyazimsi">
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 bg-gradient-mvc pt-2 basliktext2">
+                    <h3>Ürün Ekleme</h3>
+                  </div>
+                  
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="row">
+                      <!-- SOL -->
+                      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 bloklararasi">
+                        <div class="row">
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Ürün Adı</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+                          // FORM OLUŞTURMA
+
+                          Form::Olustur("1", array(
+                            "action" => URL . "/panel/urunekle",
+                            "method" => "POST",
+                            // dosya aktarma yeteneği
+                            "enctype" => "multipart/form-data"
+                          ));
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "urunad"));
+
+                          ?>
+                        
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Kategori</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+
+                          Form::OlusturSelect("1", array("name" => "katid", "class" => "form-control"));
+                          // veritabanından çoklu veri geliyo selectboxa
+                          foreach ($veri["data2"] as $deger) :
+
+                            Form::OlusturOption(array("value" => $deger["id"]), false, $deger["ad"]);
+
+                          endforeach;
+
+                          Form::OlusturSelect("2", null);
+
+                          ?>
+                        
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Kumaş</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "kumas"));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Üretim yeri</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "uretimyeri"));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Renk</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "renk"));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Fiyat</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "fiyat"));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Stok</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                          <?php
+
+                          Form::Olustur("2", array("type" => "text", "class" => "form-control", "name" => "stok"));
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-3 col-xl-3 col-md-3 col-sm-12 uruneklemeElemanlar">Durum</div>
+                          <div class="col-lg-9 col-xl-9 col-md-9 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+
+                          Form::OlusturSelect("1", array("name" => "durum", "class" => "form-control"));
+
+                          Form::OlusturOption(array("value" => "0"), false, "Standart");
+                          Form::OlusturOption(array("value" => "1"), false, "En çok Satanlar");
+                          Form::OlusturOption(array("value" => "2"), false, "Öne çıkanlar");
+
+                          Form::OlusturSelect("2", null);
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-4 col-xl-4 col-md-9 col-sm-12">
+
+                          <?php 
+                          // resim yükleme dosya seçme
+
+                          Form::Olustur("2", array("type" => "file", "class" => "form-control", "name" => "res[]"));   
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-4 col-xl-4 col-md-9 col-sm-12">
+
+                          <?php 
+                          // resim yükleme dosya seçme
+
+                          Form::Olustur("2", array("type" => "file", "class" => "form-control", "name" => "res[]"));   
+
+                          ?>
+
+                          </div>
+
+                          <div class="col-lg-4 col-xl-4 col-md-9 col-sm-12 ">
+
+                          <?php 
+                          // resim yükleme dosya seçme
+
+                          Form::Olustur("2", array("type" => "file", "class" => "form-control", "name" => "res[]"));   
+
+                          ?>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <!-- SOL -->
+
+                      <!-- SAĞ -->
+                      <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 ">
+                        <div class="row">
+
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">Ürün Açıklama</div>
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">
+
+                            <?php 
+                              Form::Olustur("3", array("class" => "form-control", "name" => "urunaciklama", "rows" => 4));  
+                            ?>
+
+                          </div>
+
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">Ürün Özellik</div>
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">
+                            
+                          <?php
+                           Form::Olustur("3", array("class" => "form-control", "name" => "urunozellik", "rows" => 4));  
+                          ?> 
+                        
+                        </div>
+
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">Ürün Ekstra Bilgi</div>
+                          <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeElemanlarDiger">
+
+                          <?php 
+                            Form::Olustur("3", array("class" => "form-control", "name" => "urunekstra", "rows" => 4));  
+                          ?>
+
+                          </div>
+
+                        </div>
+                      </div>
+                      <!-- SAĞ -->
+
+                    </div> <!-- İÇ ROW -->
+                  </div> <!-- İÇ ANASI -->
+
+                  <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 uruneklemeBtn">
+
+                  <?php
+
+                  Form::Olustur("2", array("type" => "submit", "value" => "ÜRÜN EKLE", "class" => "btn btn-success"));
+
+                  Form::Olustur("kapat");   
+
+                  ?>
+
+                  </div>
+
+                </div> <!-- ROWWW -->
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!--  FORMUN İSKELETİ-->
+
+        <?php
+
+      endif;
+
+      //****************************************************************************************************************
 
       // tüm ürünlerin gelmesi
       if (isset($veri["data"])) :
@@ -112,11 +530,15 @@
           </div>
 
 
-          <div class="col-lg-3 col-xl-3 col-md-12 mb-12 p-2">
-            <h1 class="h3 mb-0 text-gray-800">Toplam Ürün : <?php echo count($veri["data"]); ?></h1>
+          <div class="col-lg-2 col-xl-2 col-md-12 mb-12 p-2">
+            <h1 class="h3 mb-0 pt-1 text-gray-800">Toplam Ürün : <?php echo count($veri["data"]); ?></h1>
           </div>
 
-          <div class="col-xl-7 col-md-12 mb-12 text-right">
+          <div class="col-lg-2 col-xl-2 col-md-12 mb-12 p-2">
+            <a href="<?php echo URL . "/panel/Urunekleme"; ?>" class="btn btn-sm btn-success btn-block">Yeni Ürün Ekle</a>
+          </div>
+
+          <div class="col-lg-6 col-xl-6 col-md-12 mb-12 text-right">
             <div class="row">
 
               <div class="col-xl-4 ">
