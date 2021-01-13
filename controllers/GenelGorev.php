@@ -83,7 +83,7 @@ class GenelGorev extends Controller {
 
         // girilen mail adresini fonksiyona verdik
         $this->form->GercektenMailmi($mailadres);
-        $tarih = date("d-m-Y");
+        $tarih = date("Y-m-d");
 
 
         // mail boşsa

@@ -865,7 +865,7 @@ class panel extends Controller {
             ));      
             
             else:
-                // uye_panele sorgu atıyor
+                // arama sorgu atıyor
                 $bilgicek=$this->model->arama("bulten",
                 "mailadres LIKE '%".$aramaverisi."%'");
                 
@@ -894,6 +894,51 @@ class panel extends Controller {
         endif;
     } 
 
+    function tarihegoregetir() {	// BÜLTEN TARİHE GÖRE ARAMA ARAMA
+
+        if ($_POST) :
+                
+            $tar1=$this->form->get("tar1")->bosmu();
+            $tar2=$this->form->get("tar2")->bosmu();
+
+            // hata varsa
+            if (!empty($this->form->error)) :
+            
+            $this->view->goster("YonPanel/sayfalar/bulten",
+            array(		
+            "bilgi" => $this->bilgi->hata("TARİHLER BELİRTİLMELİDİR.","/panel/bulten",2)
+            ));      
+            
+            else:
+                // uye_panele sorgu atıyor
+                $bilgicek=$this->model->Verial("bulten",
+                // seçilen iki tarih arasını alır
+                "where DATE(tarih) BETWEEN '".$tar1."' and '".$tar2."'");
+                
+                if ($bilgicek):
+            
+                    $this->view->goster("YonPanel/sayfalar/bulten",array(
+                    // ilgili id yi çekme
+                    "data" =>$bilgicek		
+                    ));		
+                
+                else:
+                
+                    $this->view->goster("YonPanel/sayfalar/bulten",
+                    array(		
+                    "bilgi" => $this->bilgi->hata("HİÇBİR KRİTER UYUŞMADI.","/panel/bulten",2)
+                    ));	
+                    		
+                endif;
+                
+            endif;
+
+        else:
+            // posttan gelinmiyor ise
+            $this->bilgi->direktYonlen("/panel/bulten");		
+    
+        endif;
+    } 
     
     
 
