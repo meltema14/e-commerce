@@ -849,7 +849,52 @@ class panel extends Controller {
 			);
 
 		endif;
-	} 
+    } 
+    
+    function mailarama() {	// BÜLTEN MAİL ARAMA
+
+        if ($_POST) :
+                
+            $aramaverisi=$this->form->get("arama")->bosmu();
+            // hata varsa
+            if (!empty($this->form->error)) :
+            
+            $this->view->goster("YonPanel/sayfalar/bulten",
+            array(		
+            "bilgi" => $this->bilgi->hata("MAİL YAZILMALIDIR.","/panel/bulten",2)
+            ));      
+            
+            else:
+                // uye_panele sorgu atıyor
+                $bilgicek=$this->model->arama("bulten",
+                "mailadres LIKE '%".$aramaverisi."%'");
+                
+                if ($bilgicek):
+            
+                    $this->view->goster("YonPanel/sayfalar/bulten",array(
+                    // ilgili id yi çekme
+                    "data" =>$bilgicek		
+                    ));		
+                
+                else:
+                
+                    $this->view->goster("YonPanel/sayfalar/bulten",
+                    array(		
+                    "bilgi" => $this->bilgi->hata("HİÇBİR KRİTER UYUŞMADI.","/panel/bulten",2)
+                    ));	
+                    		
+                endif;
+                
+            endif;
+
+        else:
+            // posttan gelinmiyor ise
+            $this->bilgi->direktYonlen("/panel/bulten");		
+    
+        endif;
+    } 
+
+    
     
 
 
