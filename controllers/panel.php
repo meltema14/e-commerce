@@ -15,10 +15,7 @@ class panel extends Controller {
 
         // yönetici girişi yapıldıysa(oturum açıldıysa) kontrol yap
         // oturum kontrolü
-        if (!Session::get("AdminAd") && Session::get("Adminid")) :
-
-        // oturum açılmadıysa giriş sayfasına yönlendir
-        Session::OturumKontrol("yonetim",Session::get("AdminAd"),Session::get("Adminid"));
+        if (!Session::get("AdminAd") && !Session::get("Adminid")) :
 
             // giris methodunu çalıştır
             $this->giris();
@@ -30,8 +27,17 @@ class panel extends Controller {
 
     function giris() { //  GİRİŞ EKRANI
 
-        // yönetim paneli giriş ekranını yükledik
-        $this->view->goster("YonPanel/sayfalar/index");
+        // oturum acıksa siparislere yönlendir
+        if (Session::get("AdminAd") && Session::get("Adminid")) :
+
+            $this->bilgi->direktYonlen("/panel/siparisler");
+
+        else:
+
+            // yönetim paneli giriş ekranını 
+            $this->view->goster("YonPanel/sayfalar/index");
+
+        endif;
 
     }
 
@@ -1073,8 +1079,8 @@ class panel extends Controller {
     }
 
        // -------------        YÖNETİM PANELİ OTURUM AÇMA      --------------
-
-    function adminkayitKontrol()  { // ÜYE KAYIT KONTROL
+    /*
+    function adminkayitKontrol()  { // ADMİN KAYIT KONTROL
 
         // --------- FORM ELEMANLARINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
 
@@ -1138,14 +1144,12 @@ class panel extends Controller {
 
         endif;
 
-    }
+    } */
 
-    function admincikis() { // oturumu kapatma
+    function cikis() { // oturumu kapatma
 
-        
-        // oturumu kapatma
         Session::destroy();
-        $this->bilgi->direktYonlen("/magaza");
+        $this->bilgi->direktYonlen("/panel/giris");
 
     }
     
