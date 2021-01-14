@@ -3,7 +3,7 @@
 <?php 
 // kullanıcı adı ve id gelemiyosa yani giris yapıldıysa uye/giris gözükemyecek
 if (!Session::get("kulad") && !Session::get("uye")) : 
-Session::OturumKontrol(Session::get("kulad"),Session::get("uye"));
+Session::OturumKontrol("uye_panel",Session::get("kulad"),Session::get("uye"));
 ?>
 
 <div class="content">
@@ -118,8 +118,13 @@ Session::OturumKontrol(Session::get("kulad"),Session::get("uye"));
 
 				  <a class="forgot" href="#">Şifremi Unuttum</a>
 
-				  <input type="submit" value="GİRİŞ">
+				<?php
+					Form::Olustur("2", array("type" => "submit", "value" => "GİRİŞ"));
+					
+				  	Form::Olustur("2", array("type" => "hidden", "name" => "giristipi", "value" => "uye"));
 
+					Form::Olustur("kapat"); 
+				?>
 				</form>
 				
 			   </div>	

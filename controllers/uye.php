@@ -15,17 +15,198 @@ class uye extends Controller {
 
     }
 
-    function giris() {
+    function giris() { // GİRİŞ SAYFASI
 
         // girişe basıldığında giriş sayfası açılacak
         $this->view->goster("sayfalar/giris");
 
     }
 
-    function hesapOlustur() {
+    function hesapOlustur() { // HESAP OLUŞTUR SAYFASI
 
         // hesap oluştura basıldığında üye kayıt formu açılacak
         $this->view->goster("sayfalar/uyeol");
+
+    }
+
+    function girisKontrol()  { // GİRİŞ KONTROL
+
+        
+        /*
+        üye girişi yapıldığında kullanıcı adı ve şifre boş mu diye kontrol edecek
+        Gelen veride bir sorun yoksa giriş verirlerinin eşleşip eşleşmediğini kontrol edicez
+        */
+        if ($_POST):
+
+            // üye girişi mi yoksa admin girişi mi olduğunu anlama
+            if($_POST["giristipi"]=="uye"):
+            
+                // form classına gidip ad ve şifre boş mu değil mi diye bakar
+                $ad = $this->form->get("ad")->bosmu();
+                $sifre = $this->form->get("sifre")->bosmu();
+
+                // formda yazılan herhangi bi yerin boş olması
+                // bir hata var demek
+                if(!empty($this->form->error)):
+
+                    // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
+                    $this->view->goster("sayfalar/giris",
+                    array("bilgi" => $this->bilgi->uyari("warning", " Kullanıcı adı ve şifre boş olamaz!")));
+
+                // gelen veride sorun yoksa
+                else:
+
+                    // buraya gelen şifreyi şifrele fonk. çağırarak şifreleme
+                    $sifre = $this->form->sifrele($sifre);
+
+                    // gelen verilerden eşleşen var mı diye db ye sorgu atma
+                    // 0 ya da 1 olarak geri döndürür
+                    $sonuc=$this->model->GirisKontrol("uye_panel", "ad='$ad' and sifre='$sifre'");
+
+                    // giriş yapıldıysa
+                    if($sonuc):
+
+                        // kullanıcı paneline girecek
+                        $this->bilgi->direktYonlen("/uye/panel");
+
+                        // kulad isimli sessionu başlatma
+                        Session::init();
+                        session::set("kulad", $sonuc[0]["ad"]);   
+
+                        // üyenin idsi taşınacak  
+                        session::set("uye", $sonuc[0]["id"]);  
+
+                    else:
+
+                        // eşleşme yok yani üye yok
+                        $this->view->goster("sayfalar/giris",
+                        array("bilgi" => $this->bilgi->uyari("danger"," Kullanıcı adı veya şifre hatalı")));
+                    
+                    endif;
+
+                endif; // hatanın
+
+            elseif ($_POST["giristipi"]=="yon"):
+
+                // form classına gidip ad ve şifre boş mu değil mi diye bakar
+                $AdminAd = $this->form->get("AdminAd")->bosmu();
+                $Adminsifre = $this->form->get("Adminsifre")->bosmu();
+
+                // formda yazılan herhangi bi yerin boş olması
+                // bir hata var demek
+                if(!empty($this->form->error)):
+
+                    // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
+                    $this->view->goster("YonPanel/sayfalar/index",
+                    array("bilgi" => $this->bilgi->uyari("warning", " Kullanıcı adı ve şifre boş olamaz!")));
+
+                // gelen veride sorun yoksa
+                else:
+
+                    // buraya gelen şifreyi şifrele fonk. çağırarak şifreleme
+                    $Adminsifre = $this->form->sifrele($Adminsifre);
+
+                    // gelen verilerden eşleşen var mı diye db ye sorgu atma
+                    // 0 ya da 1 olarak geri döndürür
+                    $sonuc=$this->model->GirisKontrol("yonetim", "ad='$AdminAd' and sifre='$Adminsifre'");
+
+                    // giriş yapıldıysa
+                    if($sonuc):
+
+                        // kullanıcı paneline girecek
+                        $this->bilgi->direktYonlen("/panel/siparisler");
+
+                        // kulad isimli sessionu başlatma
+                        Session::init();
+                        session::set("AdminAd", $sonuc[0]["ad"]);   
+
+                        // üyenin idsi taşınacak  
+                        session::set("Adminid", $sonuc[0]["id"]);  
+
+                    else:
+
+                        // eşleşme yok yani üye yok
+                        $this->view->goster("YonPanel/sayfalar/index",
+                        array("bilgi" => $this->bilgi->uyari("danger"," Kullanıcı adı veya şifre hatalı")));
+                    
+                    endif;
+
+                endif; // hatanın
+
+            endif;
+
+        else:
+
+            $this->bilgi->direktYonlen("/");
+
+        endif;
+
+
+    }
+
+    function kayitKontrol()  { // ÜYE KAYIT KONTROL
+
+        // --------- FORM ELEMANLARINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
+        if ($_POST):
+
+            $ad = $this->form->get("ad")->bosmu();
+            $soyad = $this->form->get("soyad")->bosmu();
+            $mail = $this->form->get("mail")->bosmu();
+            $sifre = $this->form->get("sifre")->bosmu();
+            $sifretekrar = $this->form->get("sifretekrar")->bosmu();
+            $telefon = $this->form->get("telefon")->bosmu();
+
+            // girilen mail adresini fonksiyona verdik
+            $this->form->GercektenMailmi($mail);
+
+            // şifrelerin uyumlu olup olmama işlemi
+            $sifre = $this->form->sifreKarsilastir($sifre, $sifretekrar);
+
+
+            // formda yazılan herhangi bi yer boşsa
+            // bir hata var demek
+            if(!empty($this->form->error)):
+
+                // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
+                $this->view->goster("sayfalar/uyeol",
+                                // hatayı buraya gönderdik
+                array("hata" => $this->form->error));
+
+            // gelen veride sorun yoksa
+            else:
+
+                // gelen verilerden eşleşen var mı diye db ye soruyoruz
+                // 0 ya da 1 olarak geri döndürecek
+                $sonuc=$this->model->Ekleİslemi("uye_panel", 
+                // sütunlar
+                array("ad", "soyad", "mail", "sifre", "telefon"),
+                // değerler
+                array($ad, $soyad, $mail, $sifre, $telefon)
+                );
+
+                // giriş yapıldıysa
+                if($sonuc==1):
+
+                    // üye olma işlemi tamamlandıysa
+                    $this->view->goster("sayfalar/uyeol",
+                    array("bilgi" => $this->bilgi->basarili("KAYIT BAŞARILI","/uye/giris")));
+
+                else:
+
+                    // eşleşme yok yani üye yok
+                    $this->view->goster("sayfalar/uyeol",
+                    array(
+                    "bilgi" => 
+                    $this->bilgi->uyari("danger"," Kayıt esnasında hata oluştu")));
+                
+
+                endif;
+
+
+            endif;
+    
+        endif;
+
 
     }
 
@@ -38,123 +219,6 @@ class uye extends Controller {
 
     }
 
-    /*
-    üye girişi yapıldığında kullanıcı adı ve şifre boş mu diye kontrol edecek
-    Gelen veride bir sorun yoksa giriş verirlerinin eşleşip eşleşmediğini kontrol edicez
-    */
-    function girisKontrol()  { // GİRİŞ KONTROL
-
-        // form classına gidip ad ve şifre boş mu değil mi diye bakar
-        $ad = $this->form->get("ad")->bosmu();
-        $sifre = $this->form->get("sifre")->bosmu();
-
-        // formda yazılan herhangi bi yerin boş olması
-        // bir hata var demek
-        if(!empty($this->form->error)):
-
-            // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
-            $this->view->goster("sayfalar/giris",
-            array("bilgi" => $this->bilgi->uyari("warning", " Kullanıcı adı ve şifre boş olamaz!")));
-
-        // gelen veride sorun yoksa
-        else:
-
-            // buraya gelen şifreyi şifrele fonk. çağırarak şifreleme
-            $sifre = $this->form->sifrele($sifre);
-
-            // gelen verilerden eşleşen var mı diye db ye sorgu atma
-            // 0 ya da 1 olarak geri döndürür
-            $sonuc=$this->model->GirisKontrol("uye_panel", "ad='$ad' and sifre='$sifre'");
-
-            // giriş yapıldıysa
-            if($sonuc):
-
-                // kullanıcı paneline girecek
-                $this->bilgi->direktYonlen("/uye/panel");
-
-                // kulad isimli sessionu başlatma
-                Session::init();
-                session::set("kulad", $sonuc[0]["ad"]);   
-
-                // üyenin idsi taşınacak  
-                session::set("uye", $sonuc[0]["id"]);  
-
-            else:
-
-                // eşleşme yok yani üye yok
-                $this->view->goster("sayfalar/giris",
-                array("bilgi" => $this->bilgi->uyari("danger"," Kullanıcı adı veya şifre hatalı")));
-            
-            endif;
-
-
-        endif;
-
-
-    }
-
-    function kayitKontrol()  { // ÜYE KAYIT KONTROL
-
-        // --------- FORM ELEMANLARINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
-
-        $ad = $this->form->get("ad")->bosmu();
-        $soyad = $this->form->get("soyad")->bosmu();
-        $mail = $this->form->get("mail")->bosmu();
-        $sifre = $this->form->get("sifre")->bosmu();
-        $sifretekrar = $this->form->get("sifretekrar")->bosmu();
-        $telefon = $this->form->get("telefon")->bosmu();
-
-        // girilen mail adresini fonksiyona verdik
-        $this->form->GercektenMailmi($mail);
-
-        // şifrelerin uyumlu olup olmama işlemi
-        $sifre = $this->form->sifreKarsilastir($sifre, $sifretekrar);
-
-
-        // formda yazılan herhangi bi yer boşsa
-        // bir hata var demek
-        if(!empty($this->form->error)):
-
-            // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
-            $this->view->goster("sayfalar/uyeol",
-                            // hatayı buraya gönderdik
-            array("hata" => $this->form->error));
-
-        // gelen veride sorun yoksa
-        else:
-
-            // gelen verilerden eşleşen var mı diye db ye soruyoruz
-            // 0 ya da 1 olarak geri döndürecek
-            $sonuc=$this->model->Ekleİslemi("uye_panel", 
-            // sütunlar
-            array("ad", "soyad", "mail", "sifre", "telefon"),
-            // değerler
-            array($ad, $soyad, $mail, $sifre, $telefon)
-            );
-
-            // giriş yapıldıysa
-            if($sonuc==1):
-
-                // üye olma işlemi tamamlandıysa
-                $this->view->goster("sayfalar/uyeol",
-                array("bilgi" => $this->bilgi->basarili("KAYIT BAŞARILI","/uye/giris")));
-
-            else:
-
-                // eşleşme yok yani üye yok
-                $this->view->goster("sayfalar/uyeol",
-                array(
-                "bilgi" => 
-                $this->bilgi->uyari("danger"," Kayıt esnasında hata oluştu")));
-            
-
-            endif;
-
-
-        endif;
-
-
-    }
 
    // -----------------------   ÜYE PANELİ   ---------------------------
 
@@ -418,6 +482,7 @@ class uye extends Controller {
     }
 
     // -------------        SİPARİŞ İŞLEMLERİ      --------------
+
     function siparisTamamlandi() {
 
         if ($_POST) : // POST İLE GELİNDİYSE
@@ -520,6 +585,7 @@ class uye extends Controller {
         endif;
 
     }
+
 
 
      

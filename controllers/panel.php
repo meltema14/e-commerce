@@ -13,12 +13,31 @@ class panel extends Controller {
         // her kontorolcünün constructında çalıştır
         Session::init();
 
+        // yönetici girişi yapıldıysa(oturum açıldıysa) kontrol yap
+        // oturum kontrolü
+        if (!Session::get("AdminAd") && Session::get("Adminid")) :
+
+        // oturum açılmadıysa giriş sayfasına yönlendir
+        Session::OturumKontrol("yonetim",Session::get("AdminAd"),Session::get("Adminid"));
+
+            // giris methodunu çalıştır
+            $this->giris();
+            exit();
+
+        endif;
+
     }
 
     function giris() { //  GİRİŞ EKRANI
 
         // yönetim paneli giriş ekranını yükledik
         $this->view->goster("YonPanel/sayfalar/index");
+
+    }
+
+    function Index() { //  VARSAYILAN OLARAK ÇALIŞIR
+
+        $this->siparisler();
 
     }
 
@@ -1051,6 +1070,83 @@ class panel extends Controller {
             $this->bilgi->direktYonlen("/panel/sistembakim");
 
         endif;
+    }
+
+       // -------------        YÖNETİM PANELİ OTURUM AÇMA      --------------
+
+    function adminkayitKontrol()  { // ÜYE KAYIT KONTROL
+
+        // --------- FORM ELEMANLARINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
+
+        if($_POST):
+
+            $ad = $this->form->get("ad")->bosmu();
+            $soyad = $this->form->get("soyad")->bosmu();
+            $mail = $this->form->get("mail")->bosmu();
+            $sifre = $this->form->get("sifre")->bosmu();
+            $sifretekrar = $this->form->get("sifretekrar")->bosmu();
+            $telefon = $this->form->get("telefon")->bosmu();
+
+            // girilen mail adresini fonksiyona verdik
+            $this->form->GercektenMailmi($mail);
+
+            // şifrelerin uyumlu olup olmama işlemi
+            $sifre = $this->form->sifreKarsilastir($sifre, $sifretekrar);
+
+
+            // formda yazılan herhangi bi yer boşsa
+            // bir hata var demek
+            if(!empty($this->form->error)):
+
+                // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
+                $this->view->goster("sayfalar/uyeol",
+                                // hatayı buraya gönderdik
+                array("hata" => $this->form->error));
+
+            // gelen veride sorun yoksa
+            else:
+
+                // gelen verilerden eşleşen var mı diye db ye soruyoruz
+                // 0 ya da 1 olarak geri döndürecek
+                $sonuc=$this->model->Ekleİslemi("uye_panel", 
+                // sütunlar
+                array("ad", "soyad", "mail", "sifre", "telefon"),
+                // değerler
+                array($ad, $soyad, $mail, $sifre, $telefon)
+                );
+
+                // giriş yapıldıysa
+                if($sonuc==1):
+
+                    // üye olma işlemi tamamlandıysa
+                    $this->view->goster("sayfalar/uyeol",
+                    array("bilgi" => $this->bilgi->basarili("KAYIT BAŞARILI","/uye/giris")));
+
+                else:
+
+                    // eşleşme yok yani üye yok
+                    $this->view->goster("sayfalar/uyeol",
+                    array(
+                    "bilgi" => 
+                    $this->bilgi->uyari("danger"," Kayıt esnasında hata oluştu")));
+                
+
+                endif;
+
+
+            endif;
+
+        endif;
+
+    }
+
+    function admincikis() { // oturumu kapatma
+
+        
+        // oturumu kapatma
+        Session::destroy();
+        $this->bilgi->direktYonlen("/magaza");
+
     }
     
     
