@@ -1078,73 +1078,7 @@ class panel extends Controller {
         endif;
     }
 
-       // -------------        YÖNETİM PANELİ OTURUM AÇMA      --------------
-    /*
-    function kayitKontrol()  { // ADMİN KAYIT KONTROL
-
-        // --------- FORM ELEMANLARINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
-
-        if($_POST):
-
-            $ad = $this->form->get("ad")->bosmu();
-            $soyad = $this->form->get("soyad")->bosmu();
-            $mail = $this->form->get("mail")->bosmu();
-            $sifre = $this->form->get("sifre")->bosmu();
-            $sifretekrar = $this->form->get("sifretekrar")->bosmu();
-            $telefon = $this->form->get("telefon")->bosmu();
-
-            // girilen mail adresini fonksiyona verdik
-            $this->form->GercektenMailmi($mail);
-
-            // şifrelerin uyumlu olup olmama işlemi
-            $sifre = $this->form->sifreKarsilastir($sifre, $sifretekrar);
-
-
-            // formda yazılan herhangi bi yer boşsa
-            // bir hata var demek
-            if(!empty($this->form->error)):
-
-                // boş bırakılan(kullanıcı adı veya şifre) varsa error arrayinde hangisi olduğunu göstericek
-                $this->view->goster("sayfalar/uyeol",
-                                // hatayı buraya gönderdik
-                array("hata" => $this->form->error));
-
-            // gelen veride sorun yoksa
-            else:
-
-                // gelen verilerden eşleşen var mı diye db ye soruyoruz
-                // 0 ya da 1 olarak geri döndürecek
-                $sonuc=$this->model->Ekleİslemi("uye_panel", 
-                // sütunlar
-                array("ad", "soyad", "mail", "sifre", "telefon"),
-                // değerler
-                array($ad, $soyad, $mail, $sifre, $telefon)
-                );
-
-                // giriş yapıldıysa
-                if($sonuc==1):
-
-                    // üye olma işlemi tamamlandıysa
-                    $this->view->goster("sayfalar/uyeol",
-                    array("bilgi" => $this->bilgi->basarili("KAYIT BAŞARILI","/uye/giris")));
-
-                else:
-
-                    // eşleşme yok yani üye yok
-                    $this->view->goster("sayfalar/uyeol",
-                    array(
-                    "bilgi" => 
-                    $this->bilgi->uyari("danger"," Kayıt esnasında hata oluştu")));
-                
-
-                endif;
-
-
-            endif;
-
-        endif;
-
-    } */
+    // -------------        YÖNETİM PANELİ OTURUM AÇMA      --------------
 
     function cikis() { // oturumu kapatma
 
@@ -1249,6 +1183,44 @@ class panel extends Controller {
         endif;
     
     }
+
+    // ------------------       KULLANICI YÖNETİMİ      -----------------
+
+    function yonetici () {   // YÖNETİCİLER GELİYOR
+
+        $this->view->goster("YonPanel/sayfalar/yonetici",array(
+    
+        "data" => $this->model->Verial("yonetim",false)
+         
+        ));
+    
+    }
+
+    function yonSil($id) { // YÖNETİCİ SİL	
+
+		$sonuc = $this->model->Sil("yonetim", "id=" . $id);
+
+		if ($sonuc) :
+
+			$this->view->goster(
+				"YonPanel/sayfalar/yonetici",
+				array(
+					"bilgi" => $this->bilgi->basarili("SİLME BAŞARILI", "/panel/yonetici", 2)
+				)
+			);
+
+		else :
+
+			$this->view->goster(
+				"YonPanel/sayfalar/urunler",
+				array(
+					"bilgi" => $this->bilgi->hata("SİLME SIRASINDA HATA OLUŞTU.", "/panel/yonetici", 2)
+				)
+			);
+
+		endif;
+    }
+
 
     
     

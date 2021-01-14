@@ -56,10 +56,16 @@
           <i class="fas fa-user"></i>
           <span>Üye Yönetimi</span></a>
       </li>
+    
       <li class="nav-item">
         <a class="nav-link" href="<?php echo URL."/panel/urunler"; ?>">
-          <i class="fas  fa-award"></i>
+          <i class="fas fa-dolly"></i>
           <span>Ürün Yönetimi</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo URL."/panel/yonetici"; ?>">
+          <i class="fas fa-lock"></i>
+          <span>Kullanıcı Yönetimi</span></a>
       </li>
 
       <li class="nav-item">
