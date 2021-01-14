@@ -11,6 +11,12 @@ class adminpanel_model extends Model {
 
     }
 
+    function bakim ($deger) { // sistem bakim
+
+        return $this->db->sistembakim($deger);
+
+    }
+
     function Verial ($tabloisim, $kosul) { // siparişleri çeker
 
         return $this->db->listele($tabloisim, $kosul);

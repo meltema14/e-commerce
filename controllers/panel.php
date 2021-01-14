@@ -939,7 +939,8 @@ class panel extends Controller {
     
         endif;
     } 
-    
+
+    //--------------------------------------------------------------------------------
     
     function sistemayar () {   // SİSTEM AYARLARI GELİYOR
 
@@ -1008,7 +1009,51 @@ class panel extends Controller {
 			$this->bilgi->direktYonlen("/panel/sistemayar");
 
 		endif;
-	}
+    }
+
+    //--------------------------------------------------------------------------------
+    
+    function sistembakim () {  // SİSTEM BAKİM
+
+        $this->view->goster("YonPanel/sayfalar/bakim",array(
+    
+            "sistembakim" => true
+             
+        ));
+
+    }
+
+    function bakimyap() { // SİSTEM BAKİM BUTONUNA BASILDIĞINDA
+
+        // sistembtn a basıldıysa işlem yap
+        if ($_POST["sistembtn"]):
+
+            $bakim = $this->model->bakim("mvcproje");
+
+            if ($bakim) :
+
+                $this->view->goster(
+                    "YonPanel/sayfalar/bakim",array(
+                    "bilgi" => $this->bilgi->basarili("SİSTEM BAKIMI BAŞARIYLA YAPILDI", "/panel/sistembakim", 2)
+                ));
+
+            else :
+
+                $this->view->goster(
+                    "YonPanel/sayfalar/bakim",array(
+                    "bilgi" => $this->bilgi->hata("BAKIM SIRASINDA HATA OLUŞTU.", "/panel/sistembakim", 2)
+                ));
+
+            endif;
+
+        else :
+            
+            $this->bilgi->direktYonlen("/panel/sistembakim");
+
+        endif;
+    }
+    
+    
 
 
 

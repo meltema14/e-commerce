@@ -171,7 +171,38 @@ class Database extends PDO {
         // value ya karşılık gelen veriler execute olarak gelecek
 		$sorgu->execute($veriler);
 			
-	}
+    }
+
+    function sistembakim($deger) {    // veri tabanıdaki tüm tabloları çeker
+        //$deger: veritabanının ismi
+
+        // veri tabanında çalıştığımız tüm tabloları alma
+        $sorgu=$this->prepare('SHOW TABLES');
+
+         // tablolar geldiyse
+        if($sorgu->execute()) :
+
+            // sorgudan gelen değeri dizi olarak atma
+            $tablolar = $sorgu ->fetchAll();
+            // gelen diziyi tabloadi olarak parçala
+            foreach($tablolar as $tabloadi ):
+
+                // sırası gelen tabloyu tamir et
+                $this->query("REPAİR TABLE ".$tabloadi["Tables_in_".$deger.""]);
+                // bir sonraki tabloya geçmeden optimize et
+                $this->query("OPTIMIZE TABLE ".$tabloadi["Tables_in_".$deger.""]);
+
+            endforeach;
+            return true;
+            
+        else:
+
+            return false;
+
+        endif;
+       
+    }
+
     
 }
 
