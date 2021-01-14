@@ -1080,7 +1080,7 @@ class panel extends Controller {
 
        // -------------        YÖNETİM PANELİ OTURUM AÇMA      --------------
     /*
-    function adminkayitKontrol()  { // ADMİN KAYIT KONTROL
+    function kayitKontrol()  { // ADMİN KAYIT KONTROL
 
         // --------- FORM ELEMANLARINDA BOŞ VAR MI DİYE KONTROL EDİYORUZ ---------
 
@@ -1152,6 +1152,104 @@ class panel extends Controller {
         $this->bilgi->direktYonlen("/panel/giris");
 
     }
+    
+    function sifredegistir() {	// ŞİFRE DEĞİŞTİRME FORMU
+       
+        $this->view->goster("YonPanel/sayfalar/sifreislemleri",array(
+        // admin idsini tutuyo
+        "sifredegistir" => Session::get("Adminid")));	
+      
+    }
+    
+    function sifreguncelleson() {   // ADMİN ŞİFRESİ GÜNCELLEME
+
+        if ($_POST) : // POST İLE GELİNDİYSE
+
+        // form classına gidip ad ve şifre boş mu değil mi diye bakar
+        $mevcutsifre = $this->form->get("mevcutsifre")->bosmu();
+        $yen1 = $this->form->get("yen1")->bosmu();
+        $yen2 = $this->form->get("yen2")->bosmu();
+        $yonid = $this->form->get("yonid")->bosmu();
+
+        // şifrelerin uyumlu olup olmamasını karşılaştırır
+        $sifre = $this->form->sifreKarsilastir($yen1, $yen2); // şifrelenmiş yeni hali alıyorum
+
+        /*
+            ÖNCE GELEN ŞİFRE SORGULANACAK DOĞRU MU DİYE
+            EĞER DOĞRU İSE DEVAM EDECEK
+            HATALI İSE İŞLEM BİTECEK
+        */
+
+        // mevcut şifreyi şifreleme
+        $mevcutsifre = $this->form->sifrele($mevcutsifre);
+
+        // hesap ayarlarında yazılan herhangi bi yerin boş olması
+        // bir hata var demek
+        if(!empty($this->form->error)):
+
+            // boş bırakılan varsa error arrayinde hangisi olduğunu göstericek
+            $this->view->goster("YonPanel/sayfalar/sifreislemleri",
+            array(
+            // şifre değiştire üyenin idsini gönder
+            "sifredegistir" => Session::get("Adminid"),
+            "bilgi" => $this->bilgi->uyari("danger", " Yeni şifreniz uyumsuz lütfen kontrol ederek tekrar deneyiniz.")
+            ));
+
+        // gelen veride sorun yoksa
+        else:
+
+            // MEVcUT ŞİFRE(eski şifre) DOĞRUYSA
+            // giriş yapıldığında kullanıcı adına ve mevcut şifresine bakar
+            $sonuc2=$this->model->GirisKontrol("yonetim", "ad='".Session::get("AdminAd")."' and sifre='$mevcutsifre'");
+
+            // giriş yapıldıysa
+            if($sonuc2):
+
+                $sonuc=$this->model->Guncelle("yonetim", 
+                array("sifre"),
+                // yeni yazılmış şifrenin şifrelenmiş haliyle değiştir
+                array($sifre), "id=".$yonid);
+
+                // şifre güncelleme başarılıysa
+                if($sonuc):
+
+                    $this->view->goster("YonPanel/sayfalar/sifreislemleri",
+                    array(
+                    // güncelleme başarılı uyarısından 3sn sonra anasayfaya yönlendirme
+                    "bilgi" => $this->bilgi->basarili("ŞİFRE DEĞİŞTİRME BAŞARILI", "/panel/siparisler")
+                    )); 
+
+                else:
+
+                    $this->view->goster("YonPanel/sayfalar/sifreislemleri",
+                    array(
+                    "sifredegistir" => Session::get("Adminid"),
+                    "bilgi" => $this->bilgi->uyari("danger", " Şifre değiştirme sırasında hata oluştu.")
+                    ));
+                
+                endif;
+
+            // MEVCUT ŞİFRE HATALI İSE
+            else:
+
+                $this->view->goster("YonPanel/sayfalar/sifreislemleri",
+                array(
+                // şifre değiştire üyenin idsini gönder
+                "sifredegistir" => Session::get("Adminid"),
+                "bilgi" => $this->bilgi->uyari("danger", " Mevcut şifre hatalıdır. ")
+                ));
+
+            endif;
+
+        endif;
+        // POST İLE GELMEDİYSE
+        else:
+
+            $this->bilgi->direktYonlen("/");
+        endif;
+    
+    }
+
     
     
 
