@@ -43,10 +43,10 @@ class Session {
     }
 
     
-    public static function OturumKontrol($deger1,$deger2) {
+    public static function OturumKontrol($tabloAdi, $deger1, $deger2) {
         
         // oturum acan kullanıcının bilgileri veri tabanı ile eşleşiyor mu
-        $sonuc = self::$db->listele("uye_panel","where ad='".$deger1."' and id=".$deger2);
+        $sonuc = self::$db->listele($tabloAdi,"where ad='".$deger1."' and id=".$deger2);
         
         // tanımsızsa
         if (!isset($sonuc[0])) :

@@ -1,23 +1,29 @@
 <?php require 'views/header.php'; // İlk önce headerı dahil ettik ?> 
 
+<?php 
+// kullanıcı adı ve id gelemiyosa yani giris yapıldıysa uye/giris gözükemyecek
+if (!Session::get("kulad") && !Session::get("uye")) : 
+Session::OturumKontrol("uye_panel",Session::get("kulad"),Session::get("uye"));
+?>
+
 <!-- registration-form -->
 <div class="registration-form">
 	<div class="container">
 	<div class="dreamcrub">
-			   	 <ul class="breadcrumbs">
-                    <li class="home">
-					<a href="<?php echo URL;?>" title="Anasayfa">Anasayfa</a>&nbsp;
-                       <span>&gt;</span>
-                    </li>
-                    <li class="women">
-                       Üye Ol
-                    </li>
-                </ul>
-                <ul class="previous">
-                	<li><a href="<?php echo URL;?>">Geri Dön</a></li>
-                </ul>
-                <div class="clearfix"></div>
-			   </div>
+		<ul class="breadcrumbs">
+			<li class="home">
+			<a href="<?php echo URL;?>" title="Anasayfa">Anasayfa</a>&nbsp;
+				<span>&gt;</span>
+			</li>
+			<li class="women">
+				Üye Ol
+			</li>
+		</ul>
+		<ul class="previous">
+			<li><a href="<?php echo URL;?>">Geri Dön</a></li>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
 
 		<?php
 
@@ -220,7 +226,11 @@
 
 <?php 
 endif;
-
+else:
+	
+	header("Location:".URL);
+	
+endif;
 require 'views/footer.php';   
 ?> 
         
