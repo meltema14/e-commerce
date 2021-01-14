@@ -17,7 +17,7 @@ class Bilgi {
     function hata($deger = false, $yol, $sure=3) {
 
         // $deger: başarılı ya da başarısız olması(metin)
-        return '<div class="alert alert-danger mt-5"> '.$deger.'</div>'
+        return '<div class="alert alert-danger mt-5 text-center"> '.$deger.'</div>'
         . header("Refresh:".$sure."; url=".URL.$yol);
     }
 

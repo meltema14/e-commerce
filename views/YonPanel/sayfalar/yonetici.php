@@ -45,8 +45,8 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 bg-gradient-mvc pt-2 basliktext2">
                            <h3>Yeni Yönetici Ekle</h3>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Yönetici Adı</div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">Yönetici Adı</div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">
                            <?php
 
                            Form::Olustur("1", array(
@@ -59,8 +59,8 @@
                            ?>
                         </div>
 
-                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Şifre</div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman ">Şifre</div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman ">
                            <?php
 
                            Form::Olustur("2", array("type" => "password", "class" => "form-control", "name" => "sif1"));
@@ -68,8 +68,8 @@
                            ?>
                         </div>
 
-                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman">Şifre (Tekrar)</div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman">
+                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">Şifre (Tekrar)</div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 formeleman nocizgi">
                            <?php
 
                            Form::Olustur("2", array("type" => "password", "class" => "form-control", "name" => "sif2"));
@@ -157,8 +157,16 @@
                            
                         <div class="col-lg-5 col-xl-5 col-md-5 col-sm-5 text-dark kalinyap p-2">' . $value["id"] . '</div>
                         <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 text-dark kalinyap p-2">' . $value["ad"] . '</div>
-                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 text-dark kalinyap p-2 text-center">               
-                        <a href="' . URL . '/panel/yonSil/' . $value["id"] . '" class="fas fa-times silbuton mr-3"></a>  </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 text-dark kalinyap p-2 text-center">';
+
+                        if(Session::get("Adminid") != $value["id"]):
+                           echo '<a href="' . URL . '/panel/yonSil/' . $value["id"] . '" class="fas fa-times silbuton mr-3"></a> ';
+                        else:
+                           echo '<a href="#" class="fas fa-times silbuton mr-3"></a> ';
+                        endif;
+                        
+
+                        echo '</div>
                         </div>  
                         </div>';
 

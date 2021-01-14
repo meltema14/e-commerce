@@ -1221,6 +1221,79 @@ class panel extends Controller {
 		endif;
     }
 
+    function yonekle(){  // YÖNETİCİ EKLEME
+
+		$this->view->goster("YonPanel/sayfalar/yonetici", array(
+
+			"yoneticiekle" => true
+		));
+    }	
+
+    function yonekleson() {   // YÖNETİCİ EKLEME SON
+
+        if ($_POST) : // POST İLE GELİNDİYSE
+
+            // form classına gidip ad ve şifre boş mu değil mi diye bakar
+            $yonadi = $this->form->get("yonadi")->bosmu();
+            $sif1 = $this->form->get("sif1")->bosmu();
+            $sif2 = $this->form->get("sif2")->bosmu();
+    
+            // şifrelerin uyumlu olup olmamasını karşılaştırır
+            $sifre = $this->form->sifreKarsilastir($sif1, $sif2); // şifrelenmiş yeni hali alıyorum
+
+            /*
+                ÖNCE GELEN ŞİFRE SORGULANACAK DOĞRU MU DİYE
+                EĞER DOĞRU İSE DEVAM EDECEK
+                HATALI İSE İŞLEM BİTECEK
+            */
+
+            // hesap ayarlarında yazılan herhangi bi yerin boş olması
+            // bir hata var demek
+            if(!empty($this->form->error)):
+
+                // boş bırakılan varsa error arrayinde hangisi olduğunu göstericek
+                $this->view->goster("YonPanel/sayfalar/yonetici",
+                array(
+                "bilgi" => $this->bilgi->hata("Girilen şifreler uyuşmuyor. Lütfen şifrelerini aynı giriniz", "/panel/yonetici")
+                ));
+
+            // gelen veride sorun yoksa
+            else:
+
+                $sonuc=$this->model->Ekleme("yonetim", 
+                array("ad","sifre"),
+                // yeni yazılmış şifrenin şifrelenmiş haliyle değiştir
+                array($yonadi, $sifre));
+
+                // şifre güncelleme başarılıysa
+                if($sonuc):
+
+                    $this->view->goster("YonPanel/sayfalar/yonetici",
+                    array(
+                    // güncelleme başarılı uyarısından 3sn sonra anasayfaya yönlendirme
+                    "bilgi" => $this->bilgi->basarili("Yeni yönetici eklendi.", "/panel/yonetici")
+                    )); 
+
+                else:
+
+                    $this->view->goster("YonPanel/sayfalar/yonetici",
+                    array(
+                    "bilgi" => $this->bilgi->hata("Ekleme sırasında hata oluştu.", "/panel/yonetici")
+                    ));
+                
+                endif;
+
+            endif;
+            
+        // POST İLE GELMEDİYSE
+        else:
+
+            $this->bilgi->direktYonlen("/");
+        endif;
+    
+    }
+
+
 
     
     
